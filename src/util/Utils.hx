@@ -100,7 +100,7 @@ class Utils
 	public static function fromFile(id:String)
 	{
 		#if mobile
-		return Assets.getBitmapData(id);
+		return openfl.Assets.getBitmapData(id);
 		#else
 		return BitmapData.fromFile(id);
 		#end
@@ -162,36 +162,6 @@ class BSLTouchUtils
 		#else
 		return FlxG.mouse.pressed;
 		#end
-	}
-
-	/**
-	 * solo para ver el mousescreen.
-	 */
-	public static function touchScreenX():Float
-	{
-		// #if (flixel && android)
-		var touch:FlxTouch = FlxG.touches.getFirst();
-
-		if (touch != null)
-			return touch.screenX;
-
-		return 0; // espero que es to no rompa nada xd
-		// #end
-	}
-
-	/**
-	 * solo para ver el mousescreen.
-	 */
-	public static function touchScreenY():Float
-	{
-		// #if (flixel && android)
-		var touch:FlxTouch = FlxG.touches.getFirst();
-
-		if (touch != null)
-			return touch.screenY;
-
-		return 0;
-		// #end
 	}
 
 	/**
