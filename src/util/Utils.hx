@@ -5,7 +5,6 @@ import flixel.math.FlxRect;
 import openfl.display.BitmapData;
 #if android
 import haxe.crypto.Md5; // Assim o Md5 não é compilado no PC e não fica como Unused import
-
 #end
 enum ResizeMode
 {

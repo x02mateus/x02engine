@@ -53,7 +53,7 @@ class Init extends FlxState
 
 	override function update(elapsed:Float)
 	{
-		var justPressed:Bool = #if mobile Utils.BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
+		var justPressed:Bool = #if mobile BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
 		if (justPressed) {
 			GlobalSoundManager.play('confirmMenu');
 			SaveData.firstTime = false;

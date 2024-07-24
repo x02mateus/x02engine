@@ -1,6 +1,22 @@
+// FS
+import util.Utils;
+import lime.utils.Assets;
+import sys.FileSystem;
+import sys.io.File;
+
+// Som
+#if (flixel >= "5.3.0")
+import flixel.sound.FlxSound;
+#else
+import flixel.system.FlxSound;
+#end
 import backend.GlobalSoundManager;
-import backend.Paths;
+
+// Backend
 import backend.SaveData;
+import backend.Paths;
+
+// Flixel
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -14,16 +30,12 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+
+// Haxe
 import haxe.Json;
-import sys.FileSystem;
-import sys.io.File;
+
+// Input
 import util.Utils.BSLTouchUtils;
-import util.Utils;
 
+// StringTools
 using StringTools;
-
-#if (flixel >= "5.3.0")
-import flixel.sound.FlxSound;
-#else
-import flixel.system.FlxSound;
-#end
