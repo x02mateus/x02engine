@@ -34,14 +34,15 @@ class MenuItemObject extends FlxSpriteGroup
 	{
 		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options))
 		{
-            GlobalSoundManager.play('confirmMenu');
+			GlobalSoundManager.play('confirmMenu');
 			FlxG.log.error("Esse menu ainda nao foi terminado kek");
 		}
-		else if (BSLTouchUtils.apertasimples(credits)) {
-            canClick = false;
-            GlobalSoundManager.play('confirmMenu');
+		else if (BSLTouchUtils.apertasimples(credits))
+		{
+			canClick = false;
+			GlobalSoundManager.play('confirmMenu');
 			Sys.exit(1);
-        }
+		}
 		super.update(elapsed);
 	}
 }

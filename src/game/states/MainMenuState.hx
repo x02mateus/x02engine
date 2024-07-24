@@ -10,6 +10,8 @@ class MainMenuState extends FlxState {
     private var versionText:FlxText;
 
     override function create() {
+        Main.mouse(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
+        
         // Breve explicação de como funcionam os sprites nessa engine
         background = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1,2)}', 'preload')); // Carrega a imagem usando o Paths.image, e procura por ela em 'preload/images/background/(bg 1 ou 2)'
         background.moves = false; // Desativa o sistema de colisão para o aumento de performance (Não tem necessidade de utilizar o sistema de colisão, já que o BG foi feito para ser apenas um fundo)

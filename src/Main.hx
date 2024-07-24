@@ -144,7 +144,8 @@ class Main extends Sprite
 		Sys.exit(1);
 	}
 
-	public static function mouse(visible:Bool) {
+	public static function mouse(visible:Bool)
+	{
 		#if desktop
 		FlxG.mouse.visible = visible;
 		#elseif mobile

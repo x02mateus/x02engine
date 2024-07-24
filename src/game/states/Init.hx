@@ -53,6 +53,6 @@ class Init extends FlxState
 		var justPressed:Bool = #if mobile Utils.BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
 		if (justPressed)
 			GlobalSoundManager.play('confirmMenu');
-			SaveData.firstTime = false;
+		SaveData.firstTime = false;
 	}
 }
