@@ -143,4 +143,12 @@ class Main extends Sprite
 		Application.current.window.alert(errMsg, "Erro!");
 		Sys.exit(1);
 	}
+
+	public static function mouse(visible:Bool) {
+		#if desktop
+		FlxG.mouse.visible = visible;
+		#elseif mobile
+		FlxG.mouse.visible = false;
+		#end
+	}
 }

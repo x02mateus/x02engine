@@ -1,3 +1,5 @@
+import backend.GlobalSoundManager;
+import backend.Paths;
 import backend.SaveData;
 import flixel.FlxCamera;
 import flixel.FlxG;

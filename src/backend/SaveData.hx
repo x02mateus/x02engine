@@ -4,6 +4,9 @@ class SaveData
 {
 	// Data
 	public static var firstTime:Null<Bool> = true;
+	public static var hitSoundVolume:Null<Float> = 0;
+	public static var volumeMusica:Null<Float> = 1;
+	public static var volumeEfeitos:Null<Float> = 1;
 
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];
@@ -19,7 +22,6 @@ class SaveData
 	public static var scrollSpeed:Null<Float> = 1;
 	public static var botplay:Null<Bool> = false;
 	public static var hitSound:Null<Int> = 0;
-	public static var hitSoundVolume:Null<Float> = 0;
 
 	// UI
 	public static var downscroll:Null<Bool> = false;

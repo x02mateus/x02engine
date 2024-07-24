@@ -14,6 +14,8 @@
 		- Code compacto e limpo
 		- Poder jogar a música que quiser (sugestão feita pela Maria Clara)
 		- Ter uma gameplay confortável e agradável para o usuário, com bastantes opções de customização
+		- IMPORTANTE: ADICIONAR O OPENFL DO MODBOA
+		- IMPORTANTE: ADICIONAR O GLOBALSOUNDMANAGER DO MODBOA
 
 	ESSE ARQUIVO É TEMPORÁRIO, E É USADO APENAS PARA AS CONFIGURAÇÕES INICIAIS DA ENGINE (SaveData, Input, etc.)
  */
@@ -28,6 +30,7 @@ class Init extends FlxState
 	override function create()
 	{
 		SaveData.init();
+		FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
 
 		if (SaveData.firstTime)
 		{
@@ -49,6 +52,7 @@ class Init extends FlxState
 	{
 		var justPressed:Bool = #if mobile Utils.BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
 		if (justPressed)
+			GlobalSoundManager.play('confirmMenu');
 			SaveData.firstTime = false;
 	}
 }
