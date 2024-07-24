@@ -12,15 +12,45 @@
 		- Suporte nativo a controles Mobile (Mobile)
 		- Charts em BIN para melhor otimização
 		- Code compacto e limpo
+		- Poder jogar a música que quiser (sugestão feita pela Maria Clara)
+		- Ter uma gameplay confortável e agradável para o usuário, com bastantes opções de customização
 
 	ESSE ARQUIVO É TEMPORÁRIO, E É USADO APENAS PARA AS CONFIGURAÇÕES INICIAIS DA ENGINE (SaveData, Input, etc.)
  */
- 
- import flixel.FlxState;
- 
- class Init extends FlxState {
-	override function create() {
+
+import flixel.FlxG;
+import flixel.FlxState;
+import flixel.text.FlxText;
+
+class Init extends FlxState
+{
+	var texto:FlxText;
+	var coiso:String = #if desktop 'Aperte ENTER ' #elseif mobile 'TOQUE NA TELA ' #end;
+
+	override function create()
+	{
 		SaveData.init();
+
+		if (SaveData.firstTime)
+		{
+			texto = new FlxText(0, 0,
+				"Bem vindo!\nEssa engine pode conter luzes piscantes, e caso\nvocê seja sensível a esse tipo de coisa, desative a opção 'Luzes Piscantes'\nque se localiza no menu de opções.\n\nObrigado!\n\n" +
+				coiso + "para continuar.",
+				28);
+			add(texto);
+		}
+		else
+		{
+			Sys.exit(1);
+		}
+
 		super.create();
 	}
- }
+
+	override function update(elapsed:Float)
+	{
+		var justPressed:Bool = #if mobile Utils.BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
+		if (justPressed)
+			SaveData.firstTime = false;
+	}
+}

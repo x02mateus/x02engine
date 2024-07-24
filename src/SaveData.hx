@@ -2,6 +2,8 @@ import flixel.FlxG;
 
 class SaveData
 {
+	// Data
+	public static var firstTime:Null<Bool> = true;
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];
 	public static var buttons:Array<Dynamic> = [];

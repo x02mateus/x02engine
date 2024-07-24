@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://lime.openfl.org/project/1.0.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
+<project xmlns="http://lime.openfl.org/project/1.0.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
 
 	<!-- _________________________ Application Settings _________________________ -->
 
@@ -21,12 +21,31 @@
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
+	<source path="src" />
+
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
 
-	<source path="src" />
-	<assets path="assets" />
+	<define name="PRELOAD_ALL" unless="web" />
+	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
+
+	<section if="PRELOAD_ALL">
+		<library name="songs" preload="true" />
+		<library name="shared" preload="true" />
+	</section>
+
+	<section if="NO_PRELOAD_ALL">
+		<library name="songs" preload="false" />
+		<library name="shared" preload="false" />
+	</section>
+
+	<assets path="assets/songs" library="songs" exclude="*.ogg" if="web"/>
+	<assets path="assets/songs" library="songs" exclude="*.mp3" unless="web"/>
+	<assets path="assets/shared" library="shared" exclude="*.ogg" if="web"/>
+	<assets path="assets/shared" library="shared" exclude="*.mp3" unless="web"/>
+
+	<assets path="assets/fonts" embed='true'/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -41,7 +60,7 @@
 
 	<!--Remove the legacy health system-->
 	<haxedef name="FLX_NO_HEALTH" />
-	
+
 	<!--Enable the Flixel core recording system-->
 	<!--<haxedef name="FLX_RECORD" />-->
 
@@ -75,6 +94,10 @@
 	<!-- Haxe 4.3.0+: Enable pretty syntax errors and stuff. -->
 	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->
 	<haxedef name="message.reporting" value="pretty" />
+
+	<!-- Akways enable Null Object Reference check for crash dialog -->
+	<haxedef name="HXCPP_CHECK_POINTER" />
+	<haxedef name="HXCPP_STACK_LINE" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
