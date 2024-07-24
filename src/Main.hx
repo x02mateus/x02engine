@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxGame;
+import game.states.Init;
 import haxe.CallStack.StackItem;
 import haxe.CallStack;
 import lime.app.Application;

@@ -1,26 +1,12 @@
-import flixel.FlxCamera;
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.group.FlxSpriteGroup;
+package util;
+
 import flixel.input.touch.FlxTouch;
-import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.util.FlxColor;
 import openfl.display.BitmapData;
-import openfl.utils.Assets;
-
-using StringTools;
-
-#if sys
-import sys.FileSystem;
-import sys.io.File;
-#end
 #if android
 import haxe.crypto.Md5; // Assim o Md5 não é compilado no PC e não fica como Unused import
-
 #end
+
 enum ResizeMode
 {
 	FIT_WIDTH;
