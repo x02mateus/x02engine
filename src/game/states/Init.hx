@@ -30,19 +30,22 @@ class Init extends FlxState
 	override function create()
 	{
 		SaveData.init();
-		FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
 
 		if (SaveData.firstTime)
 		{
+			FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
+
 			texto = new FlxText(0, 0,
-				"Bem vindo!\nEssa engine pode conter luzes piscantes, e caso\nvocê seja sensível a esse tipo de coisa, desative a opção 'Luzes Piscantes'\nque se localiza no menu de opções.\n\nObrigado!\n\n" +
-				coiso + "para continuar.",
-				28);
+				"Bem vindo!\nEssa engine pode conter luzes piscantes, e caso\nvocê seja sensível a esse tipo de coisa,\ndesative a opção 'Luzes Piscantes'\nque se localiza no menu de opções.\n\nObrigado!\n" +
+				coiso + "para continuar.");
+			texto.scrollFactor.set();
+			texto.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			texto.screenCenter(XY);
 			add(texto);
 		}
 		else
 		{
-			Sys.exit(1);
+			FlxG.switchState(new game.states.MainMenuState());
 		}
 
 		super.create();
@@ -51,8 +54,11 @@ class Init extends FlxState
 	override function update(elapsed:Float)
 	{
 		var justPressed:Bool = #if mobile Utils.BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
-		if (justPressed)
+		if (justPressed) {
 			GlobalSoundManager.play('confirmMenu');
-		SaveData.firstTime = false;
+			SaveData.firstTime = false;
+			SaveData.save();
+			FlxG.switchState(new game.states.MainMenuState());
+		}
 	}
 }

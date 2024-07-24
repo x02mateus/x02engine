@@ -2,27 +2,64 @@ package game.states;
 
 // Decidi rushar esse menu escutando Master of Puppets do Metallica, então ignore se o code estiver burro k
 
-import objects.MenuItemObject;
+class MainMenuState extends FlxState
+{
+	private var canClick:Bool = true;
+	private var background:FlxSprite;
+	private var versionText:FlxText;
 
-class MainMenuState extends FlxState {
-    private var menuitem_obj:MenuItemObject;
-    private var background:FlxSprite;
-    private var versionText:FlxText;
+	public var freeplay:FlxSprite = new FlxSprite();
+	public var options:FlxSprite = new FlxSprite();
+	public var credits:FlxSprite = new FlxSprite();
 
-    override function create() {
-        Main.mouse(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
-        
-        // Breve explicação de como funcionam os sprites nessa engine
-        background = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1,2)}', 'preload')); // Carrega a imagem usando o Paths.image, e procura por ela em 'preload/images/background/(bg 1 ou 2)'
-        background.moves = false; // Desativa o sistema de colisão para o aumento de performance (Não tem necessidade de utilizar o sistema de colisão, já que o BG foi feito para ser apenas um fundo)
-        background.antialiasing = SaveData.antialiasing; // Ativa ou desativa o antialiasing da imagem de acordo com o que o usuário tiver escolhido
-        background.setGraphicSize(Std.int(FlxG.width), Std.int(FlxG.height)); // Faz a imagem preencher a tela inteira
-        add(background); // Adiciona a imagem
+	override function create()
+	{
+		if (FlxG.sound.music == null)
+			FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
 
-        versionText = new FlxText(12, FlxG.height - 24, 0, "X02Engine BETA v0.1", 12);
+		Main.mouse(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
+
+		// Breve explicação de como funcionam os sprites nessa engine
+		background = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}',
+			'preload')); // Carrega a imagem usando o Paths.image, e procura por ela em 'preload/images/background/(bg 1 ou 2)'
+		background.moves = false; // Desativa o sistema de colisão para o aumento de performance (Não tem necessidade de utilizar o sistema de colisão, já que o BG foi feito para ser apenas um fundo)
+		background.antialiasing = SaveData.antialiasing; // Ativa ou desativa o antialiasing da imagem de acordo com o que o usuário tiver escolhido
+		background.setGraphicSize(Std.int(FlxG.width), Std.int(FlxG.height)); // Faz a imagem preencher a tela inteira
+		add(background); // Adiciona a imagem
+
+		versionText = new FlxText(0, FlxG.height - 24, 0, "X02Engine BETA v0.1", 12);
 		versionText.scrollFactor.set();
 		versionText.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionText);
-        super.create();
-    }
+
+		freeplay.loadGraphic(Paths.image("mainmenu/freeplay"));
+        freeplay.x = 120;
+        freeplay.screenCenter(Y);
+		freeplay.moves = false;
+		freeplay.antialiasing = SaveData.antialiasing;
+		add(freeplay);
+
+		options.loadGraphic(Paths.image("mainmenu/options"));
+		options.x = freeplay.x + freeplay.width;
+        options.y = freeplay.y;
+		options.moves = false;
+		options.antialiasing = SaveData.antialiasing;
+		add(options);
+
+		credits.loadGraphic(Paths.image("mainmenu/credits"));
+		credits.x = freeplay.x + freeplay.width;
+		credits.y = options.y + options.height;
+		credits.moves = false;
+		credits.antialiasing = SaveData.antialiasing;
+		add(credits);
+
+		super.create();
+	}
+
+	override function update(elapsed:Float)
+	{
+		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options) || BSLTouchUtils.apertasimples(credits))
+			FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+		super.update(elapsed);
+	}
 }
