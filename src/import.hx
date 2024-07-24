@@ -19,6 +19,7 @@ import util.Utils.BSLTouchUtils;
 import util.Utils;
 
 using StringTools;
+
 #if (flixel >= "5.3.0")
 import flixel.sound.FlxSound;
 #else

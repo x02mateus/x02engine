@@ -17,7 +17,7 @@
 
 	ESSE ARQUIVO É TEMPORÁRIO, E É USADO APENAS PARA AS CONFIGURAÇÕES INICIAIS DA ENGINE (SaveData, Input, etc.)
  */
- 
+
 package game.states;
 
 class Init extends FlxState
