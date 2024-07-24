@@ -149,8 +149,6 @@ class Main extends Sprite
 	{
 		#if desktop
 		FlxG.mouse.visible = visible;
-		#elseif mobile
-		FlxG.mouse.visible = false;
 		#end
 	}
 }
