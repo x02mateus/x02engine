@@ -13,6 +13,11 @@
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
 
+	<section if="android">		<!-- Só fiz isso pra não ficar misturando as coisas de Android com PC e vice-versa -->
+		<android target-sdk-version="29"/>
+		<android minimum-sdk-version="9"/>
+	</section>
+
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
@@ -40,6 +45,8 @@
 		<library name="shared" preload="false" />
 	</section>
 
+	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
+	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 	<assets path="assets/songs" library="songs" exclude="*.ogg" if="web"/>
 	<assets path="assets/songs" library="songs" exclude="*.mp3" unless="web"/>
 	<assets path="assets/shared" library="shared" exclude="*.ogg" if="web"/>
