@@ -58,13 +58,23 @@ class MainMenuState extends FlxState
 
 	override function update(elapsed:Float)
 	{
-		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options) || BSLTouchUtils.apertasimples(credits)) {
-			FlxG.camera.flash(0x2E236C, 0.5);
-			GlobalSoundManager.play(confirmMenu);
-			new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-				FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
-			});
-		}
+
+		if(BSLTouchUtils.apertasimples(credits))
+			abrirState("credits");
+		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options))
+			abrirState("uhhhhhh");
+
 		super.update(elapsed);
+	}
+
+	private function abrirState(pressed:String) {
+		FlxG.camera.flash(0x2E236C, 0.5);
+		GlobalSoundManager.play(confirmMenu);
+		new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+			switch(pressed) {
+				case "credits": 			  FlxG.switchState(new game.states.CreditsState());
+				default: 					  FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+			}
+		});
 	}
 }

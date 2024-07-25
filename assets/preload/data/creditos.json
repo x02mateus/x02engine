@@ -1,0 +1,18 @@
+{
+  "creditos": [
+    {
+      "nome": "Evil",
+      "cargo": "Ideias (gameplay/design)",
+      "desc": "oi, essa discrissaum eh temporaria",
+      "icon": "evil",
+      "yt": ""
+    },
+    {
+      "nome": "mateusx02",
+      "cargo": "Coding, designer",
+      "desc": "oi, essa discrissaum eh temporaria",
+      "icon": "x02",
+      "yt": "https://www.youtube.com/@mateusx02"
+    }
+  ]
+}
