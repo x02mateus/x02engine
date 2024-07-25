@@ -17,7 +17,7 @@ class MainMenuState extends FlxState
 		if (FlxG.sound.music == null)
 			FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
 
-		Main.mouse(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
+		Main.mouseVisibility(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
 
 		// Breve explicação de como funcionam os sprites nessa engine
 		background = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}',
@@ -58,8 +58,13 @@ class MainMenuState extends FlxState
 
 	override function update(elapsed:Float)
 	{
-		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options) || BSLTouchUtils.apertasimples(credits))
-			FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options) || BSLTouchUtils.apertasimples(credits)) {
+			FlxG.camera.flash(0x2E236C, 0.5);
+			GlobalSoundManager.play(confirmMenu);
+			new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+				FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+			});
+		}
 		super.update(elapsed);
 	}
 }

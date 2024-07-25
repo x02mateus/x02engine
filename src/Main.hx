@@ -24,6 +24,11 @@ class Main extends Sprite
 {
 	var fpsVar:FPS;
 
+	public static var mouse_allowed:Bool = false;
+	#if mobile
+	private static var touch_allowed:Bool = true;
+	#end
+
 	var game = {
 		width: 1280, // WINDOW width
 		height: 720, // WINDOW height
@@ -62,6 +67,24 @@ class Main extends Sprite
 		setupGame();
 	}
 
+	public static function mouseVisibility(visible:Bool):Void
+	{
+		#if desktop
+		FlxG.mouse.visible = visible;
+		#else
+		touch_allowed = visible;
+		#end
+	}
+
+	public static function getMouseVisibility():Bool
+	{
+		#if desktop
+		return FlxG.mouse.visible;
+		#else
+		return touch_allowed;
+		#end
+	}
+
 	private function setupGame():Void
 	{
 		var stageWidth:Int = Lib.current.stage.stageWidth;
@@ -93,8 +116,10 @@ class Main extends Sprite
 		FlxG.mouse.visible = false;
 		#end
 
-		FlxG.fixedTimestep = false;
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+
+		FlxG.updateFramerate = FlxG.drawFramerate = SaveData.fps;
+		FlxG.fixedTimestep = false;
 	}
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
@@ -124,9 +149,7 @@ class Main extends Sprite
 			}
 		}
 
-		errMsg += "\nUncaught Error: "
-			+ e.error
-			+ "\nPlease report this error to the GitHub page: https://github.com/ShadowMario/FNF-PsychEngine\n\n> Crash Handler written by: sqirra-rng";
+		errMsg += "\nErro do crash: " + e.error;
 
 		#if desktop
 		if (!FileSystem.exists("./crash/"))
@@ -143,12 +166,5 @@ class Main extends Sprite
 
 		Application.current.window.alert(errMsg, "Erro!");
 		Sys.exit(1);
-	}
-
-	public static function mouse(visible:Bool)
-	{
-		#if desktop
-		FlxG.mouse.visible = visible;
-		#end
 	}
 }
