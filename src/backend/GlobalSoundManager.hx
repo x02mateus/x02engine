@@ -33,4 +33,5 @@ enum abstract Sounds(String) to String from String
 {
 	final confirmMenu = "confirmMenu";
 	final cancelMenu = "cancelMenu";
+	final scrollMenu = "scrollMenu";
 }

@@ -6,6 +6,7 @@ import flash.media.Sound;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxDestroyUtil;
+import objects.FPS;
 import openfl.display.BitmapData;
 import openfl.display3D.textures.Texture;
 import openfl.utils.AssetType;
@@ -38,6 +39,8 @@ class Paths
 	public static var dumpExclusions:Array<String> = [];
 
 	public static var cache:IAssetCache = new AssetCache();
+
+	public static final limites:Array<Int> = [300, 500, 600, 700]; // Esperança para 1gb de RAM, mas tenho certeza que isso não será suficiente para Love n' Funkin, Libitina e outras pesadonas.
 
 	public static function excludeAsset(key:String):Void
 	{
@@ -319,7 +322,6 @@ class Paths
 
 		path = getPath('images/$key.png', IMAGE, library);
 
-		trace('Imagem carregada: $key.png');
 		if (openfl.Assets.exists(path, IMAGE))
 		{
 			if (!currentTrackedAssets.exists(key))
@@ -327,8 +329,16 @@ class Paths
 				var bitmap:BitmapData = openfl.Assets.getBitmapData(path, false);
 				var graphic:FlxGraphic = null;
 
-				if (gpu)
-				{
+				FPS.curMemChecker();
+
+				if (SaveData.gpu
+					|| gpu
+					|| currentTrackedTextures.exists(path)
+					|| FPS.curMEMforReference > limites[SaveData.curPreset] ^ 2) // Basicamente, se o uso da CPU chegar próximo do limite do aparelho, então a GPU será usada
+				{ // É mais fácil gerenciar a GPU através da CPU do que o contrário.
+					// Caso o jogo consuma mais do que um celular de 2gb pode aguenta,
+					// Ele passa a usar GPU pra segurar o jooj por um pouco mais de tempo antes de precisar reiniciar o APK
+
 					var texture = FlxG.stage.context3D.createTexture(bitmap.width, bitmap.height, BGRA, false, 0);
 					texture.uploadFromBitmapData(bitmap);
 					currentTrackedTextures.set(key, texture);
@@ -336,9 +346,13 @@ class Paths
 					FlxDestroyUtil.dispose(bitmap);
 					bitmap = null;
 					graphic = FlxGraphic.fromBitmapData(BitmapData.fromTexture(texture), false, key);
+					trace('Imagem carregada por GPU: $key.png');
 				}
 				else
+				{
 					graphic = FlxGraphic.fromBitmapData(bitmap, false, key, false);
+					trace('Imagem carregada por CPU: $key.png');
+				}
 
 				graphic.persist = true;
 				currentTrackedAssets.set(key, graphic);

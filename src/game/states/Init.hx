@@ -61,7 +61,7 @@ class Init extends FlxState
 			SaveData.save();
 			FlxFlicker.flicker(texto, 1, 0.1, false, true, function(flk:FlxFlicker) {
 				new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-					FlxG.switchState(new game.states.MainMenuState());
+					FlxG.switchState(new game.states.PresetsState());
 				});
 			});
 		}

@@ -5,8 +5,8 @@ import game.states.Init;
 import haxe.CallStack.StackItem;
 import haxe.CallStack;
 import lime.app.Application;
+import objects.FPS;
 import openfl.Lib;
-import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.display.StageScaleMode;
 import openfl.events.Event;
@@ -102,14 +102,13 @@ class Main extends Sprite
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate,
 			game.skipSplash, game.startFullscreen));
 
-		fpsVar = new FPS(10, 3, 0xFFFFFF);
-		addChild(fpsVar);
+		
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		if (fpsVar != null)
-		{
+		fpsVar = new FPS(10, 3, 0xFFFFFF);
+		addChild(fpsVar);
+		if(fpsVar != null)
 			fpsVar.visible = SaveData.showFPS;
-		}
 
 		#if html5
 		FlxG.autoPause = false;

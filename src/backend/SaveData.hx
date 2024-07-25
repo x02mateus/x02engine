@@ -7,6 +7,7 @@ class SaveData
 	public static var hitSoundVolume:Null<Float> = 0;
 	public static var volumeMusica:Null<Float> = 1;
 	public static var volumeEfeitos:Null<Float> = 1;
+	public static var curPreset:Null<Int> = 1;
 
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];
@@ -27,7 +28,7 @@ class SaveData
 	public static var downscroll:Null<Bool> = false;
 	public static var middlescroll:Null<Bool> = false;
 	public static var songPosition:Null<Bool> = false;
-	public static var showFPS:Null<Bool> = false;
+	public static var showFPS:Null<Bool> = true;
 
 	private static var importantMap:Map<String, Array<String>> = ["flixelSound" => ["volume"]];
 
