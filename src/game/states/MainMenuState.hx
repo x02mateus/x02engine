@@ -15,7 +15,7 @@ class MainMenuState extends FlxState
 	override function create()
 	{
 		if (FlxG.sound.music == null)
-			FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
+			FlxG.sound.playMusic(Paths.music(Std.string(FlxG.random.int(1, 5))), SaveData.volumeMusica, true);
 
 		Main.mouseVisibility(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
 
@@ -68,7 +68,7 @@ class MainMenuState extends FlxState
 	}
 
 	private function abrirState(pressed:String) {
-		FlxG.camera.flash(0x2E236C, 0.5);
+		CamerasUtil.flash(0.5);
 		GlobalSoundManager.play(confirmMenu);
 		new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 			switch(pressed) {

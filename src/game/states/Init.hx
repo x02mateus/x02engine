@@ -33,7 +33,7 @@ class Init extends FlxState
 
 		if (SaveData.firstTime)
 		{
-			FlxG.sound.playMusic(Paths.music('${FlxG.random.int(1, 5)}'), SaveData.volumeMusica, true);
+			FlxG.sound.playMusic(Paths.music(Std.string(FlxG.random.int(1, 5))), SaveData.volumeMusica, true);
 
 			texto = new FlxText(0, 0,
 				"Bem vindo!\nEssa engine contem luzes piscantes, e caso\nvoce seja sensivel a esse tipo de coisa,\ndesative a opcao 'Luzes Piscantes'\nque se localiza no menu de opcoes.\n\nObrigado!\n" +

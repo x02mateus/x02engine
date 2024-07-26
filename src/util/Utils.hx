@@ -791,3 +791,9 @@ class BSLSwipeUtils
 			is_swipping = false;
 	}
 }
+
+class CamerasUtil { // Confesso que eu não sei onde essa função se encaixaria... Btw, essa é a solução pra minha preguiça, já que eu não aguento mais escrever FlxG.blablabla...
+	public static function flash(duration:Float) {
+		FlxG.camera.flash(0x2E236C, duration);
+	}
+}

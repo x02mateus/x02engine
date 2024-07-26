@@ -6,6 +6,7 @@ using StringTools;
 
 class PresetsState extends FlxState
 {
+	// Por algum motivo, quando tu sai do Init.hx pro Presets, se tu ficar trocando entre as opções, a memória chega até a 300~400mb :skull:
 	var keyTextDisplay:FlxText;
 	var curSelected:Int = 0;
 
@@ -22,7 +23,10 @@ class PresetsState extends FlxState
 	{
 		persistentUpdate = persistentDraw = true;
 
-		judgementText = ["Gama Alta (4GB+)", "Gama Média(3GB+)", "Gama Baja(2GB+)", "Voltar", ''];
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image("backgrounds/1"));
+		add(bg);
+
+		judgementText = ["Gama Alta (4GB+)", "Gama Media(3GB+)", "Gama Baja(2GB+)", "Voltar", ''];
 		explicacoes = [
 			"Tudo do mod original estará ativado (recomendado para acima de 4 GB de RAM)",
 			"A notificação de acerto não estará visível e irá estabilizar o FPS (recomendado para 3 GB de RAM)",
@@ -167,7 +171,7 @@ class PresetsState extends FlxState
 	function quit()
 	{
 		save();
-
+		CamerasUtil.flash(1);
 		FlxTween.tween(keyTextDisplay, {alpha: 0}, 1, {ease: FlxEase.expoInOut});
 		FlxTween.tween(blackBox, {alpha: 0}, 1.1, {
 			ease: FlxEase.expoInOut,
