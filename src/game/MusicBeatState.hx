@@ -1,6 +1,10 @@
 package game;
 
 import flixel.addons.transition.FlxTransitionableState;
+#if mobileC
+import flixel.input.actions.FlxActionInput;
+import ui.FlxVirtualPad;
+#end
 
 class MusicBeatState extends flixel.addons.ui.FlxUIState
 {

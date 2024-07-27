@@ -20,6 +20,7 @@
 
 package game.states;
 
+import backend.KeyBinds;
 import flixel.effects.FlxFlicker;
 
 class Init extends MusicBeatState
@@ -29,7 +30,14 @@ class Init extends MusicBeatState
 
 	override function create()
 	{
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+		
 		SaveData.init();
+		#if !FLX_NO_GAMEPAD
+		KeyBinds.gamepad = FlxG.gamepads.lastActive != null;
+		#end
 
 		if (SaveData.firstTime)
 		{

@@ -1,6 +1,6 @@
 package backend;
 
-import backend.Keybinds.KeyBinds;
+import backend.KeyBinds.KeyBinds;
 import flixel.input.FlxInput;
 import flixel.input.actions.FlxAction;
 import flixel.input.actions.FlxActionInput;
