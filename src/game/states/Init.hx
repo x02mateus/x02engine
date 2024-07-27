@@ -53,7 +53,7 @@ class Init extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		var justPressed:Bool = controls.ACCEPT #if mobile || BSLTouchUtils.justTouched(); #end;
+		var justPressed:Bool = controls.ACCEPT #if mobile || BSLTouchUtils.justTouched() #end;
 		if (justPressed)
 		{
 			GlobalSoundManager.play(confirmMenu);
