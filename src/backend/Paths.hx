@@ -40,7 +40,7 @@ class Paths
 
 	public static var cache:IAssetCache = new AssetCache();
 
-	public static final limites:Array<Int> = [300, 500, 600, 700]; // Esperança para 1gb de RAM, mas tenho certeza que isso não será suficiente para Love n' Funkin, Libitina e outras pesadonas.
+	public static final limites:Array<Int> = [500, 600, 700]; // Esperança para 1gb de RAM, mas tenho certeza que isso não será suficiente para Love n' Funkin, Libitina e outras pesadonas.
 
 	public static function excludeAsset(key:String):Void
 	{

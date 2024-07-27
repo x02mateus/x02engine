@@ -23,7 +23,7 @@ import sys.io.File;
 class Main extends Sprite
 {
 	var fpsVar:FPS;
-
+	
 	public static var mouse_allowed:Bool = false;
 	#if mobile
 	private static var touch_allowed:Bool = true;
@@ -101,7 +101,6 @@ class Main extends Sprite
 
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate,
 			game.skipSplash, game.startFullscreen));
-
 		
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;

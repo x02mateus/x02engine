@@ -14,6 +14,9 @@ class MainMenuState extends FlxState
 
 	override function create()
 	{
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
+		
 		if (FlxG.sound.music == null)
 			FlxG.sound.playMusic(Paths.music(Std.string(FlxG.random.int(1, 5))), SaveData.volumeMusica, true);
 

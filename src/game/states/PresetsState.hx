@@ -21,8 +21,10 @@ class PresetsState extends FlxState
 
 	override function create()
 	{
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
 		persistentUpdate = persistentDraw = true;
-
+	
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image("backgrounds/1"));
 		add(bg);
 

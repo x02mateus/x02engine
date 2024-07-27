@@ -1,5 +1,6 @@
 package objects;
 
+import backend.GPUManager;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 #if gl_stats
@@ -27,12 +28,13 @@ class FPS extends TextField
 		The current frame rate, expressed using frames-per-second
 	**/
 	public var currentFPS(default, null):Int;
-	
+
 	@:noCompletion private var cacheCount:Int;
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
 
 	private var memPeak:UInt = 0;
+
 	public static var curMEMforReference:Int;
 
 	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
@@ -94,7 +96,8 @@ class FPS extends TextField
 		return size + " " + intervalArray[data];
 	}
 
-	public static function curMemChecker(){
+	public static function curMemChecker()
+	{
 		var size:Float = System.totalMemory;
 		var data = 0;
 
@@ -136,19 +139,30 @@ class FPS extends TextField
 
 			#if (openfl && !hl)
 			// MEM caps at 4GB and gets screwed up with caching enabled
-				// need to make memPeak decrease over time
-				// text += '\nMEM: ${getInterval(mem)} / ${getInterval(memPeak)}';
-				text += '\nMEM: ${getInterval(mem)}';
-				#if (mobile || debug)
+			// need to make memPeak decrease over time
+			// text += '\nMEM: ${getInterval(mem)} / ${getInterval(memPeak)}';
+			text += '\nUso atual de RAM: ${getInterval(mem)}';
+			#if debug
+			text += '\nUso atual de RAM que as imagens ocupam: ${GPUManager.getImageRAM()}';
+			text += '\nUso máximo registado de RAM: ${getInterval(memPeak)}';
+			text += '\nState atual: ${Type.getClassName(Type.getClass(FlxG.state))}';
+			if (FlxG.state.subState != null)
+				text += ' (SubState atual: ${Type.getClassName(Type.getClass(FlxG.state.subState))})';
+			text += '\nQuantidade de texturas na GPU: ${GPUManager.getGPUTexturesCount()}';
+			text += '\nQuantidade de texturas na CPU: ${GPUManager.getCPUTexturesCount()}';
+			text += '\nQuantidade total de texturas carregadas: ${GPUManager.getCPUTexturesCount() + GPUManager.getGPUTexturesCount()}';
+			text += '\nQuantidade total de audios carregados: ${Lambda.count(Paths.currentTrackedSounds)}';
+			#end
+			#if (mobile || debug)
 			if (curMEMforReference > Paths.limites[SaveData.curPreset] ^ 2 + 200 ^ 2 && SaveData.gpu)
-						text += '\nO jogo está usando RAM extra.';
-				#end
+				text += '\nO jogo está usando RAM extra.';
+			#end
 			#end
 
 			textColor = 0xFF1DADBB;
 
-			if (currentFPS < 30
-			#if (mobile || debug) || (curMEMforReference > Paths.limites[SaveData.curPreset] ^ 2 + 200 ^ 2 && SaveData.gpu) #end)
+			if (currentFPS < 30 #if (mobile || debug)
+				|| (curMEMforReference > Paths.limites[SaveData.curPreset] ^ 2 + 200 ^ 2 && SaveData.gpu) #end)
 				textColor = 0xFFBB2B1D;
 
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))
