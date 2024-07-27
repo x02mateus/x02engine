@@ -107,6 +107,11 @@
 	<!--Allow working memory greater than 1GB-->
 	<haxedef name="HXCPP_GC_BIG_BLOCKS"/> 
 
+	<!--Compilar exclusivamente para X64 ou X86 do Android-->
+	<architecture include="armv7" if="android_X86 || android_both" />
+    <architecture exclude="arm64" if="android_X86" unless="android_both"/>
+    <architecture exclude="armv7" unless="android_X86" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here-->
