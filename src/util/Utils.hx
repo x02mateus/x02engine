@@ -317,6 +317,11 @@ class CoolUtil
 			+ '/'
 			+ FlxSave.validate(FlxG.stage.application.meta.get('file')) #end;
 	}
+
+	public static function flash(duration:Float)
+	{
+		FlxG.camera.flash(0x2E236C, duration);
+	}
 }
 
 /**
@@ -713,16 +718,17 @@ class BSLSwipeUtils
 
 			prevTouchX = touchX;
 		} // Enquanto está segurando, calcula o deslocamento da posição inicial do toque e a velocidade do deslocamento
-		  // Válido apenas para toque na tela.
-		else #end if (Math.abs(scrollX) > 0)
-		{
+		// Válido apenas para toque na tela.
+		else
+		#end if (Math.abs(scrollX) > 0)
+	{
 			if (scrollX > 0)
 				scrollSpeed -= scrollAcceleration;
 			else if (scrollX < 0)
 				scrollSpeed += scrollAcceleration;
 
 			scrollSpeed = Std.int(Utils.CoolUtil.mathClamp(scrollSpeed, -maxScrollSpeed, maxScrollSpeed));
-		}
+	}
 
 		#if desktop
 		if (FlxG.mouse.wheel != 0)
@@ -758,15 +764,16 @@ class BSLSwipeUtils
 
 			prevTouchY = touchY;
 		}
-		else #end if (Math.abs(scrollY) > 0)
-		{
+		else
+		#end if (Math.abs(scrollY) > 0)
+	{
 			if (scrollY > 0)
 				scrollSpeed -= scrollAcceleration;
 			else if (scrollY < 0)
 				scrollSpeed += scrollAcceleration;
 
 			scrollSpeed = Std.int(Utils.CoolUtil.mathClamp(scrollSpeed, -maxScrollSpeed, maxScrollSpeed));
-		}
+	}
 
 		#if desktop
 		if (FlxG.mouse.wheel != 0)
@@ -789,11 +796,5 @@ class BSLSwipeUtils
 		scrollSpeed = 0;
 		if (!reset_manual)
 			is_swipping = false;
-	}
-}
-
-class CamerasUtil { // Confesso que eu não sei onde essa função se encaixaria... Btw, essa é a solução pra minha preguiça, já que eu não aguento mais escrever FlxG.blablabla...
-	public static function flash(duration:Float) {
-		FlxG.camera.flash(0x2E236C, duration);
 	}
 }

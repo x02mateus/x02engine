@@ -1,6 +1,12 @@
-import backend.GlobalSoundManager;
+// Backend
 import backend.Paths;
 import backend.SaveData;
+import util.Utils.CoolUtil;
+
+// Haxe
+import haxe.Json;
+
+// Flixel
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -14,22 +20,31 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+
+// MusicBeat
 import game.MusicBeatState;
 import game.MusicBeatSubstate;
+
+// Transition
 import game.substates.transition.CustomFadeTransition;
-import haxe.Json;
-import lime.utils.Assets;
-import sys.FileSystem;
-import sys.io.File;
-import util.Utils.BSLTouchUtils;
-import util.Utils.CamerasUtil;
-import util.Utils.CoolUtil;
-import util.Utils;
 
-using StringTools;
-
+// Sons
+import backend.GlobalSoundManager;
 #if (flixel >= "5.3.0")
 import flixel.sound.FlxSound;
 #else
 import flixel.system.FlxSound;
 #end
+
+// FS
+import util.Utils;
+import lime.utils.Assets;
+import sys.FileSystem;
+import sys.io.File;
+
+// Input
+import util.Utils.BSLTouchUtils;
+import util.Utils.BSLSwipeUtils;
+import util.Utils.SpriteSwapper;
+
+using StringTools;

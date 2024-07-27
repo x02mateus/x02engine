@@ -24,7 +24,7 @@ class PresetsState extends FlxState
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 		persistentUpdate = persistentDraw = true;
-	
+
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image("backgrounds/1"));
 		add(bg);
 
@@ -173,7 +173,7 @@ class PresetsState extends FlxState
 	function quit()
 	{
 		save();
-		CamerasUtil.flash(1);
+		CoolUtil.flash(1);
 		FlxTween.tween(keyTextDisplay, {alpha: 0}, 1, {ease: FlxEase.expoInOut});
 		FlxTween.tween(blackBox, {alpha: 0}, 1.1, {
 			ease: FlxEase.expoInOut,

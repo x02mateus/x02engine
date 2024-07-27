@@ -1,7 +1,6 @@
 package game.states;
 
 // Decidi rushar esse menu escutando Master of Puppets do Metallica, então ignore se o code estiver burro k
-
 class MainMenuState extends FlxState
 {
 	private var canClick:Bool = true;
@@ -16,7 +15,7 @@ class MainMenuState extends FlxState
 	{
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
-		
+
 		if (FlxG.sound.music == null)
 			FlxG.sound.playMusic(Paths.music(Std.string(FlxG.random.int(1, 5))), SaveData.volumeMusica, true);
 
@@ -36,15 +35,15 @@ class MainMenuState extends FlxState
 		add(versionText);
 
 		freeplay.loadGraphic(Paths.image("mainmenu/freeplay"));
-        freeplay.x = 120;
-        freeplay.screenCenter(Y);
+		freeplay.x = 120;
+		freeplay.screenCenter(Y);
 		freeplay.moves = false;
 		freeplay.antialiasing = SaveData.antialiasing;
 		add(freeplay);
 
 		options.loadGraphic(Paths.image("mainmenu/options"));
 		options.x = freeplay.x + freeplay.width;
-        options.y = freeplay.y;
+		options.y = freeplay.y;
 		options.moves = false;
 		options.antialiasing = SaveData.antialiasing;
 		add(options);
@@ -61,8 +60,7 @@ class MainMenuState extends FlxState
 
 	override function update(elapsed:Float)
 	{
-
-		if(BSLTouchUtils.apertasimples(credits))
+		if (BSLTouchUtils.apertasimples(credits))
 			abrirState("credits");
 		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options))
 			abrirState("uhhhhhh");
@@ -70,13 +68,18 @@ class MainMenuState extends FlxState
 		super.update(elapsed);
 	}
 
-	private function abrirState(pressed:String) {
-		CamerasUtil.flash(0.5);
+	private function abrirState(pressed:String)
+	{
+		CoolUtil.flash(0.5);
 		GlobalSoundManager.play(confirmMenu);
-		new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-			switch(pressed) {
-				case "credits": 			  FlxG.switchState(new game.states.CreditsState());
-				default: 					  FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+		{
+			switch (pressed)
+			{
+				case "credits":
+					FlxG.switchState(new game.states.CreditsState());
+				default:
+					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
 			}
 		});
 	}
