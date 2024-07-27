@@ -46,5 +46,7 @@ import sys.io.File;
 import util.Utils.BSLTouchUtils;
 import util.Utils.BSLSwipeUtils;
 import util.Utils.SpriteSwapper;
+import util.Utils.GamepadUtil;
+import util.Utils.InputDevices;
 
 using StringTools;

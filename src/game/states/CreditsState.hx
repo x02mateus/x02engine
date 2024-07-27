@@ -1,6 +1,6 @@
 package game.states;
 
-class CreditsState extends FlxState
+class CreditsState extends MusicBeatState
 {
 	override function create()
 	{

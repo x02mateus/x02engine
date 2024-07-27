@@ -1,12 +1,22 @@
 package util;
 
 import flixel.graphics.FlxGraphic;
+import flixel.input.gamepad.FlxGamepadInputID;
+import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxAxes;
 import openfl.display.BitmapData;
 #if android
 import haxe.crypto.Md5; // Assim o Md5 não é compilado no PC e não fica como Unused import
-
 #end
+
+enum InputDevices //Lista com todos os tipos de controle que esperamos que alguém vá usar, sentimos muito se você tem um amazon luna ou então um OUYA ou sei lá mais o que existe por ai.
+{
+	Keyboard;
+	PS4_Controller;
+	Switch_Controller;
+	Xinput_Controller;
+	AUTO;
+}
 
 /**
  * Usada pra usar a mesma função pra plataformas diferentes (Mobile e Android)
@@ -796,5 +806,213 @@ class BSLSwipeUtils
 		scrollSpeed = 0;
 		if (!reset_manual)
 			is_swipping = false;
+	}
+}
+class InputFormatter {
+	public static function getKeyNameGamepad(key:FlxGamepadInputID):String {
+		switch (key) {
+			case DPAD_LEFT: return "dpad_left";
+			case DPAD_RIGHT: return "dpad_right";
+			case DPAD_UP: return "dpad_up";
+			case DPAD_DOWN: return "dpad_down";
+			case BACK: return "select";
+			case START: return "start";
+			case A: return "button_down";
+			case B: return "button_right";
+			case X: return "button_left";
+			case Y: return "button_up";
+			case GUIDE: return "guide";
+			case LEFT_SHOULDER: return "l1";
+			case LEFT_TRIGGER: return "l2";
+			case RIGHT_SHOULDER: return "r1";
+			case RIGHT_TRIGGER: return "r2";
+			case LEFT_STICK_DIGITAL_DOWN: return "left_ana_down"; // TU NÃO ACHO QUE EU IA ESCREVER OUTRA COISA AQUI NÉ?
+			case LEFT_STICK_DIGITAL_UP: return "left_ana_up";
+			case LEFT_STICK_DIGITAL_RIGHT: return "left_ana_right";
+			case LEFT_STICK_DIGITAL_LEFT: return "left_ana_left";
+			case RIGHT_STICK_DIGITAL_DOWN: return "right_ana_down";
+			case RIGHT_STICK_DIGITAL_UP: return "right_ana_up";
+			case RIGHT_STICK_DIGITAL_RIGHT: return "right_ana_right";
+			case RIGHT_STICK_DIGITAL_LEFT: return "right_ana_left";
+			case RIGHT_STICK_CLICK: return "right_ana_click";
+			case LEFT_STICK_CLICK: return "left_ana_click";
+			case NONE: return '---'; // A.K.A. o que tu tá fazendo com teu controle mano?
+				
+			default:
+				var label:String = '' + key;
+				if(label.toLowerCase() == 'null') return '---';
+				return '' + label.charAt(0).toUpperCase() + label.substr(1).toLowerCase();
+		}
+	}
+	public static function getKeyName(key:FlxKey):String {
+			switch (key) {
+				case BACKSPACE:
+					return "bckspc";
+				case ENTER:
+					return "enter";
+				case CONTROL:
+					return "ctrl";
+				case ALT:
+					return "alt";
+				case CAPSLOCK:
+					return "caps";
+				case INSERT:
+					return "insert";
+				case END:
+					return "end";
+				case PAGEUP:
+					return "pgup";
+				case PAGEDOWN:
+					return "pgdown";
+				case ZERO | NUMPADZERO:
+					return "0";
+				case ONE | NUMPADONE:
+					return "1";
+				case TWO | NUMPADTWO:
+					return "2";
+				case THREE | NUMPADTHREE:
+					return "3";
+				case FOUR | NUMPADFOUR:
+					return "4";
+				case FIVE | NUMPADFIVE:
+					return "5";
+				case SIX | NUMPADSIX:
+					return "6";
+				case SEVEN | NUMPADSEVEN:
+					return "7";
+				case EIGHT | NUMPADEIGHT:
+					return "8";
+				case NINE | NUMPADNINE:
+					return "9";
+				case F1:
+					return "f1";
+				case F2:
+					return "f2";
+				case F3:
+					return "f3";
+				case F4:
+					return "f4";
+				case F5:
+					return "f5";
+				case F6:
+					return "f6";
+				case F7:
+					return "f7";
+				case F8:
+					return "f8";
+				case F9:
+					return "f9";
+				case F10:
+					return "f10";
+				case F11:
+					return "f11";
+				case F12:
+					return "f12";
+				case SHIFT:
+					return "shift";
+				case SPACE:
+					return "space";
+				case NUMPADMULTIPLY:
+					return "multiply";
+				case TAB:
+					return "tab";
+				case NUMPADPLUS | PLUS:
+					return "plus";
+				case NUMPADMINUS | MINUS:
+					return "minus";
+				case SEMICOLON:
+					return ";";
+				case COMMA:
+					return "less";
+				case PERIOD: 
+					return "more";
+				//case SLASH:
+				//	return "/";
+				case DELETE:
+					return "del";
+				case ESCAPE:
+					return "escape";
+				case HOME:
+					return "homem";
+				case LBRACKET:
+					return "[";
+				case BACKSLASH:
+					return "backslash";
+				case RBRACKET:
+					return "]";
+				case QUOTE:
+					return "quote";
+				case PRINTSCREEN:
+					return "prtscrn";
+				case NONE:
+					return '---';
+				default:
+					var label:String = '' + key;
+					if(label.toLowerCase() == 'null') return '---';
+					return '' + label.charAt(0).toUpperCase() + label.substr(1).toLowerCase();
+			}
+		}
+}
+
+class GamepadUtil
+{
+	private static final bindsBlackList:Map<InputDevices, Array<Int>> = [Switch_Controller => [-1], PS4_Controller => [-1], Xinput_Controller => [-1, 10]];
+
+	inline public static function formatKey(inputData:Dynamic):String
+	{
+		if (Main.isKeyboard)
+			return InputFormatter.getKeyName(inputData);
+		else
+			return InputFormatter.getKeyNameGamepad(inputData);
+	}
+
+	public static function isValidInput(keyPressed:Int, gamepadModel:InputDevices):Bool
+	{
+		return !bindsBlackList.get(gamepadModel).contains(keyPressed);
+	}
+
+	inline public static function getActualGamepadModel():InputDevices
+	{
+		switch (FlxG.gamepads.lastActive.detectedModel)
+		{
+			case SWITCH_PRO:
+				return Switch_Controller;
+			case PS4:
+				return PS4_Controller;
+			default:
+				return Xinput_Controller;
+		}
+	}
+
+	inline public static function getDisplayGamepadModel():InputDevices
+	{
+		if (Main.isKeyboard)
+			return Keyboard;
+		else if (SaveData.gamepadDisplay == AUTO)
+			return getActualGamepadModel();
+		else
+			return SaveData.gamepadDisplay;
+	}
+
+	inline public static function anyGamepadButtonPressed():Bool
+	{
+		return (FlxG.gamepads.anyButton() && isValidInput(FlxG.gamepads.lastActive.firstJustPressedID(), getActualGamepadModel()));
+	}
+
+	inline public static function getGamepadPressedButton():Int
+	{
+		if (isValidInput(FlxG.gamepads.lastActive.firstJustPressedID(), getActualGamepadModel()))
+			return FlxG.gamepads.lastActive.firstJustPressedID();
+		return -1; // Só pra poder padronizar como none.
+	}
+
+	inline public static function checkGamepadPressedButton(button:FlxGamepadInputID):Bool
+	{
+		return FlxG.gamepads.anyJustPressed(button);
+	}
+
+	inline public static function getGamepadConnected():Bool
+	{
+		return FlxG.gamepads.lastActive != null;
 	}
 }

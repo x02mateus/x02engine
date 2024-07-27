@@ -4,7 +4,7 @@ import flixel.util.FlxAxes;
 
 using StringTools;
 
-class PresetsState extends FlxState
+class PresetsState extends MusicBeatState
 {
 	// Por algum motivo, quando tu sai do Init.hx pro Presets, se tu ficar trocando entre as opções, a memória chega até a 300~400mb :skull:
 	var keyTextDisplay:FlxText;
@@ -67,6 +67,10 @@ class PresetsState extends FlxState
 			}
 		});
 		textUpdate();
+
+		#if mobileC
+		addVirtualPad(UP_DOWN, A_B);
+		#end
 		super.create();
 	}
 
@@ -74,24 +78,24 @@ class PresetsState extends FlxState
 	{
 		if (acceptInput)
 		{
-			if (FlxG.keys.justPressed.UP)
+			if (controls.UP_P)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(-1);
 				updateJudgement();
 			}
 
-			if (FlxG.keys.justPressed.DOWN)
+			if (controls.DOWN_P)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(1);
 				updateJudgement();
 			}
 
-			if (FlxG.keys.justPressed.ENTER)
+			if (controls.ACCEPT)
 				selecionarpreset();
 
-			if (FlxG.keys.justPressed.BACKSPACE)
+			if (controls.BACK)
 				quit();
 		}
 
@@ -148,7 +152,7 @@ class PresetsState extends FlxState
 
 		SaveData.save();
 
-		FlxG.switchState(new MainMenuState());
+		MusicBeatState.switchState(new MainMenuState());
 	}
 
 	function save()
@@ -179,7 +183,7 @@ class PresetsState extends FlxState
 			ease: FlxEase.expoInOut,
 			onComplete: function(flx:FlxTween)
 			{
-				FlxG.switchState(new MainMenuState());
+				MusicBeatState.switchState(new MainMenuState());
 			}
 		});
 		FlxTween.tween(infoText, {alpha: 0}, 1, {ease: FlxEase.expoInOut});

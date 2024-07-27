@@ -24,6 +24,7 @@ class Main extends Sprite
 {
 	var fpsVar:FPS;
 
+	public static var isKeyboard:Bool = true;
 	public static var mouse_allowed:Bool = false;
 	#if mobile
 	private static var touch_allowed:Bool = true;

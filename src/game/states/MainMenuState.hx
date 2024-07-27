@@ -1,7 +1,7 @@
 package game.states;
 
 // Decidi rushar esse menu escutando Master of Puppets do Metallica, então ignore se o code estiver burro k
-class MainMenuState extends FlxState
+class MainMenuState extends MusicBeatState
 {
 	private var canClick:Bool = true;
 	private var background:FlxSprite;
@@ -77,7 +77,13 @@ class MainMenuState extends FlxState
 			switch (pressed)
 			{
 				case "credits":
-					FlxG.switchState(new game.states.CreditsState());
+					MusicBeatState.switchState(new game.states.CreditsState());
+				case "options":
+					#if mobileC
+					MusicBeatState.switchState(new options.MobileKeyBinds());
+					#else
+					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+					#end
 				default:
 					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
 			}

@@ -22,7 +22,7 @@ package game.states;
 
 import flixel.effects.FlxFlicker;
 
-class Init extends FlxState
+class Init extends MusicBeatState
 {
 	var texto:FlxText;
 	var coiso:String = #if desktop 'Aperte ENTER ' #elseif mobile 'TOQUE NA TELA ' #end;
@@ -45,7 +45,7 @@ class Init extends FlxState
 		}
 		else
 		{
-			FlxG.switchState(new game.states.MainMenuState());
+			MusicBeatState.switchState(new game.states.MainMenuState());
 		}
 
 		super.create();
@@ -53,7 +53,7 @@ class Init extends FlxState
 
 	override function update(elapsed:Float)
 	{
-		var justPressed:Bool = #if mobile BSLTouchUtils.justTouched(); #elseif desktop FlxG.keys.justPressed.ENTER; #end
+		var justPressed:Bool = controls.ACCEPT #if mobile || BSLTouchUtils.justTouched(); #end;
 		if (justPressed)
 		{
 			GlobalSoundManager.play(confirmMenu);
@@ -63,7 +63,7 @@ class Init extends FlxState
 			{
 				new FlxTimer().start(0.5, function(tmr:FlxTimer)
 				{
-					FlxG.switchState(new game.states.PresetsState());
+					MusicBeatState.switchState(new game.states.PresetsState());
 				});
 			});
 		}

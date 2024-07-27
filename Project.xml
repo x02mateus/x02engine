@@ -22,8 +22,9 @@
 
 	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
 	<window if="desktop" orientation="landscape" fullscreen="false" width="1280" height="720" resizable="true" />
-	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false" />
-
+	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" allow-shaders="true" require-shaders="true" allow-high-dpi="true" />
+	<define name="mobileC" if="mobile" />
+	<assets path="assets/shared/images/hitbox"/>
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export" />

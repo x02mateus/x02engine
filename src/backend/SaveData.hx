@@ -30,6 +30,16 @@ class SaveData
 	public static var songPosition:Null<Bool> = false;
 	public static var showFPS:Null<Bool> = true;
 
+	// Controls
+	public static var upBind:String = 'W';
+	public static var downBind:String = 'S';
+	public static var leftBind:String = 'A';
+	public static var rightBind:String = 'D';
+	public static var killBind:String = 'R';
+
+	// Input
+	public static var gamepadDisplay:InputDevices = AUTO;
+
 	private static var importantMap:Map<String, Array<String>> = ["flixelSound" => ["volume"]];
 
 	/** Quick Function to Fix Save Files for Flixel 5
