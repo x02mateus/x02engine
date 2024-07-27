@@ -51,7 +51,7 @@ jobs:
             .haxelib/
             export/release/android/haxe/
             export/release/android/obj/
-          key: cache-android-build
+          key: cache-android-build64
 
       - name: Installing Libraries
         run: |
