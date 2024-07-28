@@ -67,10 +67,7 @@ class PresetsState extends MusicBeatState
 			}
 		});
 		textUpdate();
-
-		#if mobileC
-		addVirtualPad(UP_DOWN, A_B);
-		#end
+		
 		super.create();
 	}
 
@@ -95,7 +92,7 @@ class PresetsState extends MusicBeatState
 			if (FlxG.keys.justPressed.ENTER)
 				selecionarpreset();
 
-			if (FlxG.keys.justPressed.BACKSPCAE)
+			if (FlxG.keys.justPressed.BACKSPACE)
 				quit();
 		}
 
