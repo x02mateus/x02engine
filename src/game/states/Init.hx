@@ -20,7 +20,6 @@
 
 package game.states;
 
-import backend.KeyBinds;
 import flixel.effects.FlxFlicker;
 
 class Init extends MusicBeatState
@@ -35,9 +34,6 @@ class Init extends MusicBeatState
 		#end
 		
 		SaveData.init();
-		#if !FLX_NO_GAMEPAD
-		KeyBinds.gamepad = FlxG.gamepads.lastActive != null;
-		#end
 
 		if (SaveData.firstTime)
 		{
@@ -61,7 +57,7 @@ class Init extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		var justPressed:Bool = controls.ACCEPT #if mobile || BSLTouchUtils.justTouched() #end;
+		var justPressed:Bool = #if desktop FlxG.keys.justPressed.ENTER #elseif mobile BSLTouchUtils.justTouched() #end;
 		if (justPressed)
 		{
 			GlobalSoundManager.play(confirmMenu);

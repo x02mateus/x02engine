@@ -1,14 +1,13 @@
 package objects;
 
 import backend.GPUManager;
+import openfl.Lib;
+import openfl.events.Event;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 #if gl_stats
 import openfl.display._internal.stats.Context3DStats;
 import openfl.display._internal.stats.DrawCallContext;
-#end
-#if flash
-import openfl.Lib;
 #end
 #if openfl
 import openfl.system.System;

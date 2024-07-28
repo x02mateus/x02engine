@@ -105,7 +105,7 @@ class MobileKeyBinds extends MusicBeatState // Code desenvolvido dois anos atrá
 		var savebutton = new FlxUIButton((exitbutton.x + exitbutton.width + 25), 25, "Sair e Salvar", () ->
 		{
 			save();
-			MusicBeatState.switchState(new MikuOptions());
+			MusicBeatState.switchState(new MainMenuState());
 		});
 		savebutton.resize(250, 50);
 		savebutton.setLabelFormat("VCR OSD Mono", 24, FlxColor.BLACK, "center");

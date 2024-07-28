@@ -80,7 +80,7 @@ class MainMenuState extends MusicBeatState
 					MusicBeatState.switchState(new game.states.CreditsState());
 				case "options":
 					#if mobileC
-					MusicBeatState.switchState(new options.MobileKeyBinds());
+					//MusicBeatState.switchState(new options.MobileKeyBinds());
 					#else
 					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
 					#end

@@ -78,24 +78,24 @@ class PresetsState extends MusicBeatState
 	{
 		if (acceptInput)
 		{
-			if (controls.UP_P)
+			if (FlxG.keys.justPressed.UP)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(-1);
 				updateJudgement();
 			}
 
-			if (controls.DOWN_P)
+			if (FlxG.keys.justPressed.DOWN)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(1);
 				updateJudgement();
 			}
 
-			if (controls.ACCEPT)
+			if (FlxG.keys.justPressed.ENTER)
 				selecionarpreset();
 
-			if (controls.BACK)
+			if (FlxG.keys.justPressed.BACKSPCAE)
 				quit();
 		}
 

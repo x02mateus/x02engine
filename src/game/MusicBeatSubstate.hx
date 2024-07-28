@@ -1,10 +1,6 @@
 package game;
 
 import flixel.FlxSubState;
-#if mobileC
-import flixel.input.actions.FlxActionInput;
-import ui.FlxVirtualPad;
-#end
 
 class MusicBeatSubstate extends FlxSubState
 {
@@ -19,37 +15,11 @@ class MusicBeatSubstate extends FlxSubState
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;
 
-	private var controls(get, never):backend.Controls;
+	// private var controls(get, never):backend.Controls;
 
-	inline function get_controls():backend.Controls
-		return backend.PlayerSettings.player1.controls;
-
-	#if mobileC
-	var _virtualpad:FlxVirtualPad;
-
-	var trackedinputsUI:Array<FlxActionInput> = [];
-	var trackedinputsNOTES:Array<FlxActionInput> = [];
-
-	// adding virtualpad to state
-	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode)
-	{
-		_virtualpad = new FlxVirtualPad(DPad, Action);
-		_virtualpad.alpha = 0.75;
-		add(_virtualpad);
-		controls.setVirtualPadUI(_virtualpad, DPad, Action);
-		trackedinputsUI = controls.trackedinputsUI;
-		controls.trackedinputsUI = [];
-	}
-
-	override function destroy()
-	{
-		controls.removeFlxInput(trackedinputsUI);
-		controls.removeFlxInput(trackedinputsNOTES);
-
-		super.destroy();
-	}
-	#end
-
+	/*inline function get_controls():backend.Controls
+		return backend.PlayerSettings.player1.controls;*/
+	
 	override function update(elapsed:Float)
 	{
 		if (Main.getMouseVisibility() && (FlxG.keys.pressed.ANY || GamepadUtil.anyGamepadButtonPressed()))
