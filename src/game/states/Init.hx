@@ -67,7 +67,13 @@ class Init extends MusicBeatState
 			{
 				new FlxTimer().start(0.5, function(tmr:FlxTimer)
 				{
+					#if desktop
 					MusicBeatState.switchState(new game.states.PresetsState());
+					#elseif mobile 
+						// no mobile, quando troca de state acontece um bug esquisito lá
+						// lembrar de verificar isso no pc tbm
+					MusicBeatState.switchState(new game.states.MainMenuState());
+					#end
 				});
 			});
 		}
