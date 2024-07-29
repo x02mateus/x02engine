@@ -30,6 +30,7 @@ import game.substates.transition.CustomFadeTransition;
 
 // Sons
 import backend.GlobalSoundManager;
+import backend.MusicManager;
 #if (flixel >= "5.3.0")
 import flixel.sound.FlxSound;
 #else
