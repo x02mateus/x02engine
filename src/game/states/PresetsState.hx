@@ -70,6 +70,10 @@ class PresetsState extends MusicBeatState
 		});
 		textUpdate();
 
+		#if mobileC
+		addVirtualPad(UP_DOWN, A);
+		#end
+
 		super.create();
 	}
 
@@ -77,24 +81,24 @@ class PresetsState extends MusicBeatState
 	{
 		if (acceptInput)
 		{
-			if (FlxG.keys.justPressed.UP)
+			if (controls.UI_UP_P)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(-1);
 				updateJudgement();
 			}
 
-			if (FlxG.keys.justPressed.DOWN)
+			if (controls.UI_DOWN_P)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(1);
 				updateJudgement();
 			}
 
-			if (FlxG.keys.justPressed.ENTER)
+			if (controls.ACCEPT)
 				selecionarpreset();
 
-			if (FlxG.keys.justPressed.BACKSPACE)
+			if (controls.BACK)
 				quit();
 		}
 
