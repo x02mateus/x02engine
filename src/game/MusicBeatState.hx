@@ -109,6 +109,7 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 			return;
 		}
 		FlxTransitionableState.skipNextTransIn = false;
+		GlobalSoundManager.changeVolumes();
 		FlxG.switchState(nextState);
 	}
 
