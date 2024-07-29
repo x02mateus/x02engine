@@ -17,6 +17,7 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 	private var curBeat:Int = 0;
 
 	public var controls(get, never):Controls;
+
 	public static var camBeat:FlxCamera;
 
 	inline function get_controls():Controls
@@ -25,27 +26,25 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 	#if mobileC
 	var _virtualpad:FlxVirtualPad;
 
-	var trackedinputsUI:Array<FlxActionInput> = [];
-	var trackedinputsNOTES:Array<FlxActionInput> = [];	
+	var trackedinputs:Array<FlxActionInput> = [];
 
 	// adding virtualpad to state
-	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
+	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode)
+	{
 		_virtualpad = new FlxVirtualPad(DPad, Action);
 		_virtualpad.alpha = 0.75;
 		add(_virtualpad);
-		controls.setVirtualPadUI(_virtualpad, DPad, Action);
-		trackedinputsUI = controls.trackedinputsUI;
-		controls.trackedinputsUI = [];
+		controls.setVirtualPad(_virtualpad, DPad, Action);
+		trackedinputs = controls.trackedinputs;
+		controls.trackedinputs = [];
 	}
-	
-	override function destroy() {
-		controls.removeFlxInput(trackedinputsUI);
-		controls.removeFlxInput(trackedinputsNOTES);		
+
+	override function destroy()
+	{
+		controls.removeFlxInput(trackedinputs);
 
 		super.destroy();
 	}
-	#else
-	public function addVirtualPad(?DPad, ?Action){};
 	#end
 
 	override function create()
