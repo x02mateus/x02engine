@@ -1,10 +1,10 @@
-package backend;
+package input.mobile;
 
 #if mobileC
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxSave;
-import ui.FlxVirtualPad;
+import input.mobile.ui.FlxVirtualPad;
 
 class Config
 {

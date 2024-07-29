@@ -1,9 +1,9 @@
-package backend;
+package input;
 
-import backend.Controls;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.util.FlxSignal;
+import input.Controls;
 
 // import props.Player;
 // import ui.DeviceManager;

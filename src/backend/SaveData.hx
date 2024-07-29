@@ -80,7 +80,7 @@ class SaveData
 				Reflect.setField(FlxG.sound, flixelS, flxProp);
 		}
 
-		PlayerSettings.init();
+		input.PlayerSettings.init();
 	}
 
 	public static function save()

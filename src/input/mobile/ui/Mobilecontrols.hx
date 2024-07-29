@@ -1,11 +1,11 @@
-package ui;
+package input.mobile.ui;
 
 #if mobileC
-import backend.Config;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
-import ui.FlxVirtualPad;
-import ui.Hitbox;
+import input.mobile.Config;
+import input.mobile.ui.FlxVirtualPad;
+import input.mobile.ui.Hitbox;
 
 class Mobilecontrols extends FlxSpriteGroup
 {

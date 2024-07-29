@@ -1,4 +1,4 @@
-import flixel.FlxG;
+package input;
 
 class KeyBinds
 {
@@ -11,7 +11,7 @@ class KeyBinds
 		SaveData.leftBind = "A";
 		SaveData.rightBind = "D";
 		SaveData.killBind = "R";
-		backend.PlayerSettings.player1.controls.loadKeyBinds();
+		input.PlayerSettings.player1.controls.loadKeyBinds();
 	}
 
 	public static function keyCheck():Void

@@ -1,4 +1,4 @@
-package backend;
+package input;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup;
@@ -13,8 +13,8 @@ import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 #if mobile
 import flixel.ui.FlxButton;
-import ui.FlxVirtualPad;
-import ui.Hitbox;
+import input.mobile.ui.FlxVirtualPad;
+import input.mobile.ui.Hitbox;
 #end
 
 #if (haxe >= "4.0.0")

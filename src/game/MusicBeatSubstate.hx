@@ -1,11 +1,11 @@
 package game;
 
-import backend.Controls;
-import backend.PlayerSettings;
 import flixel.FlxSubState;
+import input.Controls;
+import input.PlayerSettings;
 #if mobileC
 import flixel.input.actions.FlxActionInput;
-import ui.FlxVirtualPad;
+import input.mobile.ui.FlxVirtualPad;
 #end
 
 class MusicBeatSubstate extends FlxSubState

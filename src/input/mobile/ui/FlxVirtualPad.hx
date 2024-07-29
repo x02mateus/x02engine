@@ -1,4 +1,4 @@
-package ui;
+package input.mobile.ui;
 
 #if mobileC
 import flash.display.BitmapData;
