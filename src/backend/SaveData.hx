@@ -11,31 +11,6 @@ class SaveData
 	public static var volumeMusica:Null<Float> = 1;
 	public static var volumeEfeitos:Null<Float> = 1;
 	public static var curPreset:Null<Int> = 1;
-	//Every key has two binds, these binds are defined on defaultKeys! If you want your control to be changeable, you have to add it on ControlsSubState (inside OptionsState.hx)'s list
-	public static var keyBinds:Map<String, Dynamic> = new Map<String, Dynamic>();
-	public static var defaultKeys:Map<String, Dynamic>;
-
-	public static function startControls() {
-		//Key Bind, Name for ControlsSubState
-		keyBinds.set('note_left', [A, LEFT]);
-		keyBinds.set('note_down', [S, DOWN]);
-		keyBinds.set('note_up', [W, UP]);
-		keyBinds.set('note_right', [D, RIGHT]);
-		
-		keyBinds.set('ui_left', [A, LEFT]);
-		keyBinds.set('ui_down', [S, DOWN]);
-		keyBinds.set('ui_up', [W, UP]);
-		keyBinds.set('ui_right', [D, RIGHT]);
-		
-		keyBinds.set('accept', [SPACE, ENTER]);
-		keyBinds.set('back', [BACKSPACE, ESCAPE]);
-		keyBinds.set('pause', [ENTER, ESCAPE]);
-		keyBinds.set('reset', [R, NONE]);
-
-
-		// Don't delete this
-		defaultKeys = keyBinds.copy();
-	}
 
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];
@@ -60,6 +35,11 @@ class SaveData
 
 	// Input
 	public static var gamepadDisplay:InputDevices = AUTO;
+	public static var upBind:String = 'W';
+	public static var downBind:String = 'S';
+	public static var leftBind:String = 'A';
+	public static var rightBind:String = 'D';
+	public static var killBind:String = 'R';
 
 	private static var importantMap:Map<String, Array<String>> = ["flixelSound" => ["volume"]];
 
@@ -99,6 +79,8 @@ class SaveData
 			if (flxProp != null)
 				Reflect.setField(FlxG.sound, flixelS, flxProp);
 		}
+
+		PlayerSettings.init();
 	}
 
 	public static function save()
@@ -117,11 +99,5 @@ class SaveData
 			Reflect.setField(FlxG.save.data, flixel, Reflect.field(FlxG.sound, flixel));
 
 		FlxG.save.flush();
-
-		var save:FlxSave = new FlxSave();
-		save.bind('controls_v2', getSavePath()); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
-		save.data.customControls = keyBinds;
-		save.flush();
-		FlxG.log.add("Settings saved!");
 	}
 }
