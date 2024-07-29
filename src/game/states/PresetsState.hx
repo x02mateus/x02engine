@@ -42,6 +42,7 @@ class PresetsState extends MusicBeatState
 		keyTextDisplay.setFormat(Paths.font("akira.otf"), 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		keyTextDisplay.borderSize = 2;
 		keyTextDisplay.borderQuality = 3;
+		keyTextDisplay.moves = false;
 		keyTextDisplay.antialiasing = SaveData.antialiasing;
 		blackBox = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(blackBox);
@@ -52,6 +53,7 @@ class PresetsState extends MusicBeatState
 		infoText.borderQuality = 3;
 		infoText.alpha = 0;
 		infoText.screenCenter(FlxAxes.X);
+		keyTextDisplay.moves = false;
 		infoText.antialiasing = SaveData.antialiasing;
 		add(infoText);
 		add(keyTextDisplay);

@@ -32,6 +32,8 @@ class MainMenuState extends MusicBeatState
 		versionText = new FlxText(0, FlxG.height - 24, 0, "X02Engine BETA v0.1", 12);
 		versionText.scrollFactor.set();
 		versionText.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionText.moves = false; 
+		versionText.antialiasing = SaveData.antialiasing;
 		add(versionText);
 
 		freeplay.loadGraphic(Paths.image("mainmenu/freeplay"));

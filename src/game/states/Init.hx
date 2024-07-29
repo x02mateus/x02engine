@@ -45,6 +45,8 @@ class Init extends MusicBeatState
 			texto.scrollFactor.set();
 			texto.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			texto.screenCenter(XY);
+			texto.moves = false;
+			texto.antialiasing = false;
 			add(texto);
 		}
 		else
