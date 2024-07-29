@@ -102,14 +102,14 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 			{
 				CustomFadeTransition.finishCallback = function()
 				{
-					MusicBeatState.switchState(nextState);
+					FlxG.switchState(nextState);
 				};
 				// trace('changed state');
 			}
 			return;
 		}
 		FlxTransitionableState.skipNextTransIn = false;
-		MusicBeatState.switchState(nextState);
+		FlxG.switchState(nextState);
 	}
 
 	public static function resetState()
