@@ -81,14 +81,14 @@ class PresetsState extends MusicBeatState
 	{
 		if (acceptInput)
 		{
-			if (controls.UI_UP_P)
+			if (controls.UP_P)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(-1);
 				updateJudgement();
 			}
 
-			if (controls.UI_DOWN_P)
+			if (controls.DOWN_P)
 			{
 				GlobalSoundManager.play(scrollMenu);
 				changeItem(1);
