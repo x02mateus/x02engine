@@ -62,10 +62,10 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (BSLTouchUtils.apertasimples(credits))
-			abrirState("credits");
-		if (BSLTouchUtils.apertasimples(freeplay) || BSLTouchUtils.apertasimples(options))
+		if (BSLTouchUtils.apertasimples(credits) || BSLTouchUtils.apertasimples(freeplay))
 			abrirState("uhhhhhh");
+		if (BSLTouchUtils.apertasimples(options))
+			abrirState("options");
 
 		super.update(elapsed);
 	}
@@ -81,8 +81,8 @@ class MainMenuState extends MusicBeatState
 				case "credits":
 					MusicBeatState.switchState(new game.states.CreditsState());
 				case "options":
-					#if mobileC
-					MusicBeatState.switchState(new options.MobileKeyBinds());
+					#if mobile
+					MusicBeatState.switchState(new game.states.options.MobileKeyBinds());
 					#else
 					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
 					#end

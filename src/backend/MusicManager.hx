@@ -22,8 +22,7 @@ class MusicManager
 		songsList.remove(curPlaying);
 
 		#if debug
-		trace('Tocando agora: $curPlaying / Lista de musicas disponiveis: $songsList');
-		trace('Nome da musica: ${getSongName()[0]} / Nome do artista: ${getSongName()[1]}');
+		trace('Tocando agora - Nome da musica: ${getSongName()[0]} / Nome do artista: ${getSongName()[1]} / Lista de musicas disponiveis: $songsList');
 		#end
 	}
 

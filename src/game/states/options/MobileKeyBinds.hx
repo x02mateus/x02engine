@@ -1,7 +1,6 @@
-package options;
+package game.states.options;
 
 #if mobileC
-import backend.Config;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.ui.FlxUIButton;
@@ -10,8 +9,9 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import haxe.Json;
-import ui.FlxVirtualPad;
-import ui.Hitbox;
+import input.mobile.Config;
+import input.mobile.ui.FlxVirtualPad;
+import input.mobile.ui.Hitbox;
 
 using StringTools;
 
