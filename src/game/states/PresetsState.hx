@@ -67,7 +67,7 @@ class PresetsState extends MusicBeatState
 			}
 		});
 		textUpdate();
-		
+
 		super.create();
 	}
 

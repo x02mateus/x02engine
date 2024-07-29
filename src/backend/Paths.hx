@@ -383,7 +383,7 @@ class Paths
 		var address:String = folder + gottenPath;
 		trace('Som carregado: $file.$SOUND_EXT');
 
-		if(path == "music")
+		if (path == "music")
 			MusicManager.curPlaying = file;
 
 		if (openfl.Assets.exists(address, SOUND))
@@ -393,7 +393,6 @@ class Paths
 				currentTrackedSounds_cacheID.set(key, address);
 				currentTrackedSounds.set(address, openfl.Assets.getSound(address));
 			}
-			
 		}
 		else
 			FlxG.log.error('Could not find sound at ${address}');

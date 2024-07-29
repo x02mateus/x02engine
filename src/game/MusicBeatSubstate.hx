@@ -18,8 +18,7 @@ class MusicBeatSubstate extends FlxSubState
 	// private var controls(get, never):backend.Controls;
 
 	/*inline function get_controls():backend.Controls
-		return backend.PlayerSettings.player1.controls;*/
-	
+		return backend.PlayerSettings.player1.controls; */
 	override function update(elapsed:Float)
 	{
 		if (Main.getMouseVisibility() && (FlxG.keys.pressed.ANY || GamepadUtil.anyGamepadButtonPressed()))

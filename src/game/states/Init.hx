@@ -32,7 +32,7 @@ class Init extends MusicBeatState
 		#if android
 		FlxG.android.preventDefaultKeys = [BACK];
 		#end
-		
+
 		SaveData.init();
 
 		if (SaveData.firstTime)
@@ -69,11 +69,11 @@ class Init extends MusicBeatState
 				{
 					#if desktop
 					MusicBeatState.switchState(new game.states.PresetsState());
-					#elseif mobile 
-						// no mobile, quando troca de state acontece um bug esquisito lá
-						// lembrar de verificar isso no pc tbm
-						// Depois de verificar, eu descobri que o problema é lá no musicbeat, já que ele chama a função dentro dela mesma
-						// Essa condição do if desktop vai continuar por conta que o presets ainda não tem touch/controles mobile
+					#elseif mobile
+					// no mobile, quando troca de state acontece um bug esquisito lá
+					// lembrar de verificar isso no pc tbm
+					// Depois de verificar, eu descobri que o problema é lá no musicbeat, já que ele chama a função dentro dela mesma
+					// Essa condição do if desktop vai continuar por conta que o presets ainda não tem touch/controles mobile
 					MusicBeatState.switchState(new game.states.MainMenuState());
 					#end
 				});

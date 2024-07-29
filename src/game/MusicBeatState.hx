@@ -15,7 +15,6 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 
 	/*inline function get_controls():backend.Controls
 		return backend.PlayerSettings.player1.controls; */
-	
 	override function create()
 	{
 		camBeat = FlxG.camera;
