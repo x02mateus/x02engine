@@ -1,38 +1,37 @@
 {
     "1": {
-      "nome": "aquatic ambiance",
-      "artista": "scizzie",
-      "album": "aquatic_ambiance"
+        "nome": "aquatic ambiance",
+        "artista": "scizzie",
+        "album": "aquatic_ambiance"
     },
     "2": {
-      "nome": "LEASE",
-      "artista": "Takeshi Abo",
-      "album": "kid_music_museum"
+        "nome": "LEASE",
+        "artista": "Takeshi Abo",
+        "album": "kid_music_museum"
     },
     "3": {
-      "nome": "Relaxed Scene",
-      "artista": "James Clarke",
-      "album": "mystery_movie"
+        "nome": "Relaxed Scene",
+        "artista": "James Clarke",
+        "album": "mystery_movie"
     },
     "4": {
-      "nome": "WINDOWS 95",
-      "artista": "Che Mac",
-      "album": "dead_tape"
+        "nome": "WINDOWS 95",
+        "artista": "Che Mac",
+        "album": "dead_tape"
     },
     "5": {
-      "nome": "Lotus Waters",
-      "artista": "Yume 2kki",
-      "album": "yume_2kki"
+        "nome": "Lotus Waters",
+        "artista": "Yume 2kki",
+        "album": "yume_2kki"
     },
     "6": {
-      "nome": "SR20DET",
-      "artista": "BLKSMIITH",
-      "album": "digital_twin"
+        "nome": "SR20DET",
+        "artista": "BLKSMIITH",
+        "album": "digital_twin"
     },
     "7": {
-      "nome": "Virtual Tears",
-      "artista": "TOKYOPILL",
-      "album": "virtual_tears"
+        "nome": "Virtual Tears",
+        "artista": "TOKYOPILL",
+        "album": "virtual_tears"
     }
-  }
-  
+}

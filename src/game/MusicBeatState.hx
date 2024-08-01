@@ -86,8 +86,10 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 			Main.mouseVisibility(true);
 		}
 
-		if(FlxG.sound.music != null) {
-			FlxG.sound.music.onComplete = function() {
+		if (FlxG.sound.music != null)
+		{
+			FlxG.sound.music.onComplete = function()
+			{
 				#if debug
 				trace(Paths.currentTrackedAssets);
 				trace(Paths.currentTrackedSounds);

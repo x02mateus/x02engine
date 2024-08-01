@@ -158,7 +158,7 @@ class FPS extends TextField
 			#end
 			#end
 
-			textColor = 0xFF1DADBB;
+			textColor = 0xFFFFFFFF;
 
 			if (currentFPS < 30 #if (mobile || debug)
 				|| (curMEMforReference > Paths.limites[SaveData.curPreset] ^ 2 + 200 ^ 2 && SaveData.gpu) #end)
