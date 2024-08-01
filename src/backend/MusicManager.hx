@@ -14,46 +14,46 @@ class MusicManager
 
 	public static function playMusic()
 	{
-		if (songsList == null)
+		if (songsList == null || songsList.length == 0)
 			songsList = ["1", "2", "3", "4", "5", "6", "7"];
 
-		FlxG.sound.playMusic(Paths.music(songsList[FlxG.random.int(1, songsList.length)]), SaveData.volumeMusica, true);
+		playlistOrder(true); // Aqui ele deixa a playlist mais aleatória
 
+		var randomIndex:Int = Std.random(songsList.length);
+		FlxG.sound.playMusic(Paths.music(songsList[randomIndex]), SaveData.volumeMusica, true);
 		songsList.remove(curPlaying);
 
 		#if debug
-		trace('Tocando agora - Nome da musica: ${getSongName()[0]} / Nome do artista: ${getSongName()[1]} / Lista de musicas disponiveis: $songsList');
+		trace('Tocando agora - Nome da musica: ${getSongInfo()[0]} / Nome do artista: ${getSongInfo()[1]} / Lista de musicas disponiveis: $songsList');
 		#end
 	}
 
 	/*
 	 * @return Retorna uma Array no seguinte formato: ["nome", "artista"]
 	 */
-	public static function getSongName():Array<String>
+	public static function getSongInfo():Array<String>
 	{
-		// Isso não funcionou usando a função do Flixel, então eu tive que fazer esse code feio aqui :skull:
-		switch (curPlaying)
-		{
-			case "1":
-				return ["aquatic ambiance", "scizzie"];
-			case "2":
-				return ["LEASE", "Takeshi Abo"];
-			case "3":
-				return ["Relaxed Scene", "James Clarke"];
-			case "4":
-				return ["WINDOWS 95", 'Che Mac'];
-			case "5":
-				return ["Lotus Waters", 'Yume 2ikki'];
-			case "6":
-				return ["SR20DET", "BLKSMIITH"];
-			case "7":
-				return ["Virtual Tears", "TOKYOPILL"];
-		}
-		return [null, null];
+		// Converti isso pra JSON pq tava muito feio...
+		// Se você olhar dentro do JSON, é quase a mesma coisa do code original, só que...
+		// Aqui fica bem mais bonito e compacto, e além do mais, FUNCIONA, então não mexe nisso kek
+		// Isso já quebra um galho pro modding também, já que ajuda muito mais na hora de fazer a playlist
+		var json:String = Utils.getContent("assets/data/songsData.json");
+		var songsData = Json.parse(json);
+
+		var songInfo = Reflect.field(songsData, curPlaying);
+		return songInfo != null ? [songInfo.nome, songInfo.artista, songInfo.album] : [null, null, null];
 	}
 
 	public static function getSongAlbum()
 	{
-		return Paths.image('songs/albuns/$curPlaying');
+		return Paths.image('songs/albuns/${getSongInfo()[2]}');
+	}
+
+	private static function playlistOrder(random:Bool = true)
+	{
+		if (random)
+			songsList = Random.shuffle(songsList);
+		else
+			songsList = ["1", "2", "3", "4", "5", "6", "7"];
 	}
 }

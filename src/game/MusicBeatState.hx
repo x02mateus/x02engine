@@ -86,6 +86,18 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 			Main.mouseVisibility(true);
 		}
 
+		if(FlxG.sound.music != null) {
+			FlxG.sound.music.onComplete = function() {
+				#if debug
+				trace(Paths.currentTrackedAssets);
+				trace(Paths.currentTrackedSounds);
+				trace(Paths.currentTrackedSounds_cacheID);
+				#end
+				Paths.clear_memory_by_key(MusicManager.curPlaying);
+				MusicManager.playMusic();
+			};
+		}
+
 		super.update(elapsed);
 	}
 

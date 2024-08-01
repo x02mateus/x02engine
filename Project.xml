@@ -60,6 +60,7 @@
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
 	<haxelib name="flixel-ui" />
+	<haxelib name="random" />
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
@@ -109,7 +110,9 @@
 
 	<!--Otimização de code nativa do Haxe-->
 	<!--Pensei em colocar o -D dce full, mas ele é meio inseguro e é mais agressivo que o std.-->
-	<haxeflag name="-dce" value="std" if="HAXE_OPTIM"/>
+	<section if="HAXE_OPTIM">
+		<haxeflag name="-dce" value="std"/>
+	</section>
 
 	<!--Compilar exclusivamente para X64 ou X86 do Android-->
 	<architecture include="armv7" if="android_X86" />
