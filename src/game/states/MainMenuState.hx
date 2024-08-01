@@ -57,6 +57,9 @@ class MainMenuState extends MusicBeatState
 		credits.antialiasing = SaveData.antialiasing;
 		add(credits);
 
+		var a:objects.MusicIndicator = new objects.MusicIndicator();
+		add(a);
+
 		super.create();
 	}
 
