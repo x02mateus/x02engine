@@ -28,6 +28,10 @@
       {
         "name": "flixel-ui",
         "type": "haxelib"
+      },
+      {
+        "name": "random",
+        "type": "haxelib"
       }
     ]
   }
