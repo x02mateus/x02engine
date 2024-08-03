@@ -1,8 +1,10 @@
 package game;
 
 import flixel.addons.transition.FlxTransitionableState;
+import game.states.Init;
 import input.Controls;
 import input.PlayerSettings;
+import objects.MusicIndicator;
 #if mobileC
 import flixel.input.actions.FlxActionInput;
 import input.mobile.ui.FlxVirtualPad;
@@ -51,6 +53,10 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 	{
 		camBeat = FlxG.camera;
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
+
+		if (FlxG.sound.music == null)
+			MusicManager.playMusic();
+
 		super.create();
 
 		// Custom made Trans out
@@ -90,12 +96,6 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 		{
 			FlxG.sound.music.onComplete = function()
 			{
-				#if debug
-				trace(Paths.currentTrackedAssets);
-				trace(Paths.currentTrackedSounds);
-				trace(Paths.currentTrackedSounds_cacheID);
-				#end
-				Paths.clear_memory_by_key(MusicManager.curPlaying);
 				MusicManager.playMusic();
 			};
 		}

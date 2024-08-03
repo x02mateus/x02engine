@@ -291,20 +291,16 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
-	inline static public function image(key:String, ?library:String, canGPU:Bool = true):FlxGraphic
+	inline static public function image(key:String, ?library:String, canGPU:Bool = false):FlxGraphic
 	{ // canGPU serve pra evitar um erro MUITO CRÍTICO em FlxTiledSprite
-		var gpu:Bool = false;
-		if (canGPU)
-			gpu = SaveData.gpu;
+		var gpu:Bool = canGPU;
 		var returnAsset:FlxGraphic = returnGraphic(key, library, gpu);
 		return returnAsset;
 	}
 
-	inline static public function getSparrowAtlas(key:String, ?library:String, canGPU:Bool = true)
+	inline static public function getSparrowAtlas(key:String, ?library:String, canGPU:Bool = false)
 	{
-		var gpu:Bool = false;
-		if (canGPU)
-			gpu = SaveData.gpu;
+		var gpu:Bool = canGPU;
 		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
 	}
 

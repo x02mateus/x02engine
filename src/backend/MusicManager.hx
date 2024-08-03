@@ -28,27 +28,6 @@ class MusicManager
 		#end
 	}
 
-	/*
-	 * @return Retorna uma Array no seguinte formato: ["nome", "artista"]
-	 */
-	public static function getSongInfo():Array<String>
-	{
-		// Converti isso pra JSON pq tava muito feio...
-		// Se você olhar dentro do JSON, é quase a mesma coisa do code original, só que...
-		// Aqui fica bem mais bonito e compacto, e além do mais, FUNCIONA, então não mexe nisso kek
-		// Isso já quebra um galho pro modding também, já que ajuda muito mais na hora de fazer a playlist
-		var json:String = Utils.getContent("assets/data/songsData.json");
-		var songsData = Json.parse(json);
-
-		var songInfo = Reflect.field(songsData, curPlaying);
-		return songInfo != null ? [songInfo.nome, songInfo.artista, songInfo.album] : [null, null, null];
-	}
-
-	public static function getSongAlbum()
-	{
-		return Paths.image('songs/albuns/${getSongInfo()[2]}');
-	}
-
 	private static function playlistOrder(random:Bool = true)
 	{
 		if (random)

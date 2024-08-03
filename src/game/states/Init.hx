@@ -37,8 +37,6 @@ class Init extends MusicBeatState
 
 		if (SaveData.firstTime)
 		{
-			MusicManager.playMusic();
-
 			texto = new FlxText(0, 0,
 				"Bem vindo!\nEssa engine contem luzes piscantes, e caso\nvoce seja sensivel a esse tipo de coisa,\ndesative a opcao 'Luzes Piscantes'\nque se localiza no menu de opcoes.\n\nObrigado!\n" +
 				coiso + "para continuar.");

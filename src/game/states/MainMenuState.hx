@@ -16,8 +16,8 @@ class MainMenuState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 
-		if (FlxG.sound.music == null)
-			MusicManager.playMusic();
+		//if (FlxG.sound.music == null)
+		//	MusicManager.playMusic();
 
 		Main.mouseVisibility(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
 
@@ -56,9 +56,6 @@ class MainMenuState extends MusicBeatState
 		credits.moves = false;
 		credits.antialiasing = SaveData.antialiasing;
 		add(credits);
-
-		var a:objects.MusicIndicator = new objects.MusicIndicator();
-		add(a);
 
 		super.create();
 	}
