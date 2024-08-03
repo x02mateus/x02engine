@@ -4,7 +4,6 @@ import flixel.addons.transition.FlxTransitionableState;
 import game.states.Init;
 import input.Controls;
 import input.PlayerSettings;
-import objects.MusicIndicator;
 #if mobileC
 import flixel.input.actions.FlxActionInput;
 import input.mobile.ui.FlxVirtualPad;
@@ -96,6 +95,7 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 		{
 			FlxG.sound.music.onComplete = function()
 			{
+				Paths.clear_memory_by_key(MusicManager.curPlaying);
 				MusicManager.playMusic();
 			};
 		}

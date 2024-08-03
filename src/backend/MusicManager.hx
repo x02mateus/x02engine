@@ -20,12 +20,8 @@ class MusicManager
 		playlistOrder(true); // Aqui ele deixa a playlist mais aleatória
 
 		var randomIndex:Int = Std.random(songsList.length);
-		FlxG.sound.playMusic(Paths.music(songsList[randomIndex]), SaveData.volumeMusica, true);
+		FlxG.sound.playMusic(Paths.music(songsList[randomIndex]), SaveData.volumeMusica, false);
 		songsList.remove(curPlaying);
-
-		#if debug
-		trace('Tocando agora - Nome da musica: ${getSongInfo()[0]} / Nome do artista: ${getSongInfo()[1]} / Lista de musicas disponiveis: $songsList');
-		#end
 	}
 
 	private static function playlistOrder(random:Bool = true)
