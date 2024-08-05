@@ -19,10 +19,10 @@ import openfl.utils.ByteArray;
  *
  * @author Ka Wing Chin
  */
-@:keep @:bitmap("assets/preload/images/virtual-input.png")
+@:keep @:bitmap("assets/mobile/images/virtual-input.png")
 class GraphicVirtualInput extends BitmapData {}
 
-@:file("assets/preload/images/virtual-input.txt")
+@:file("assets/mobile/images/virtual-input.txt")
 class VirtualInputData extends #if (lime_legacy || nme) ByteArray #else ByteArrayData #end {}
 
 class FlxVirtualPad extends FlxSpriteGroup
@@ -180,7 +180,7 @@ class FlxVirtualPad extends FlxSpriteGroup
 		var graphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmapData);
 		return FlxAtlasFrames.fromSpriteSheetPacker(graphic, Std.string(new VirtualInputData()));
 		#else
-		var graphic:FlxGraphic = FlxGraphic.fromAssetKey(Paths.image('virtual-input'));
+		var graphic:FlxGraphic = FlxGraphic.fromAssetKey(Paths.image('virtual-input', 'mobile'));
 		return FlxAtlasFrames.fromSpriteSheetPacker(graphic, Std.string(new VirtualInputData()));
 		#end
 	}

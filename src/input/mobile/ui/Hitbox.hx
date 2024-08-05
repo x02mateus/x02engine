@@ -36,7 +36,7 @@ class Hitbox extends FlxSpriteGroup
 		hitbox = new FlxSpriteGroup();
 		hitbox.scrollFactor.set();
 
-		var hitbox_hint:FlxSprite = new FlxSprite(0, 0).loadGraphic('assets/shared/images/hitbox/hitbox_hint.png');
+		var hitbox_hint:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('hitbox/hitbox_hint', 'mobile'));
 
 		hitbox_hint.alpha = 0.2;
 
@@ -54,7 +54,7 @@ class Hitbox extends FlxSpriteGroup
 	public function createhitbox(X:Float, framestring:String)
 	{
 		var button = new FlxButton(X, 0);
-		var frames = FlxAtlasFrames.fromSparrow('assets/shared/images/hitbox/hitbox.png', 'assets/shared/images/hitbox/hitbox.xml');
+		var frames = Paths.getSparrowAtlas('hitbox/hitbox', 'mobile');
 
 		var graphic:FlxGraphic = FlxGraphic.fromFrame(frames.getByName(framestring));
 

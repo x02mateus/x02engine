@@ -24,7 +24,7 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" width="1280" height="720" resizable="true" />
 	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" allow-shaders="true" require-shaders="true" allow-high-dpi="true" />
 	<define name="mobileC" if="mobile" />
-	<assets path="assets/shared/images/hitbox"/>
+	
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export" />
@@ -37,21 +37,26 @@
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
 
 	<section if="PRELOAD_ALL">
+		<library name="mobile" preload="true" if="mobileC"/>
 		<library name="songs" preload="true" />
 		<library name="shared" preload="true" />
 	</section>
 
 	<section if="NO_PRELOAD_ALL">
+		<library name="mobile" preload="false" if="mobileC"/>
 		<library name="songs" preload="false" />
 		<library name="shared" preload="false" />
 	</section>
 
-	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
-	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
-	<assets path="assets/songs" library="songs" exclude="*.ogg" if="web"/>
-	<assets path="assets/songs" library="songs" exclude="*.mp3" unless="web"/>
-	<assets path="assets/shared" library="shared" exclude="*.ogg" if="web"/>
-	<assets path="assets/shared" library="shared" exclude="*.mp3" unless="web"/>
+	<!-- Fazendo uma library para os controles mobile vai facilitar a organização e diminuir o espaço usado quando a target não é o Android. -->
+	<assets path="assets/mobile" 	library="mobile" 	exclude="*.ogg" if="mobileC"/>
+	<!-- Game libraries -->
+	<assets path="assets/preload" 	rename="assets" 	exclude="*.ogg" if="web"/>
+	<assets path="assets/preload" 	rename="assets" 	exclude="*.mp3" unless="web"/>
+	<assets path="assets/songs" 	library="songs" 	exclude="*.ogg" if="web"/>
+	<assets path="assets/songs" 	library="songs" 	exclude="*.mp3" unless="web"/>
+	<assets path="assets/shared" 	library="shared" 	exclude="*.ogg" if="web"/>
+	<assets path="assets/shared" 	library="shared" 	exclude="*.mp3" unless="web"/>,
 
 	<assets path="assets/fonts" embed='true'/>
 
