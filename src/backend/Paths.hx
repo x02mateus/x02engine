@@ -318,6 +318,8 @@ class Paths
 
 		path = getPath('images/$key.png', IMAGE, library);
 
+		gpu = (SaveData.gpu) ? true : false;
+
 		if (openfl.Assets.exists(path, IMAGE))
 		{
 			if (!currentTrackedAssets.exists(key))
@@ -327,8 +329,7 @@ class Paths
 
 				FPS.curMemChecker();
 
-				if (SaveData.gpu
-					|| gpu
+				if (gpu
 					|| currentTrackedTextures.exists(path)
 					|| FPS.curMEMforReference > limites[SaveData.curPreset] ^ 2) // Basicamente, se o uso da CPU chegar próximo do limite do aparelho, então a GPU será usada
 				{ // É mais fácil gerenciar a GPU através da CPU do que o contrário.
