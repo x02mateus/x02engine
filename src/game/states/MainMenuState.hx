@@ -22,7 +22,7 @@ class MainMenuState extends MusicBeatState
 		versionText = createVersionText();
 		add(versionText);
 
-		buttons = new MenuButton();
+		buttons = new MenuButton(); // Tive problema com isso hoje mais cedo, daí, arrumei e por algum motivo coloquei o code bugado denovo : D (alguém me mata por favor)
 		add(buttons);
 
 		super.create();
