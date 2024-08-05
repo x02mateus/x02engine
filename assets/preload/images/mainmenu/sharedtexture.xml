@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="sharedtexture.png">
+	<SubTexture name="freeplay" x="0" y="0" width="348" height="315"/>
+	<SubTexture name="options" x="348" y="0" width="141" height="155"/>
+	<SubTexture name="credits" x="348" y="155" width="141" height="160"/>
+</TextureAtlas>

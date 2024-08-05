@@ -17,8 +17,7 @@
 
 	ESSE ARQUIVO É TEMPORÁRIO, E É USADO APENAS PARA AS CONFIGURAÇÕES INICIAIS DA ENGINE (SaveData, Input, etc.)
  */
-
-package game.states;
+ package game.states;
 
 import flixel.effects.FlxFlicker;
 
@@ -36,22 +35,10 @@ class Init extends MusicBeatState
 		SaveData.init();
 
 		if (SaveData.firstTime)
-		{
-			texto = new FlxText(0, 0,
-				"Bem vindo!\nEssa engine contem luzes piscantes, e caso\nvoce seja sensivel a esse tipo de coisa,\ndesative a opcao 'Luzes Piscantes'\nque se localiza no menu de opcoes.\n\nObrigado!\n" +
-				coiso + "para continuar.");
-			texto.scrollFactor.set();
-			texto.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			texto.screenCenter(XY);
-			texto.moves = false;
-			texto.antialiasing = false;
-			add(texto);
-		}
+			displayText();
 		else
-		{
-			MusicBeatState.switchState(new game.states.MainMenuState());
-		}
-
+			MusicBeatState.switchState(new MainMenuState());
+	
 		super.create();
 	}
 
@@ -59,17 +46,34 @@ class Init extends MusicBeatState
 	{
 		var justPressed:Bool = #if desktop FlxG.keys.justPressed.ENTER #elseif mobile BSLTouchUtils.justTouched() #end;
 		if (justPressed)
+			changeState();
+
+		super.update(elapsed);
+	}
+
+	private function displayText()
+	{
+		texto = new FlxText(0, 0, "Bem vindo!\nEssa engine contem luzes piscantes, e caso\nvoce seja sensivel a esse tipo de coisa,\ndesative a opcao 'Luzes Piscantes'\nque se localiza no menu de opcoes.\n\nObrigado!\n" +
+			coiso + "para continuar.");
+		texto.scrollFactor.set();
+		texto.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		texto.screenCenter(XY);
+		texto.moves = false;
+		texto.antialiasing = false;
+		add(texto);
+	}
+
+	private function changeState()
+	{
+		GlobalSoundManager.play(confirmMenu);
+		SaveData.firstTime = false;
+		SaveData.save();
+		FlxFlicker.flicker(texto, 1, 0.1, false, true, function(flk:FlxFlicker)
 		{
-			GlobalSoundManager.play(confirmMenu);
-			SaveData.firstTime = false;
-			SaveData.save();
-			FlxFlicker.flicker(texto, 1, 0.1, false, true, function(flk:FlxFlicker)
+			new FlxTimer().start(0.5, function(tmr:FlxTimer)
 			{
-				new FlxTimer().start(0.5, function(tmr:FlxTimer)
-				{
-					MusicBeatState.switchState(new game.states.PresetsState());
-				});
+				MusicBeatState.switchState(new PresetsState());
 			});
-		}
+		});
 	}
 }

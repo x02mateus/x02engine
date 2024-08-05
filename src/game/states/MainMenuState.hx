@@ -1,76 +1,53 @@
 package game.states;
 
-// Decidi rushar esse menu escutando Master of Puppets do Metallica, então ignore se o code estiver burro k
+import objects.MenuButton;
+
 class MainMenuState extends MusicBeatState
 {
 	private var canClick:Bool = true;
 	private var background:FlxSprite;
 	private var versionText:FlxText;
-
-	public var freeplay:FlxSprite = new FlxSprite();
-	public var options:FlxSprite = new FlxSprite();
-	public var credits:FlxSprite = new FlxSprite();
+	private var buttons:MenuButton;
 
 	override function create()
 	{
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 
-		//if (FlxG.sound.music == null)
-		//	MusicManager.playMusic();
+		Main.mouseVisibility(true);
 
-		Main.mouseVisibility(true); // Isso serve pra deixar o mouse visivel, e não precisar colocar um novo code para ele não ficar visível no Android
+		background = createBackground();
+		add(background);
 
-		// Breve explicação de como funcionam os sprites nessa engine
-		background = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}',
-			'preload')); // Carrega a imagem usando o Paths.image, e procura por ela em 'preload/images/background/(bg 1 ou 2)'
-		background.moves = false; // Desativa o sistema de colisão para o aumento de performance (Não tem necessidade de utilizar o sistema de colisão, já que o BG foi feito para ser apenas um fundo)
-		background.antialiasing = SaveData.antialiasing; // Ativa ou desativa o antialiasing da imagem de acordo com o que o usuário tiver escolhido
-		background.setGraphicSize(Std.int(FlxG.width), Std.int(FlxG.height)); // Faz a imagem preencher a tela inteira
-		add(background); // Adiciona a imagem
-
-		versionText = new FlxText(0, FlxG.height - 24, 0, "X02Engine BETA v0.1", 12);
-		versionText.scrollFactor.set();
-		versionText.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		versionText.moves = false; 
-		versionText.antialiasing = SaveData.antialiasing;
+		versionText = createVersionText();
 		add(versionText);
 
-		freeplay.loadGraphic(Paths.image("mainmenu/freeplay"));
-		freeplay.x = 120;
-		freeplay.screenCenter(Y);
-		freeplay.moves = false;
-		freeplay.antialiasing = SaveData.antialiasing;
-		add(freeplay);
-
-		options.loadGraphic(Paths.image("mainmenu/options"));
-		options.x = freeplay.x + freeplay.width;
-		options.y = freeplay.y;
-		options.moves = false;
-		options.antialiasing = SaveData.antialiasing;
-		add(options);
-
-		credits.loadGraphic(Paths.image("mainmenu/credits"));
-		credits.x = freeplay.x + freeplay.width;
-		credits.y = options.y + options.height;
-		credits.moves = false;
-		credits.antialiasing = SaveData.antialiasing;
-		add(credits);
+		buttons = new MenuButton();
+		add(buttons);
 
 		super.create();
 	}
 
-	override function update(elapsed:Float)
+	private function createBackground():FlxSprite
 	{
-		if (BSLTouchUtils.apertasimples(credits) || BSLTouchUtils.apertasimples(freeplay))
-			abrirState("uhhhhhh");
-		if (BSLTouchUtils.apertasimples(options))
-			abrirState("options");
-
-		super.update(elapsed);
+		var bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}', 'preload'));
+		bg.moves = false;
+		bg.antialiasing = SaveData.antialiasing;
+		bg.setGraphicSize(Std.int(FlxG.width), Std.int(FlxG.height));
+		return bg;
 	}
 
-	private function abrirState(pressed:String)
+	private function createVersionText():FlxText
+	{
+		var txt = new FlxText(0, FlxG.height - 24, 0, "X02Engine BETA v0.1", 12);
+		txt.scrollFactor.set();
+		txt.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		txt.moves = false;
+		txt.antialiasing = SaveData.antialiasing;
+		return txt;
+	}
+
+	public static function abrirState(pressed:String)
 	{
 		CoolUtil.flash(0.5);
 		GlobalSoundManager.play(confirmMenu);
