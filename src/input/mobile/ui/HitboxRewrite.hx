@@ -4,6 +4,8 @@ package input.mobile.ui;
  * Eu decidi reescrever isso, por motivos de performance/um code que eu saiba mexer melhor/o code do LuckyDog é antigo demais e pode mudar um pouco :D
  * @author MateusX02
 */
+import flixel.graphics.FlxGraphic;
+import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.ui.FlxButton;
 
 class HitboxRewrite extends FlxSpriteGroup
@@ -38,8 +40,10 @@ class HitboxRewrite extends FlxSpriteGroup
 
 	private function createButton(x:Int, anim:Int) {
 		var button:FlxButton = new FlxButton(x, 0);
-        var frames = Paths.getSparrowAtlas('hitbox/hitbox', 'mobile');
-		button.loadGraphic(flixel.graphics.FlxGraphic.fromFrame(frames.getByName(Std.string(anim))));
+        var frames = fromSparrow();
+		var graphic:FlxGraphic = FlxGraphic.fromFrame(frames.getByName(Std.string(anim)));
+
+        button.loadGraphic(graphic);
 		button.alpha = 0;
 		button.visible = false;
 
@@ -71,6 +75,11 @@ class HitboxRewrite extends FlxSpriteGroup
         FlxTween.tween(button, { alpha : 0 }, .2, { ease: FlxEase.circInOut, onComplete: function(twn:FlxTween) {
             button.visible = false;
         }});
+    }
+
+    private function fromSparrow() { // Isso só é usado uma única vez, só que a única vez que é usado é de uma forma tremendamente feia
+        // Btw, isso é a mesma coisa de usar Paths.getSparrowAtlas, só que o do Paths não funcionou por algum motivo esquisito
+        return FlxAtlasFrames.fromSparrow(Paths.getPath('images/hitbox/hitbox.png', IMAGE, "mobile"), Assets.getText(Paths.getPath('images/hitbox/hitbox.xml', TEXT, "mobile")));
     }
 
     override public function destroy():Void {

@@ -163,7 +163,7 @@ class Paths
 		currentLevel = name.toLowerCase();
 	}
 
-	static function getPath(file:String, type:AssetType, library:Null<String>)
+	public static function getPath(file:String, type:AssetType, library:Null<String>)
 	{
 		if (library != null)
 			return getLibraryPath(file, library);
@@ -301,7 +301,7 @@ class Paths
 	inline static public function getSparrowAtlas(key:String, ?library:String, canGPU:Bool = false)
 	{
 		var gpu:Bool = canGPU;
-		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
+		return FlxAtlasFrames.fromSparrow(image(key, library, gpu), file('images/$key.xml', library));
 	}
 
 	inline static public function getPackerAtlas(key:String, ?library:String, canGPU:Bool = true)
@@ -309,7 +309,7 @@ class Paths
 		var gpu:Bool = false;
 		if (canGPU)
 			gpu = SaveData.gpu;
-		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library));
+		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library, gpu), file('images/$key.txt', library));
 	}
 
 	public static function returnGraphic(key:String, ?library:String, gpu:Bool)

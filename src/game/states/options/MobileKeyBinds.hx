@@ -11,7 +11,7 @@ import flixel.util.FlxColor;
 import haxe.Json;
 import input.mobile.Config;
 import input.mobile.ui.FlxVirtualPad;
-import input.mobile.ui.Hitbox;
+import input.mobile.ui.HitboxRewrite;
 
 using StringTools;
 
@@ -22,7 +22,7 @@ import lime.system.Clipboard;
 class MobileKeyBinds extends MusicBeatState // Code desenvolvido dois anos atrás, mas ainda dá pro gasto
 {
 	var _pad:FlxVirtualPad;
-	var _hb:Hitbox;
+	var _hb:HitboxRewrite;
 
 	var exitbutton:FlxUIButton;
 	var exportbutton:FlxUIButton;
@@ -93,7 +93,7 @@ class MobileKeyBinds extends MusicBeatState // Code desenvolvido dois anos atrá
 
 		// hitboxes
 
-		_hb = new Hitbox();
+		_hb = new HitboxRewrite();
 		_hb.visible = false;
 
 		// buttons
