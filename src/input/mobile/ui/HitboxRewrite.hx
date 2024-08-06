@@ -4,6 +4,7 @@ package input.mobile.ui;
  * Eu decidi reescrever isso, por motivos de performance/um code que eu saiba mexer melhor/o code do LuckyDog é antigo demais e pode mudar um pouco :D
  * @author MateusX02
 */
+#if mobileC
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.ui.FlxButton;
@@ -24,7 +25,6 @@ class HitboxRewrite extends FlxSpriteGroup
 	{
 		super();
         
-        hitboxGroup.scrollFactor.set();
         sizex = screenWidth != null ? Std.int(screenWidth / 4) : 320;
         buttonsCoords = [0, sizex, sizex * 2, sizex * 3];
         buttonsArray = [buttonLeft, buttonDown, buttonUp, buttonRight];
@@ -88,3 +88,4 @@ class HitboxRewrite extends FlxSpriteGroup
         buttonLeft = buttonDown = buttonUp = buttonRight = null;
     }
 }
+#end
