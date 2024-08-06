@@ -5,13 +5,13 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import input.mobile.Config;
 import input.mobile.ui.FlxVirtualPad;
-import input.mobile.ui.HitboxRewrite;
+import input.mobile.ui.Hitbox;
 
 class Mobilecontrols extends FlxSpriteGroup
 {
 	public var mode:ControlsGroup = HITBOX;
 
-	public var _hitbox:HitboxRewrite;
+	public var _hitbox:Hitbox;
 	public var _virtualPad:FlxVirtualPad;
 
 	public function new()
@@ -31,7 +31,7 @@ class Mobilecontrols extends FlxSpriteGroup
 			case VIRTUALPAD_CUSTOM:
 				initVirtualPad(2);
 			case HITBOX:
-				_hitbox = new HitboxRewrite();
+				_hitbox = new Hitbox();
 				add(_hitbox);
 			case KEYBOARD:
 		}

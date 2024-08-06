@@ -1,14 +1,22 @@
 package input.mobile.ui;
 
-#if mobileC
+import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.addons.ui.FlxButtonPlus;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.graphics.frames.FlxFrame;
+import flixel.graphics.frames.FlxTileFrames;
 import flixel.group.FlxSpriteGroup;
+import flixel.math.FlxPoint;
+import flixel.system.FlxAssets;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
+import flixel.ui.FlxVirtualPad;
+import flixel.util.FlxDestroyUtil;
 
+#if mobileC
 // copyed from flxvirtualpad
 class Hitbox extends FlxSpriteGroup
 {
@@ -36,7 +44,7 @@ class Hitbox extends FlxSpriteGroup
 		hitbox = new FlxSpriteGroup();
 		hitbox.scrollFactor.set();
 
-		var hitbox_hint:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('hitbox/hitbox_hint', 'mobile'));
+		var hitbox_hint:FlxSprite = new FlxSprite(0, 0).loadGraphic('assets/shared/images/hitbox/hitbox_hint.png');
 
 		hitbox_hint.alpha = 0.2;
 
@@ -51,10 +59,11 @@ class Hitbox extends FlxSpriteGroup
 		hitbox.add(add(buttonRight = createhitbox(sizex * 3, "right")));
 	}
 
+
 	public function createhitbox(X:Float, framestring:String)
 	{
 		var button = new FlxButton(X, 0);
-		var frames = Paths.getSparrowAtlas('hitbox/hitbox', 'mobile');
+		var frames = FlxAtlasFrames.fromSparrow('assets/mobile/images/hitbox/hitbox.png', 'assets/mobile/images/hitbox/hitbox.xml');
 
 		var graphic:FlxGraphic = FlxGraphic.fromFrame(frames.getByName(framestring));
 
