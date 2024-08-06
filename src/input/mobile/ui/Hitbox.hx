@@ -50,13 +50,13 @@ class Hitbox extends FlxSpriteGroup
 
 		add(hitbox_hint);
 
-		hitbox.add(add(buttonLeft = createhitbox(0, "left")));
+		hitbox.add(add(buttonLeft = createhitbox(0, "1")));
 
-		hitbox.add(add(buttonDown = createhitbox(sizex, "down")));
+		hitbox.add(add(buttonDown = createhitbox(sizex, "2")));
 
-		hitbox.add(add(buttonUp = createhitbox(sizex * 2, "up")));
+		hitbox.add(add(buttonUp = createhitbox(sizex * 2, "3")));
 
-		hitbox.add(add(buttonRight = createhitbox(sizex * 3, "right")));
+		hitbox.add(add(buttonRight = createhitbox(sizex * 3, "4")));
 	}
 
 
