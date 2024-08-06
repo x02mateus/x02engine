@@ -1,9 +1,21 @@
 package backend;
 
 import flixel.graphics.FlxGraphic;
+import openfl.display.BitmapData;
 
 class GPUManager
 { // Esse code também engloba mais do que só a GPU.
+	public static function toGraphic(bitmap:BitmapData, key:String):FlxGraphic
+	{
+		var texture = FlxG.stage.context3D.createTexture(bitmap.width, bitmap.height, BGRA, false, 0);
+		texture.uploadFromBitmapData(bitmap);
+		Paths.currentTrackedTextures.set(key, texture);
+		bitmap.disposeImage();
+		flixel.util.FlxDestroyUtil.dispose(bitmap);
+		bitmap = null;
+		return FlxGraphic.fromBitmapData(BitmapData.fromTexture(texture), false, key);
+	}
+
 	public static function getGPUTexturesCount():Int
 	{
 		return Lambda.count(Paths.currentTrackedTextures); // As texturas da GPU vão pra esse coiso aí no Paths

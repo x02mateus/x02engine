@@ -155,7 +155,6 @@ class Paths
 		}
 	}
 
-	static public var currentModDirectory:String = null;
 	static var currentLevel:String;
 
 	static public function setCurrentLevel(name:String)
@@ -202,25 +201,9 @@ class Paths
 		return getPath(file, type, library);
 	}
 
-	// Não utilizado mas preguiça né?
-	inline static public function lua(key:String, ?library:String)
-	{
-		return getPath('data/$key.lua', TEXT, library);
-	}
-
-	inline static public function luaImage(key:String, ?library:String)
-	{
-		return getPath('data/$key.png', IMAGE, library);
-	}
-
 	inline static public function txt(key:String, ?library:String)
 	{
 		return getPath('$key.txt', TEXT, library);
-	}
-
-	inline static public function xml(key:String, ?library:String)
-	{
-		return getPath('data/$key.xml', TEXT, library);
 	}
 
 	inline static public function json(key:String, ?library:String)
@@ -273,6 +256,7 @@ class Paths
 		#elseif mobile
 		trace(getPath('videos/$key', BINARY, library));
 		return 'assets/videos/$key'; // Verificar se precisa adicionar o .html no final
+		// Não pra caso seja o Webview.
 		#end
 	}
 
@@ -293,14 +277,18 @@ class Paths
 
 	inline static public function image(key:String, ?library:String, canGPU:Bool = false):FlxGraphic
 	{ // canGPU serve pra evitar um erro MUITO CRÍTICO em FlxTiledSprite
-		var gpu:Bool = canGPU;
+		var gpu:Bool = false;
+		if (canGPU)
+			gpu = SaveData.gpu;
 		var returnAsset:FlxGraphic = returnGraphic(key, library, gpu);
 		return returnAsset;
 	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String, canGPU:Bool = false)
 	{
-		var gpu:Bool = canGPU;
+		var gpu:Bool = false;
+		if (canGPU)
+			gpu = SaveData.gpu;
 		return FlxAtlasFrames.fromSparrow(image(key, library, gpu), file('images/$key.xml', library));
 	}
 
@@ -315,10 +303,7 @@ class Paths
 	public static function returnGraphic(key:String, ?library:String, gpu:Bool)
 	{
 		var path:String = '';
-
 		path = getPath('images/$key.png', IMAGE, library);
-
-		gpu = (SaveData.gpu) ? true : false;
 
 		if (openfl.Assets.exists(path, IMAGE))
 		{
@@ -335,14 +320,7 @@ class Paths
 				{ // É mais fácil gerenciar a GPU através da CPU do que o contrário.
 					// Caso o jogo consuma mais do que um celular de 2gb pode aguenta,
 					// Ele passa a usar GPU pra segurar o jooj por um pouco mais de tempo antes de precisar reiniciar o APK
-
-					var texture = FlxG.stage.context3D.createTexture(bitmap.width, bitmap.height, BGRA, false, 0);
-					texture.uploadFromBitmapData(bitmap);
-					currentTrackedTextures.set(key, texture);
-					bitmap.disposeImage();
-					FlxDestroyUtil.dispose(bitmap);
-					bitmap = null;
-					graphic = FlxGraphic.fromBitmapData(BitmapData.fromTexture(texture), false, key);
+					graphic = GPUManager.toGraphic(bitmap, key);
 					trace('Imagem carregada por GPU: $key.png');
 				}
 				else
@@ -354,15 +332,13 @@ class Paths
 				graphic.persist = true;
 				currentTrackedAssets.set(key, graphic);
 			}
-			/*else
-				trace('Carregando do cache existente: $key'); */
 
 			localTrackedAssets.push(key);
 			return currentTrackedAssets.get(key);
 		}
 
-		trace('Could not find image at path $path');
-		FlxG.log.error('Could not find image at path $path');
+		trace('A imagem nao foi encontrada no path especificado: $path');
+		FlxG.log.error('A imagem nao foi encontrada no path especificado: $path');
 		return null; // Apenas para garantir que o jooj tentará carregar do jeito normal primeiro (ou então ajuidar a descobrir qual o pilantra.)
 	}
 
@@ -378,7 +354,7 @@ class Paths
 			folder = 'songs:';
 
 		var address:String = folder + gottenPath;
-		trace('Som carregado: $file.$SOUND_EXT');
+		trace('Som carregado por CPU: $file.$SOUND_EXT');
 
 		if (path == "music")
 			MusicManager.curPlaying = file;
@@ -392,7 +368,7 @@ class Paths
 			}
 		}
 		else
-			FlxG.log.error('Could not find sound at ${address}');
+			FlxG.log.error('Nao foi possivel encontrar o som no path especificado: ${address}');
 
 		localTrackedAssets.push(address);
 		return currentTrackedSounds.get(address);
