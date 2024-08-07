@@ -33,7 +33,7 @@ class MenuButton extends FlxSpriteGroup
 		credits.animation.addByPrefix("cr", "credits");
 		credits.animation.play("cr");
 		credits.x = freeplay.x + freeplay.width;
-		credits.y = options.y + options.height;
+		credits.y = 356.5;
 		credits.moves = false;
 		credits.antialiasing = SaveData.antialiasing;
 		add(credits);
