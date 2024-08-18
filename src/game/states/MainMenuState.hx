@@ -61,10 +61,10 @@ class MainMenuState extends MusicBeatState
 					#if mobile
 					MusicBeatState.switchState(new game.states.options.MobileKeyBinds());
 					#else
-					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+					trace('Esse menu ainda nao ta pronto k');
 					#end
-				default:
-					FlxG.openURL("https://youtu.be/IUtKOuB11gM?si=wWxNaH9PT0QET08w");
+				case "freeplay":
+					trace('Esse menu ainda nao ta pronto k');
 			}
 		});
 	}
