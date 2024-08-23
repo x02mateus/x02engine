@@ -1,7 +1,5 @@
 package backend;
 
-import _openfl.utils.AssetCache;
-import _openfl.utils.IAssetCache;
 import flash.media.Sound;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -9,7 +7,9 @@ import flixel.util.FlxDestroyUtil;
 import objects.FPS;
 import openfl.display.BitmapData;
 import openfl.display3D.textures.Texture;
+import openfl.utils.AssetCache;
 import openfl.utils.AssetType;
+import openfl.utils.IAssetCache;
 
 using StringTools;
 

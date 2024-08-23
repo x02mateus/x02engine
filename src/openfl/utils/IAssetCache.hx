@@ -1,4 +1,4 @@
-package _openfl.utils;
+package openfl.utils;
 
 import openfl.display.BitmapData;
 import openfl.media.Sound;
@@ -9,8 +9,7 @@ import openfl.text.Font;
 	resources loaded from openfl.utils.Assets to improve
 	performance.
 **/
-interface IAssetCache
-{
+interface IAssetCache {
 	/**
 		Whether caching is currently enabled.
 	**/
