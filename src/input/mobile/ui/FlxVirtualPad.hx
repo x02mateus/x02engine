@@ -13,18 +13,6 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxDestroyUtil;
 import openfl.utils.ByteArray;
 
-/**
- * A gamepad which contains 4 directional buttons and 4 action buttons.
- * It's easy to set the callbacks and to customize the layout.
- *
- * @author Ka Wing Chin
- */
-@:keep @:bitmap("assets/mobile/images/virtual-input.png")
-class GraphicVirtualInput extends BitmapData {}
-
-@:file("assets/mobile/images/virtual-input.txt")
-class VirtualInputData extends #if (lime_legacy || nme) ByteArray #else ByteArrayData #end {}
-
 class FlxVirtualPad extends FlxSpriteGroup
 {
 	public var buttonA:FlxButton;
@@ -121,17 +109,7 @@ class FlxVirtualPad extends FlxSpriteGroup
 		dPad = FlxDestroyUtil.destroy(dPad);
 		actions = FlxDestroyUtil.destroy(actions);
 
-		dPad = null;
-		actions = null;
-		buttonA = null;
-		buttonB = null;
-		buttonC = null;
-		buttonY = null;
-		buttonX = null;
-		buttonLeft = null;
-		buttonUp = null;
-		buttonDown = null;
-		buttonRight = null;
+		dPad = actions = buttonA = buttonB = buttonC = buttonY = buttonX = buttonLeft = buttonUp = buttonDown = buttonRight = null;
 	}
 
 	/**
@@ -167,16 +145,7 @@ class FlxVirtualPad extends FlxSpriteGroup
 	{
 		#if !web
 		var bitmapData = new GraphicVirtualInput(0, 0);
-		#end
 
-		/*
-			#if html5 // dirty hack for openfl/openfl#682
-			Reflect.setProperty(bitmapData, "width", 399);
-			Reflect.setProperty(bitmapData, "height", 183);
-			#end
-		 */
-
-		#if !web
 		var graphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmapData);
 		return FlxAtlasFrames.fromSpriteSheetPacker(graphic, Std.string(new VirtualInputData()));
 		#else
@@ -204,4 +173,10 @@ enum FlxActionMode
 	A_B_C;
 	A_B_X_Y;
 }
+
+@:keep @:bitmap("assets/mobile/images/virtual-input.png")
+class GraphicVirtualInput extends BitmapData {}
+
+@:file("assets/mobile/images/virtual-input.txt")
+class VirtualInputData extends #if (lime_legacy || nme) ByteArray #else ByteArrayData #end {}
 #end

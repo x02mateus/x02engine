@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath='hitbox_invisibru.png'>
+	<SubTexture name="1"  x="0" y="0" width="1" height="1" frameX="0" frameY="0" frameWidth="320" frameHeight="720"/>
+	<SubTexture name="2"  x="0" y="0" width="1" height="1" frameX="0" frameY="0" frameWidth="320" frameHeight="720"/>
+	<SubTexture name="3"  x="0" y="0" width="1" height="1" frameX="0" frameY="0" frameWidth="320" frameHeight="720"/>
+	<SubTexture name="4"  x="0" y="0" width="1" height="1" frameX="0" frameY="0" frameWidth="320" frameHeight="720"/>
+</TextureAtlas>

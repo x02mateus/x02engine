@@ -1,7 +1,8 @@
 package backend;
 
-import flixel.input.keyboard.FlxKey;
+#if (flixel > "5.0.0") // tá né
 import flixel.util.FlxSave;
+#end
 
 class SaveData
 {
@@ -15,6 +16,7 @@ class SaveData
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];
 	public static var buttons:Array<Dynamic> = [];
+	public static var hitboxSkin:Null<String> = 'normal';
 
 	// Gráficos
 	public static var fps:Null<Int> = 60;

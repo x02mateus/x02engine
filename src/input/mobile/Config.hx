@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxSave;
 import input.mobile.ui.FlxVirtualPad;
+import input.mobile.ui.Mobilecontrols.ControlsGroup;
 
 class Config
 {
@@ -65,6 +66,19 @@ class Config
 			tempCount++;
 		}
 		return _pad;
+	}
+
+	public static function returnEnumFromMode(mode:Int):ControlsGroup {
+		return switch (modeNum)
+		{
+			case 0: VIRTUALPAD_RIGHT;
+			case 1: VIRTUALPAD_LEFT;
+			case 2: KEYBOARD;
+			case 3: VIRTUALPAD_CUSTOM;
+			case 4: HITBOX;
+
+			default: VIRTUALPAD_RIGHT;
+		}
 	}
 }
 #end

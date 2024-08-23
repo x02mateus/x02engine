@@ -10,7 +10,6 @@ import input.mobile.ui.Hitbox;
 class Mobilecontrols extends FlxSpriteGroup
 {
 	public var mode:ControlsGroup = HITBOX;
-
 	public var _hitbox:Hitbox;
 	public var _virtualPad:FlxVirtualPad;
 
@@ -19,7 +18,7 @@ class Mobilecontrols extends FlxSpriteGroup
 		super();
 
 		// load control mode num from Config.hx
-		mode = getModeFromNumber(Config.getcontrolmode());
+		mode = Config.returnEnumFromMode(Config.getcontrolmode());
 		trace(Config.getcontrolmode());
 
 		switch (mode)
@@ -52,20 +51,6 @@ class Mobilecontrols extends FlxSpriteGroup
 
 		_virtualPad.alpha = 0.75;
 		add(_virtualPad);
-	}
-
-	public static function getModeFromNumber(modeNum:Int):ControlsGroup
-	{
-		return switch (modeNum)
-		{
-			case 0: VIRTUALPAD_RIGHT;
-			case 1: VIRTUALPAD_LEFT;
-			case 2: KEYBOARD;
-			case 3: VIRTUALPAD_CUSTOM;
-			case 4: HITBOX;
-
-			default: VIRTUALPAD_RIGHT;
-		}
 	}
 }
 

@@ -37,19 +37,19 @@
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
 
 	<section if="PRELOAD_ALL">
-		<library name="mobile" preload="true" if="mobileC"/>
-		<library name="songs" preload="true" />
-		<library name="shared" preload="true" />
+		<library name="mobile" 	preload="true" 		if="mobileC"/>
+		<library name="songs"  	preload="true" />
+		<library name="shared" 	preload="true" />
 	</section>
 
 	<section if="NO_PRELOAD_ALL">
-		<library name="mobile" preload="false" if="mobileC"/>
-		<library name="songs" preload="false" />
-		<library name="shared" preload="false" />
+		<library name="mobile" 	preload="false" 	if="mobileC"/>
+		<library name="songs"  	preload="false" />
+		<library name="shared" 	preload="false" />
 	</section>
 
 	<!-- Fazendo uma library para os controles mobile vai facilitar a organização e diminuir o espaço usado quando a target não é o Android. -->
-	<assets path="assets/mobile" 	library="mobile" 	exclude="*.ogg" if="mobileC"/>
+	<assets path="assets/mobile" 	library="mobile" 	if="mobileC"/>
 	<!-- Game libraries -->
 	<assets path="assets/preload" 	rename="assets" 	exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" 	rename="assets" 	exclude="*.mp3" unless="web"/>

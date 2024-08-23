@@ -335,9 +335,6 @@ class CoolUtil
 }
 
 /**
- * Usado para funções de touch (Mobile) e mouse (Desktop)
- */
-/**
  * Serve para fazer o swipe em objetos na tela.
  */
 // Não sei para que servem os parâmetros
