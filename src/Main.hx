@@ -22,7 +22,7 @@ import sys.io.File;
 
 class Main extends Sprite
 {
-	var fpsVar:FPS;
+	public static var fpsVar:FPS;
 
 	public static var isKeyboard:Bool = true;
 	public static var mouse_allowed:Bool = false;
@@ -116,9 +116,27 @@ class Main extends Sprite
 		#end
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		
+		var shaderarray:Array<openfl.filters.BitmapFilter> = [new openfl.filters.ColorMatrixFilter(SaveData.shaderMatrix)];
+		if (SaveData.shaderMatrix.length != 0)
+		{
+			FlxG.game.setFilters(shaderarray); // Resumindo: Se tu quer enxergar as cores certinhas, tu vai ter lag no jogo k
+		}
+		setFPSCap(SaveData.fps);
+		FlxG.fixedTimestep = false; // Agora eu fiquei na dúvida entre deixar isso falso, ou deixar isso como verdadeiro.
+		// Eu mandei lá no Discord, uma gravação onde o FPS Cap é 240 e ele fica SUPER lagado. Só consegui resolver isso deixando o timestep como falso.
+	}
 
-		FlxG.updateFramerate = FlxG.drawFramerate = SaveData.fps;
-		FlxG.fixedTimestep = false;
+	public static function setFPSCap(cap:Int)
+	{
+		if (cap > FlxG.drawFramerate)
+		{
+			FlxG.updateFramerate = cap;
+			FlxG.drawFramerate = cap;
+		} else {
+			FlxG.drawFramerate = cap;
+			FlxG.updateFramerate = cap;
+		}
 	}
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!

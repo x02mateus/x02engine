@@ -58,11 +58,7 @@ class MainMenuState extends MusicBeatState
 				case "credits":
 					MusicBeatState.switchState(new game.states.CreditsState());
 				case "options":
-					#if mobile
-					MusicBeatState.switchState(new game.states.options.MobileKeyBinds());
-					#else
-					trace('Esse menu ainda nao ta pronto k');
-					#end
+					MusicBeatState.switchState(new game.states.options.AjustesState());
 				case "freeplay":
 					trace('Esse menu ainda nao ta pronto k');
 			}

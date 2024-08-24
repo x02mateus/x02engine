@@ -4,6 +4,10 @@ package backend;
 import flixel.util.FlxSave;
 #end
 
+/*
+skin de hitbox
+posição da música
+*/
 class SaveData
 {
 	// Data
@@ -12,6 +16,9 @@ class SaveData
 	public static var volumeMusica:Null<Float> = 1;
 	public static var volumeEfeitos:Null<Float> = 1;
 	public static var curPreset:Null<Int> = 1;
+	public static var offset:Null<Float> = 1;
+	public static var shaderMatrix:Array<Float> = [];
+	public static var curFilter:Null<Int> = 0; // isso é feio mas funciona :D
 
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];
@@ -22,16 +29,18 @@ class SaveData
 	public static var fps:Null<Int> = 60;
 	public static var antialiasing:Null<Bool> = true;
 	public static var gpu:Null<Bool> = false;
+	public static var flashing:Null<Bool> = false;
 
 	// Gameplay
 	public static var missSounds:Null<Bool> = false;
 	public static var scrollSpeed:Null<Float> = 1;
+	public static var ghostTapping:Null<Bool> = true;
 	public static var botplay:Null<Bool> = false;
 	public static var hitSound:Null<Int> = 0;
 
 	// UI
 	public static var downscroll:Null<Bool> = false;
-	public static var middlescroll:Null<Bool> = false;
+	public static var middlescroll:Null<Bool> = true;
 	public static var songPosition:Null<Bool> = false;
 	public static var showFPS:Null<Bool> = true;
 

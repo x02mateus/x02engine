@@ -50,4 +50,7 @@ import util.Utils.SpriteSwapper;
 import util.Utils.GamepadUtil;
 import util.Utils.InputDevices;
 
+// Objects
+import objects.Alphabet;
+
 using StringTools;

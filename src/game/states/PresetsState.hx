@@ -13,6 +13,7 @@ class PresetsState extends MusicBeatState
 	private var blackBox:FlxSprite;
 	private var infoText:FlxText;
 	private var acceptInput:Bool = false;
+	public static var options:Bool = false;
 
 	override function create()
 	{
@@ -167,7 +168,11 @@ class PresetsState extends MusicBeatState
 			SaveData.curPreset = curSelected;
 
 		SaveData.save();
-		MusicBeatState.switchState(new MainMenuState());
+		if(options) {
+			options = false;
+			MusicBeatState.switchState(new game.states.options.ConfiguracoesState());
+		} else
+			MusicBeatState.switchState(new MainMenuState());
 	}
 
 	private function quit()
@@ -176,7 +181,13 @@ class PresetsState extends MusicBeatState
 		FlxTween.tween(keyTextDisplay, {alpha: 0}, 1, {ease: FlxEase.expoInOut});
 		FlxTween.tween(blackBox, {alpha: 0}, 1.1, {
 			ease: FlxEase.expoInOut,
-			onComplete: function(flx:FlxTween) MusicBeatState.switchState(new MainMenuState())
+			onComplete: function(flx:FlxTween) { 
+				if(options) {
+					options = false;
+					MusicBeatState.switchState(new game.states.options.ConfiguracoesState());
+				} else
+					MusicBeatState.switchState(new MainMenuState());
+			}
 		});
 		FlxTween.tween(infoText, {alpha: 0}, 1, {ease: FlxEase.expoInOut});
 	}

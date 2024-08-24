@@ -13,7 +13,6 @@
 		- Code compacto e limpo
 		- Poder jogar a música que quiser (sugestão feita pela Maria Clara)
 		- Ter uma gameplay confortável e agradável para o usuário, com bastantes opções de customização
-		- IMPORTANTE: ADICIONAR O OPENFL DO MODBOA
 
 	ESSE ARQUIVO É TEMPORÁRIO, E É USADO APENAS PARA AS CONFIGURAÇÕES INICIAIS DA ENGINE (SaveData, Input, etc.)
  */

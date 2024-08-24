@@ -314,9 +314,8 @@ class Paths
 
 				FPS.curMemChecker();
 
-				if (gpu
-					|| currentTrackedTextures.exists(path)
-					|| FPS.curMEMforReference > limites[SaveData.curPreset] ^ 2) // Basicamente, se o uso da CPU chegar próximo do limite do aparelho, então a GPU será usada
+				if (gpu || currentTrackedTextures.exists(path) ||
+					(SaveData.gpu && FPS.curMEMforReference > limites[SaveData.curPreset] ^ 2)) // Basicamente, se o uso da CPU chegar próximo do limite do aparelho, então a GPU será usada
 				{ // É mais fácil gerenciar a GPU através da CPU do que o contrário.
 					// Caso o jogo consuma mais do que um celular de 2gb pode aguenta,
 					// Ele passa a usar GPU pra segurar o jooj por um pouco mais de tempo antes de precisar reiniciar o APK
