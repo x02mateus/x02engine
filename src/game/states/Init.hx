@@ -33,9 +33,10 @@ class Init extends MusicBeatState
 
 		SaveData.init();
 
-		if (SaveData.firstTime)
+		if (SaveData.firstTime) {
+			backend.PresetsManager.checkandset();
 			displayText();
-		else
+		} else
 			MusicBeatState.switchState(new MainMenuState());
 	
 		super.create();
@@ -71,7 +72,8 @@ class Init extends MusicBeatState
 		{
 			new FlxTimer().start(0.5, function(tmr:FlxTimer)
 			{
-				MusicBeatState.switchState(new PresetsState());
+				// Agora os presets são automáticos, então decidi deixar a troca deles só no options
+				MusicBeatState.switchState(new MainMenuState());
 			});
 		});
 	}
