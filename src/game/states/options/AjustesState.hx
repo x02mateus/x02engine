@@ -2,7 +2,7 @@ package game.states.options;
 
 class AjustesState extends MusicBeatState {
     private var bg:FlxSprite;
-    private var options:Array<String> = ['Configuracoes'#if mobileC , 'Controles Mobile' #end];
+    private var options:Array<String> = ['Configuracoes'];
     private var option_buttons:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
     public static var selectedSomethin:Bool = false;
@@ -10,6 +10,10 @@ class AjustesState extends MusicBeatState {
     override function create() {
         Main.mouse_allowed = true;
         persistentUpdate = persistentDraw = true;
+
+        #if mobileC
+        options.push('Controles Mobile');
+        #end
 
         bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}', 'preload'));
         bg.moves = false;
@@ -26,7 +30,7 @@ class AjustesState extends MusicBeatState {
             var opcaoNome:FlxText = new FlxText(0, k + 115 * i, 0, options[i]);
             opcaoNome.font = Paths.font('akira.otf');
             opcaoNome.size = 42;
-            opcaoNome.screenCenter(X);  // Centralizar horizontalmente
+            opcaoNome.screenCenter((options.length == 1) ? XY : X);
             opcaoNome.updateHitbox();
             opcaoNome.ID = i;
             opcaoNome.alpha = 0.75;
@@ -73,6 +77,7 @@ class AjustesState extends MusicBeatState {
             GlobalSoundManager.play(cancelMenu);
             SaveData.save();
             MusicBeatState.switchState(new game.states.MainMenuState());
+            selectedSomethin = false;
         }
         super.update(elapsed);
     }
@@ -110,6 +115,7 @@ class AjustesState extends MusicBeatState {
 				}});
             }
 		});
+        selectedSomethin = false;
 	}
 
 	function next_state(state:String) {

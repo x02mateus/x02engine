@@ -14,7 +14,7 @@ class MainMenuState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 
-		Main.mouseVisibility(true);
+		Main.mouse_allowed = true;
 
 		background = createBackground();
 		add(background);

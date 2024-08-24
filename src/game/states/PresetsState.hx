@@ -20,6 +20,10 @@ class PresetsState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 
+		Main.mouse_allowed = false;
+		if(options)
+			game.states.options.ConfiguracoesState.instance.acceptInput = true;
+
 		add(createBackground());
 
 		judgementText = ["Gama Alta (4GB+)", "Gama Media(3GB+)", "Gama Baja(2GB+)", "Voltar", ''];
@@ -170,6 +174,8 @@ class PresetsState extends MusicBeatState
 		SaveData.save();
 		if(options) {
 			options = false;
+			Main.mouse_allowed = true;
+			game.states.options.ConfiguracoesState.instance.acceptInput = true;
 			MusicBeatState.switchState(new game.states.options.ConfiguracoesState());
 		} else
 			MusicBeatState.switchState(new MainMenuState());

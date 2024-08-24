@@ -73,6 +73,8 @@ class ConfiguracoesState extends MusicBeatState
 	{
 		instance = this;
 
+		Main.mouse_allowed = true;
+
 		persistentUpdate = persistentDraw = true;
 
 		var bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}', 'preload'));
@@ -123,7 +125,7 @@ class ConfiguracoesState extends MusicBeatState
 				acceptInput = false;
 				GlobalSoundManager.play('cancelMenu');
 				SaveData.save();
-				MusicBeatState.switchState(new MainMenuState());
+				MusicBeatState.switchState(new AjustesState());
 			}
 			else if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 			{

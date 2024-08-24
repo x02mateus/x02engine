@@ -46,6 +46,7 @@ class KeyBindMenu extends FlxSubState
 
 	override function create()
 	{	
+        Main.mouse_allowed = false;
         game.states.options.ConfiguracoesState.instance.acceptInput = false;
 
         for (i in 0...keys.length)
@@ -205,6 +206,7 @@ class KeyBindMenu extends FlxSubState
     }
 
     function quit(){
+        Main.mouse_allowed = true;
         game.states.options.ConfiguracoesState.instance.acceptInput = true;
         state = "exiting";
 

@@ -481,7 +481,7 @@ class Hitsounds extends Option
 
 	override function getValue():String
 	{
-		var visualValue:String = SaveData.scrollSpeed == 0 ? 'desativado' : 'tipo ${Std.string(SaveData.hitSound)}';
+		var visualValue:String = SaveData.hitSound == 0 ? 'desativado' : 'tipo ${Std.string(SaveData.hitSound)}';
 		return 'Hitsound ' + visualValue;
 	}
 }
