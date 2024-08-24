@@ -73,6 +73,9 @@ class ConfiguracoesState extends MusicBeatState
 	{
 		instance = this;
 
+		Paths.clearUnusedMemory();
+		Paths.clearStoredMemory();
+
 		Main.mouse_allowed = true;
 
 		persistentUpdate = persistentDraw = true;
