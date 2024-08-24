@@ -109,7 +109,17 @@ class FlxVirtualPad extends FlxSpriteGroup
 		dPad = FlxDestroyUtil.destroy(dPad);
 		actions = FlxDestroyUtil.destroy(actions);
 
-		dPad = actions = buttonA = buttonB = buttonC = buttonY = buttonX = buttonLeft = buttonUp = buttonDown = buttonRight = null;
+		dPad = null;
+		actions = null;
+		buttonA = null;
+		buttonB = null;
+		buttonC = null;
+		buttonY = null;
+		buttonX = null;
+		buttonLeft = null;
+		buttonUp = null;
+		buttonDown = null;
+		buttonRight = null;
 	}
 
 	/**

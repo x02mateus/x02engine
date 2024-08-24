@@ -69,7 +69,7 @@ class Config
 	}
 
 	public static function returnEnumFromMode(mode:Int):ControlsGroup {
-		return switch (modeNum)
+		return switch (mode)
 		{
 			case 0: VIRTUALPAD_RIGHT;
 			case 1: VIRTUALPAD_LEFT;
