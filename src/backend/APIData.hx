@@ -10,7 +10,7 @@ package backend;
 #elseif mac
 @:headerCode("#include <sys/sysctl.h>")
 #end
-class ExternalCode {
+class APIData {
     // Indiretamente, obrigado José
     // https://github.com/brightfyregit/Indie-Cross-Public/blob/master/source/SpecsDetector.hx
 	#if windows

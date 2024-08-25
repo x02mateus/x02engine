@@ -8,7 +8,7 @@ class PresetsManager {
     * Essa função detecta o total de RAM do sistema, e faz uma conta que automáticamente pega o limite de RAM suportado pelo sistema e troca o preset automáticamente 
     */
     public static function checkandset() {
-        var sysRAM:Float = backend.ExternalCode.getTotalRam();
+        var sysRAM:Float = backend.APIData.getTotalRam();
         var limite:Int = 0;
         // Se a RAM for menor que 1024, 724 tem que ser dividido por sysRAM / 1024
         // Caso for maior, faça a operação inversa e multiplique o valor por sysRAM / 1024

@@ -2,18 +2,6 @@ package game.states;
 
 import flixel.util.FlxAxes;
 
-typedef CreditsFile = {
-	var person:Array<CreditsData>;
-}
-
-typedef CreditsData = {
-	var nome:Null<String>;
-	var cargo:Null<String>;
-	var desc:Null<String>;
-	var icon:Null<String>;
-	var yt:Null<Float>;
-}
-
 class CreditsState extends MusicBeatState
 {
 	var icon:FlxSprite;

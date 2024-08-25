@@ -1,0 +1,2 @@
+A ideia aqui é fazer as charts do FNF serem carregadas em ordem via uma array e mostradas no freeplay
+Já as charts adicionais (que seria adicionadas na pasta de mods) via readdirectory, pra não precisar de uma week.json

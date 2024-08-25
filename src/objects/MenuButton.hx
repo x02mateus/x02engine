@@ -45,7 +45,7 @@ class MenuButton extends FlxSpriteGroup
 	override function update(elapsed:Float)
 	{
 		if (BSLTouchUtils.apertasimples(freeplay))
-			game.states.MainMenuState.abrirState("uhhhhhh");
+			game.states.MainMenuState.abrirState("freeplay");
 		if (BSLTouchUtils.apertasimples(options))
 			game.states.MainMenuState.abrirState("options");
 		if(BSLTouchUtils.apertasimples(credits))
