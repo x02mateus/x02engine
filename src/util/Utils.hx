@@ -117,6 +117,18 @@ class Utils
 
 class CoolUtil
 {
+	// [Difficulty name, Chart file suffix]
+	public static var difficultyStuff:Array<Dynamic> = [
+		['Easy', '-easy'],
+		['Normal', ''],
+		['Hard', '-hard']
+	];
+
+	/*public static function difficultyString():String
+	{
+		return difficultyStuff[PlayState.storyDifficulty][0].toUpperCase();
+	}*/
+
 	/**
 	 * Uma função aproximadamente 2-6 vezes mais rápida do que a do Math. (Margem de < 0.05% de erros - pode ser impreciso)
 	 * @param Número que será utilizado na função

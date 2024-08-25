@@ -19,12 +19,21 @@ class FreeplayState extends MusicBeatState
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
+	private var meio:Float = FlxG.width / 2;
+
 	var bg:FlxSprite;
+	var album:FlxSprite;
+
+	var leftArrow:FlxSprite;
+	var rightArrow:FlxSprite;
+	var sprDifficulty:FlxSprite;
 
 	override function create()
 	{
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
+
+		Main.mouse_allowed = true;
 
 		var leSongs:Array<String> = backend.FreeplayData.base_songs;
 		for (song in leSongs)
@@ -48,9 +57,9 @@ class FreeplayState extends MusicBeatState
 
 			Paths.currentModDirectory = songs[i].folder;
 
-			// songText.x += 40;
+			songText.x += 40;
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			songText.screenCenter(X);
+			//songText.screenCenter(X);
 		}
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
@@ -63,6 +72,28 @@ class FreeplayState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		add(diffText);
+
+		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
+		leftArrow = new FlxSprite(0,0);
+		leftArrow.frames = ui_tex;
+		leftArrow.animation.addByPrefix('idle', "arrow left");
+		leftArrow.animation.addByPrefix('press', "arrow push left");
+		leftArrow.animation.play('idle');
+		leftArrow.antialiasing = SaveData.antialiasing;
+		add(leftArrow);
+
+		sprDifficulty = new FlxSprite(0, 0).loadGraphic(Paths.image('menudifficulties/$curDifficulty'));
+		sprDifficulty.x = FlxG.width - sprDifficulty.width - (sprDifficulty.width / 2);
+		sprDifficulty.antialiasing = SaveData.antialiasing;
+		add(sprDifficulty);
+
+		rightArrow = new FlxSprite(0, 0);
+		rightArrow.frames = ui_tex;
+		rightArrow.animation.addByPrefix('idle', 'arrow right');
+		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
+		rightArrow.animation.play('idle');
+		rightArrow.antialiasing = SaveData.antialiasing;
+		add(rightArrow);
 
 		add(scoreText);
 
@@ -102,6 +133,24 @@ class FreeplayState extends MusicBeatState
 		text.setFormat(Paths.font("Persona4.ttf"), 18, FlxColor.WHITE, LEFT);
 		text.scrollFactor.set();
 		add(text);
+
+		album = new FlxSprite(0, 0).loadGraphic(Paths.image('freeplay/album_fnf', 'preload'));
+		album.moves = false;
+		album.antialiasing = SaveData.antialiasing;
+		album.screenCenter(Y);
+		album.x = FlxG.width - album.width - (album.width / 2);
+		add(album);
+
+		// Centraliza o sprDifficulty horizontalmente em relação ao album
+		sprDifficulty.x = album.x + (album.width / 2) - (sprDifficulty.width / 2);
+
+		// Ajuste vertical permanece o mesmo
+		sprDifficulty.y = album.y + album.height + 40;
+
+		// Ajuste as setas de acordo com a nova posição do sprDifficulty
+		leftArrow.y = rightArrow.y = sprDifficulty.y;
+		leftArrow.x = sprDifficulty.x - 60;
+		rightArrow.x = sprDifficulty.x + sprDifficulty.width + 60;
 
 		#if mobileC
 		addVirtualPad(FULL, A_B_X);
@@ -182,11 +231,20 @@ class FreeplayState extends MusicBeatState
 			changeSelection(shiftMult);
 		}
 
-		if (controls.LEFT_P)
-			changeDiff(-1);
-		if (controls.RIGHT_P)
-			changeDiff(1);
-
+		if (controls.LEFT_P || BSLTouchUtils.apertasimples(leftArrow)) {
+			leftArrow.animation.play('press');
+			new FlxTimer().start(0.15, function(tmr:FlxTimer) {
+				leftArrow.animation.play('idle');
+				changeDiff(1);
+			});
+		}
+		if (controls.RIGHT_P || BSLTouchUtils.apertasimples(rightArrow)) {
+			rightArrow.animation.play('press');
+			new FlxTimer().start(0.15, function(tmr:FlxTimer) {
+				rightArrow.animation.play('idle');
+				changeDiff(1);
+			});
+		}
 		if (controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -253,14 +311,18 @@ class FreeplayState extends MusicBeatState
 
 	function changeDiff(change:Int = 0)
 	{
-		/*curDifficulty += change;
+		curDifficulty += change;
 
 		if (curDifficulty < 0)
 			curDifficulty = CoolUtil.difficultyStuff.length-1;
 		if (curDifficulty >= CoolUtil.difficultyStuff.length)
 			curDifficulty = 0;
 
-		#if !switch
+		GlobalSoundManager.play(scrollMenu);
+		sprDifficulty.loadGraphic(Paths.image('menudifficulties/$curDifficulty'));
+		rightArrow.x = sprDifficulty.x + sprDifficulty.width + 60;
+
+		/*#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		intendedRating = Highscore.getRating(songs[curSelected].songName, curDifficulty);
 		#end

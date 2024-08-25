@@ -19,6 +19,9 @@ class MusicManager
 
 		playlistOrder(true); // Aqui ele deixa a playlist mais aleatória
 
+		if(songsList.contains("1"))
+			songsList.remove("1"); // Por algum motivo esse audio faz o jogo crashar
+
 		var randomIndex:Int = Std.random(songsList.length);
 		FlxG.sound.playMusic(Paths.music(songsList[randomIndex]), SaveData.volumeMusica, false);
 		songsList.remove(curPlaying);

@@ -17,7 +17,7 @@ class FreeplayData {
         'Milf',
         'Cocoa',
         'Eggnog',
-        'Winter Horroland',
+        'Winter Horrorland', // k
         'Senpai',
         'Roses',
         'Thorns',
