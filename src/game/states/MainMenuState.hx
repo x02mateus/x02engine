@@ -60,7 +60,7 @@ class MainMenuState extends MusicBeatState
 				case "options":
 					MusicBeatState.switchState(new game.states.options.AjustesState());
 				case "freeplay":
-					MusicBeatState.switchState(new game.states.FreeplayState());
+					MusicBeatState.switchState(new game.states.FreeplayStateX02());
 			}
 		});
 	}

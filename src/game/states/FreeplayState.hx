@@ -19,8 +19,6 @@ class FreeplayState extends MusicBeatState
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
-	private var meio:Float = FlxG.width / 2;
-
 	var bg:FlxSprite;
 	var album:FlxSprite;
 
@@ -340,7 +338,7 @@ class FreeplayState extends MusicBeatState
 
 		if (curSelected < 0)
 			curSelected = songs.length - 1;
-		if (curSelected >= songs.length)
+		if (curSelected >= songs.length - 1)
 			curSelected = 0;
 
 		/*var newColor:Int = songs[curSelected].color;
