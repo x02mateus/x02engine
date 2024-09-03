@@ -34,7 +34,7 @@ class Init extends MusicBeatState
 		SaveData.init();
 
 		if (SaveData.firstTime) {
-			backend.PresetsManager.checkandset();
+			initialConfigs();
 			displayText();
 		} else
 			MusicBeatState.switchState(new MainMenuState());
@@ -49,6 +49,10 @@ class Init extends MusicBeatState
 			changeState();
 
 		super.update(elapsed);
+	}
+	
+	private function initialConfigs() {
+		backend.PresetsManager.checkandset();
 	}
 
 	private function displayText()

@@ -28,6 +28,7 @@ class Main extends Sprite
 	public static var mouse_allowed:Bool = false;
 	#if mobile
 	private static var touch_allowed:Bool = true;
+	public static var path = lime.system.System.applicationStorageDirectory;
 	#end
 
 	var game = {
@@ -123,6 +124,7 @@ class Main extends Sprite
 			FlxG.game.setFilters(shaderarray); // Resumindo: Se tu quer enxergar as cores certinhas, tu vai ter lag no jogo k
 		}
 		setFPSCap(SaveData.fps);
+		backend.LanguageManager.checkandset();
 		FlxG.fixedTimestep = false; // Agora eu fiquei na dúvida entre deixar isso falso, ou deixar isso como verdadeiro.
 		// Eu mandei lá no Discord, uma gravação onde o FPS Cap é 240 e ele fica SUPER lagado. Só consegui resolver isso deixando o timestep como falso.
 	}
