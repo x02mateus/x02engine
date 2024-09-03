@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id='accuracy' string='Precisão:'/>
+    <trans id="score" string="Pontuação:"/>
+    <trans id="misses" string="Erros:"/>
+</translations>

@@ -1,15 +1,14 @@
-package game.states;
+package game.states.options;
 
 import flixel.util.FlxAxes;
 
 using StringTools;
 
-class PresetsState extends MusicBeatState
+class LanguagesState extends MusicBeatState
 {
 	private var keyTextDisplay:FlxText;
 	private var curSelected:Int = 0;
 	private var judgementText:Array<String>;
-	private var explicacoes:Array<String>;
 	private var blackBox:FlxSprite;
 	private var infoText:FlxText;
 	private var acceptInput:Bool = false;
@@ -21,20 +20,20 @@ class PresetsState extends MusicBeatState
 		Paths.clearStoredMemory();
 
 		Main.mouse_allowed = false;
-		if(options)
-			game.states.options.ConfiguracoesState.instance.acceptInput = true;
 
 		add(createBackground());
 
-		judgementText = ['${LanguageManager.getString('highend', 'Presets')} (4GB+)', '${LanguageManager.getString('midend', 'Presets')} (3GB+)', '${LanguageManager.getString('lowend', 'Presets')} (2GB+)', LanguageManager.getString('back', 'Common'), ''];
-		explicacoes = [
-			LanguageManager.getString('highend_exp', 'Presets'),
-			LanguageManager.getString('midend_exp', 'Presets'),
-			LanguageManager.getString('lowend_exp', 'Presets'),
-			LanguageManager.getString('back_exp', 'Presets'),
-			''
-		];
-
+		switch (SaveData.language)
+		{
+			case "pt-BR":
+				judgementText = ["Português do Brasil", "Inglês (Estados Unidos)", "Espanhol (America Latina)", "Voltar", ''];
+				
+			case "en-US":
+				judgementText = ["Brazilian Portuguese", "English (USA)", "Spanish (Latin America)", "Back", ''];
+				
+			case "es-ES":
+				judgementText = ["Portugués de Brasil", "Inglés (Estados Unidos)", "Español (America Latina)", "Volver", ''];
+		}
 		blackBox = createBlackBox();
 		add(blackBox);
 		infoText = createInfoText();
@@ -85,7 +84,7 @@ class PresetsState extends MusicBeatState
 	{
 		var txt = new FlxText(-10, 580, 1280, '', 72);
 		txt.scrollFactor.set(0, 0);
-		txt.setFormat(Paths.font("akira.otf"), 21, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+		txt.setFormat(Paths.font("Persona4.ttf"), 21, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 		txt.borderSize = 2;
 		txt.borderQuality = 3;
 		txt.alpha = 0;
@@ -132,7 +131,7 @@ class PresetsState extends MusicBeatState
 
 	private function updateJudgement()
 	{
-		infoText.text = '${LanguageManager.getString('title', 'Presets')}\n\n${judgementText[curSelected]}:\n${explicacoes[curSelected]}';
+		infoText.text = 'Escolha um Preset de otimizacao\n\n${judgementText[curSelected]}';
 		textUpdate();
 	}
 
@@ -155,30 +154,18 @@ class PresetsState extends MusicBeatState
 		switch (curSelected)
 		{
 			case 0:
-				SaveData.gpu = true;
-				SaveData.antialiasing = true;
-				SaveData.fps = 90;
+				SaveData.language = "pt-BR";
+
 			case 1:
-				SaveData.gpu = true;
-				SaveData.antialiasing = false;
-				SaveData.fps = 60;
+				SaveData.language = "en-US";
+				
 			case 2:
-				SaveData.gpu = false;
-				SaveData.antialiasing = false;
-				SaveData.fps = 30;
+				SaveData.language = "es-ES";		
 		}
-
-		if (curSelected < 3)
-			SaveData.curPreset = curSelected;
-
+		
 		SaveData.save();
-		if(options) {
-			options = false;
-			Main.mouse_allowed = true;
-			game.states.options.ConfiguracoesState.instance.acceptInput = true;
-			MusicBeatState.switchState(new game.states.options.ConfiguracoesState());
-		} else
-			MusicBeatState.switchState(new MainMenuState());
+		backend.LanguageManager.checkandset(); // ZYEEEEEEEEEUEUUNNNNNNN
+		MusicBeatState.switchState(new MainMenuState());
 	}
 
 	private function quit()
@@ -188,11 +175,7 @@ class PresetsState extends MusicBeatState
 		FlxTween.tween(blackBox, {alpha: 0}, 1.1, {
 			ease: FlxEase.expoInOut,
 			onComplete: function(flx:FlxTween) { 
-				if(options) {
-					options = false;
-					MusicBeatState.switchState(new game.states.options.ConfiguracoesState());
-				} else
-					MusicBeatState.switchState(new MainMenuState());
+				MusicBeatState.switchState(new game.states.options.AjustesState());
 			}
 		});
 		FlxTween.tween(infoText, {alpha: 0}, 1, {ease: FlxEase.expoInOut});

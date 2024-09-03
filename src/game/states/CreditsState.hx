@@ -11,7 +11,7 @@ class CreditsState extends MusicBeatState
 	var curSelected:Int = 0;
 	var pessoas:Array<String> = ['mateusx02', 'Matheus Silver', 'idklool', 'Evil'];
 	var icons:Array<String> = ['mateusx02', 'silver', 'idklool', 'mari'];
-	var cargos:Array<String> = ['Programador/designer', 'É dono de alguns codes que são usados aqui', 'Ajuda com codes e ideias', 'Ideias'];
+	var cargos:Array<String> = [LanguageManager.getString('x02_work', 'Credits'), LanguageManager.getString('silver_work', 'Credits'), LanguageManager.getString('idklool_work', 'Credits'), LanguageManager.getString('mari_work', 'Credits')];
 	var desc:Array<String> = [
 		'capybara',
 		'',

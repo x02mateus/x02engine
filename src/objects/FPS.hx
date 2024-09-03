@@ -140,7 +140,7 @@ class FPS extends TextField
 			// MEM caps at 4GB and gets screwed up with caching enabled
 			// need to make memPeak decrease over time
 			// text += '\nMEM: ${getInterval(mem)} / ${getInterval(memPeak)}';
-			text += '\nUso atual de RAM: ${getInterval(mem)}';
+			text += '\n${LanguageManager.getString('memoryUse', 'FPS')} ${getInterval(mem)}';
 			#if debug
 			text += '\nUso atual de RAM que as imagens ocupam: ${GPUManager.getImageRAM()}';
 			text += '\nUso máximo registado de RAM: ${getInterval(memPeak)}';
@@ -154,7 +154,7 @@ class FPS extends TextField
 			#end
 			#if (mobile || debug)
 			if (curMEMforReference > Paths.limites[SaveData.curPreset] ^ 2 + 200 ^ 2 && SaveData.gpu)
-				text += '\nO jogo está usando RAM extra.';
+				text += '\n${LanguageManager.getString('overload', 'FPS')}';
 			#end
 			#end
 

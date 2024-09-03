@@ -19,7 +19,7 @@ class SaveData
 	public static var offset:Null<Float> = 1;
 	public static var shaderMatrix:Array<Float> = [];
 	public static var curFilter:Null<Int> = 0; // isso é feio mas funciona :D
-	public static var language:Null<String> = ''; // isso é feio mas funciona :D
+	public static var language:Null<String> = null; // isso é feio mas funciona :D
 
 	// Mobile Controls data
 	public static var buttonsMode:Array<Dynamic> = [];

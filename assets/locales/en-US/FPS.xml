@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id='memoryUse' string='Actual RAM use:'/>
+    <trans id="overload" string="The game is using extra RAM."/>
+</translations>

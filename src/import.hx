@@ -1,6 +1,7 @@
 // Backend
 import backend.Paths;
 import backend.SaveData;
+import backend.LanguageManager;
 import util.Utils.CoolUtil;
 
 // Haxe

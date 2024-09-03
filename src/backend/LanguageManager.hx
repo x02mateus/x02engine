@@ -6,7 +6,7 @@ package backend;
 import openfl.system.Capabilities;
 
 class LanguageManager {
-    private static var langFiles_path:String = null;
+    public static var langFiles_path:String = null;
 
     public static function checkandset() {
         var language:String = null;
@@ -25,31 +25,25 @@ class LanguageManager {
             language = SaveData.language;
         }
 
-        #if android 
-        // não sei como a pasta dos values funcionaria no IOS
-        // por mais que eu não vá portar pra IOS, decidi deixar como #if android e não #if mobile
-        langFiles_path = Main.path + 'res/values/$language/';
-        #elseif desktop
-        langFiles_path = Paths.getPreloadPath('locales/$language/');
-        #end
+        langFiles_path = Paths.getPreloadPath('locales/${SaveData.language}/');
 
         #if (!mobile && debug)
         trace('sua linguagem atual: $language');
         trace('pasta onde os arquivos de linguagem vão ser procurados: $langFiles_path');
-        trace(getString('teste', 'teste'));
         #end
     }
 
     public static function getString(id:String, fileName:String) {
-        var xml:Xml = Xml.parse(Assets.getText(langFiles_path + '$fileName.xml'));
+        var filespath:String = Paths.getPreloadPath('locales/${SaveData.language}/');
+        var xml:Xml = Xml.parse(Assets.getText(filespath + '$fileName.xml'));
         
-        var ids:Xml = xml.firstElement();
-        for (i in ids.elements()) {
-            if (ids.get("id") == id) {
-                return ids.get("string");
+        // Pedi ajuda pro ChatGPT nisso aqui k
+        for (child in xml.firstElement().elements()) {
+            if (child.get("id") == id) {
+                return child.get("string");
             }
         }
 
-        return null;
+        return "missing string";
     }
 }

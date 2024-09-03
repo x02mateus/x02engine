@@ -59,16 +59,9 @@
 	<assets path="assets/shared" 	library="shared" 	exclude="*.mp3" unless="web"/>
 	<assets path="assets/fonts" embed='false'/>
 	<!-- Linguagens setup -->
-	<section if="desktop">
-		<assets path="assets/locales/pt-BR" />
-		<assets path="assets/locales/en-US"	/>
-		<assets path="assets/locales/es-ES" />
-	</section>
-	<section if="android">
-		<assets path="assets/locales/pt-BR" rename="res/locales/pt-BR" />
-		<assets path="assets/locales/en-US"	rename="res/locales/en-US" />
-		<assets path="assets/locales/es-ES" rename="res/locales/es-ES" />
-	</section>
+	<assets path="assets/locales/pt-BR" />
+	<assets path="assets/locales/en-US"	/>
+	<assets path="assets/locales/es-ES" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

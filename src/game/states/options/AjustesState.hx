@@ -2,7 +2,7 @@ package game.states.options;
 
 class AjustesState extends MusicBeatState {
     private var bg:FlxSprite;
-    private var options:Array<String> = ['Configuracoes'];
+    private var options:Array<String> = ['Configuracoes', 'Linguagem'];
     private var option_buttons:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
     public static var selectedSomethin:Bool = false;
@@ -120,9 +120,13 @@ class AjustesState extends MusicBeatState {
 
 	function next_state(state:String) {
 		switch (state) {
-		    case 'Configuracoes': MusicBeatState.switchState(new game.states.options.ConfiguracoesState()); //graficos, gameplay e etc.
+		    case 'Configuracoes': 
+                MusicBeatState.switchState(new game.states.options.ConfiguracoesState()); //graficos, gameplay e etc.
+            case 'Linguagem': 
+                MusicBeatState.switchState(new game.states.options.LanguagesState());
             #if mobileC
-            case 'Controles Mobile': MusicBeatState.switchState(new game.states.options.MobileKeyBinds());
+            case 'Controles Mobile': 
+                MusicBeatState.switchState(new game.states.options.MobileKeyBinds());
             #end
 		}	
 	}

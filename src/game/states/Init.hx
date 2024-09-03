@@ -23,7 +23,7 @@ import flixel.effects.FlxFlicker;
 class Init extends MusicBeatState
 {
 	var texto:FlxText;
-	var coiso:String = #if desktop 'Aperte ENTER' #elseif mobile 'TOQUE NA TELA' #end;
+	var coiso:String;
 
 	override function create()
 	{
@@ -35,6 +35,7 @@ class Init extends MusicBeatState
 
 		if (SaveData.firstTime) {
 			initialConfigs();
+			coiso = #if desktop '${LanguageManager.getString('press', 'Common')} ENTER' #elseif mobile LanguageManager.getString('touch', 'Common') #end;
 			displayText();
 		} else
 			MusicBeatState.switchState(new MainMenuState());
@@ -57,7 +58,8 @@ class Init extends MusicBeatState
 
 	private function displayText()
 	{
-		texto = new FlxText(0, 0, 'Bem vindo!\nEssa engine contem luzes piscantes, e caso\nvoce seja sensivel a esse tipo de coisa,\ndesative a opcao "Luzes Piscantes"\nque se localiza no menu de opcoes.\n\nObrigado!\n$coiso para continuar.');
+		texto = new FlxText(0, 0, LanguageManager.getString('initText', 'Misc'));
+		texto.text.replace('<coiso>', coiso);
 		texto.scrollFactor.set();
 		texto.setFormat(Paths.font('akira.otf'), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		texto.screenCenter(XY);

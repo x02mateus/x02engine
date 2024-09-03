@@ -75,7 +75,7 @@ class ConfiguracoesState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 
-		Main.mouse_allowed = true;
+		Main.mouse_allowed = false;
 
 		persistentUpdate = persistentDraw = true;
 
@@ -110,7 +110,6 @@ class ConfiguracoesState extends MusicBeatState
 
 		#if mobileC
 			addVirtualPad(FULL, A_B);
-			_virtualpad.y -= 20;
 		#end
 
 		super.create();

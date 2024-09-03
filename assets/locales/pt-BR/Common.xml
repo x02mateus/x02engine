@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id='yes' string='Sim'/>
+    <trans id='no' string='Não'/>
+    <trans id='back' string='Voltar'/>
+    <trans id='press' string='Aperte'/>
+    <trans id='touch' string='Toque na tela'/>
+</translations>

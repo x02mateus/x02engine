@@ -307,8 +307,10 @@ class Paths
 	}
 	public static function returnGraphic(key:String, ?library:String, usarGPU:Bool = false) {
 		var path:String = '';
-
-		path = getPath('images/$key.png', IMAGE, library);
+		if(Assets.exists(backend.LanguageManager.langFiles_path + 'images/$key.png', IMAGE))
+			path = backend.LanguageManager.langFiles_path + 'images/$key.png';
+		else
+			path = getPath('images/$key.png', IMAGE, library);
 
 		if (OpenFlAssets.exists(path, IMAGE))
 		{

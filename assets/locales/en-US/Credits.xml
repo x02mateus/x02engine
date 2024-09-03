@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <!-- alguem me diz como se fala cargo em ingles :skull: -->
+    <trans id='x02_work' string='Programmer/designer'/>
+    <trans id='silver_work' string='Help with codes'/>
+    <trans id='idklool_work' string='Help with codes and ideas'/>
+    <trans id='mari_work' string='ideas'/>
+</translations>

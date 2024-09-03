@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id="title" string='Choose an optimization preset.'/>
+    <trans id='lowend' string='Low End'/>
+    <trans id="midend" string="Mid End"/>
+    <trans id="highend" string="High End"/>
+    <trans id='lowend_exp' string='Will remove some things of the game, but does not affects your experience (recommended for 2 GB RAM)'/>
+    <trans id="midend_exp" string="The rating popups will be removed and the FPS will be stable (recommended for 3 GB RAM)"/>
+    <trans id="highend_exp" string="Every option enabled. (recommended for 4 GB RAM and above)"/>
+    <trans id="back_exp" string='Dont choose anything and keep the default settings. Press again to leave and continue to the menu.'/>
+</translations>

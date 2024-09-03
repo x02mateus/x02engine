@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id="title" string='Elija un preset de optimizacion.'/>
+    <trans id='lowend' string='Gama Baja'/>
+    <trans id="midend" string="Gama Media"/>
+    <trans id="highend" string="Gama Alta"/>
+    <trans id='lowend_exp' string='Quitarás coisas perceptivas del juego, pero aún así podrás jugar normalmente (recomendado para 2 GB de RAM)'/>
+    <trans id="midend_exp" string="La notificación de acerto no estará visible y vai estabilizar o FPS (recomendado para 3 GB de RAM)"/>
+    <trans id="highend_exp" string="Todo el juego estará activado (recomendado para acima de 4 GB de RAM)"/>
+    <trans id="back_exp" string='No elegirás ningún preset. Haga clic nuevamente para regresar al menú.'/>
+</translations>

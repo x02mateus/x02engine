@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id='initText' string='Welcome!\nThis engine contains flashing lights, and if\nyou have photosensibility,\ndisable the "Flashing Lights" options\nthat can be found at the Options menu.\n\Thanks!\n<coiso> to continue.'/>
+</translations>

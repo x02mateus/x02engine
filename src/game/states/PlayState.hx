@@ -888,4 +888,14 @@ class PlayState extends MusicBeatState {
         hud.updateMisses(songMisses);
         hud.updateScore(combo); // depois eu implemento o score
 	}
+
+	override function add(Object:FlxBasic):FlxBasic
+	{
+		// Pego da Forever Engine
+		if (Std.isOfType(Object, FlxSprite)) {
+			cast(Object, FlxSprite).antialiasing = SaveData.antialiasing;
+			cast(Object, FlxSprite).moves = false;
+		}
+		return super.add(Object);
+	}
 }
