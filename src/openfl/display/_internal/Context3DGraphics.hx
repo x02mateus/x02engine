@@ -1,16 +1,16 @@
 package openfl.display._internal;
 
-import openfl.display._internal.CairoGraphics;
-import openfl.display._internal.CanvasGraphics;
-import openfl.display._internal.DrawCommandReader;
-import openfl.utils._internal.Float32Array;
-import openfl.utils._internal.UInt16Array;
 import openfl.display.BitmapData;
 import openfl.display.Graphics;
 import openfl.display.OpenGLRenderer;
+import openfl.display._internal.CairoGraphics;
+import openfl.display._internal.CanvasGraphics;
+import openfl.display._internal.DrawCommandReader;
 import openfl.geom.ColorTransform;
 import openfl.geom.Matrix;
 import openfl.geom.Rectangle;
+import openfl.utils._internal.Float32Array;
+import openfl.utils._internal.UInt16Array;
 #if lime
 import lime.math.ARGB;
 #end
@@ -493,7 +493,7 @@ class Context3DGraphics
 		else
 		{
 			graphics.__bitmap = null;
-			graphics.__update(renderer.__worldTransform);
+			graphics.__update(renderer.__worldTransform, 1);
 
 			var bounds = graphics.__bounds;
 

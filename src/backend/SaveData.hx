@@ -37,6 +37,7 @@ class SaveData
 	public static var ghostTapping:Null<Bool> = true;
 	public static var botplay:Null<Bool> = false;
 	public static var hitSound:Null<Int> = 0;
+	public static var safeFrames:Null<Int> = 10;
 
 	// UI
 	public static var downscroll:Null<Bool> = false;

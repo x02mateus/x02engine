@@ -120,12 +120,15 @@
 	<!--Pensei em colocar o -D dce full, mas ele é meio inseguro e é mais agressivo que o std.-->
 	<section if="HAXE_OPTIM">
 		<haxeflag name="-dce" value="std"/>
+		<haxeflag name="analyzer-optimize"/>
 	</section>
 
 	<!--Compilar exclusivamente para X64 ou X86 do Android-->
 	<architecture include="armv7" if="android_X86" />
 	<architecture exclude="arm64" if="android_X86"/>
 	<architecture exclude="armv7" unless="android_X86" />
+
+	<haxedef name="no-deprecation-warnings" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 

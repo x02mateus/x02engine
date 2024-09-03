@@ -88,8 +88,9 @@ class FreeplayStateX02 extends MusicBeatState
 			MusicBeatState.switchState(new game.states.MainMenuState());
 		}
 
-		if (accepted)
+		if (accepted) {
 			trace('era pra ido pro Playstate né, mas eu tô com preguiça/não sei como fazer grande parte desse menu...');
+		}
 
 		super.update(elapsed);
 	}

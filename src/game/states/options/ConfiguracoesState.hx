@@ -22,7 +22,6 @@ class ConfiguracoesState extends MusicBeatState
 
 	var backdrop:FlxBackdrop;
 	var logo:FlxSprite;
-	var logoBl:FlxSprite;
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
@@ -315,6 +314,5 @@ class ConfiguracoesState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		logoBl.animation.play('bump', true);
 	}
 }

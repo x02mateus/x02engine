@@ -12,13 +12,17 @@
       },
       {
         "name": "openfl",
-        "type": "haxelib",
-        "version": "9.1.0"
+        "type": "git",
+        "dir": null,
+        "ref": "develop",
+        "url": "https://github.com/FNF-CNE-Devs/openfl"
       },
       {
         "name": "flixel",
-        "type": "haxelib",
-        "version": "4.11.0"
+        "type": "git",
+        "dir": null,
+        "ref": "dev",
+        "url": "https://github.com/FNF-CNE-Devs/flixel"
       },
       {
         "name": "flixel-addons",
@@ -27,10 +31,6 @@
       },
       {
         "name": "flixel-ui",
-        "type": "haxelib"
-      },
-      {
-        "name": "random",
         "type": "haxelib"
       }
     ]

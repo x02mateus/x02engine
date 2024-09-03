@@ -50,6 +50,9 @@ import util.Utils.SpriteSwapper;
 import util.Utils.GamepadUtil;
 import util.Utils.InputDevices;
 
+// Utils
+import util.Random;
+
 // Objects
 import objects.Alphabet;
 
