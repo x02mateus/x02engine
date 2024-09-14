@@ -12,6 +12,7 @@ class LanguagesState extends MusicBeatState
 	private var blackBox:FlxSprite;
 	private var infoText:FlxText;
 	private var acceptInput:Bool = false;
+	private var chooseText:String = '';
 	public static var options:Bool = false;
 
 	override function create()
@@ -19,21 +20,11 @@ class LanguagesState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		Paths.clearStoredMemory();
 
+		updateStrings();
 		Main.mouse_allowed = false;
 
 		add(createBackground());
 
-		switch (SaveData.language)
-		{
-			case "pt-BR":
-				judgementText = ["Português do Brasil", "Inglês (Estados Unidos)", "Espanhol (America Latina)", "Voltar", ''];
-				
-			case "en-US":
-				judgementText = ["Brazilian Portuguese", "English (USA)", "Spanish (Latin America)", "Back", ''];
-				
-			case "es-ES":
-				judgementText = ["Portugués de Brasil", "Inglés (Estados Unidos)", "Español (America Latina)", "Volver", ''];
-		}
 		blackBox = createBlackBox();
 		add(blackBox);
 		infoText = createInfoText();
@@ -131,7 +122,8 @@ class LanguagesState extends MusicBeatState
 
 	private function updateJudgement()
 	{
-		infoText.text = 'Escolha um Preset de otimizacao\n\n${judgementText[curSelected]}';
+
+		infoText.text = '${chooseText}\n\n${judgementText[curSelected]}';
 		textUpdate();
 	}
 
@@ -148,21 +140,26 @@ class LanguagesState extends MusicBeatState
 		keyTextDisplay.screenCenter();
 	}
 
+	private function updateStrings() {
+		switch (SaveData.language)
+		{
+			case "pt-BR":
+				judgementText = ["Português do Brasil", "Inglês (Estados Unidos)", "Espanhol (America Latina)", "Voltar", ''];
+				chooseText = "Linguagem selecionada:";
+				
+			case "en-US":
+				judgementText = ["Brazilian Portuguese", "English (USA)", "Spanish (Latin America)", "Back", ''];
+				chooseText = "Selected language:";
+				
+			case "es-ES":
+				judgementText = ["Portugués de Brasil", "Inglés (Estados Unidos)", "Español (America Latina)", "Volver", ''];
+				chooseText = "Idioma seleccionado:";
+		}
+	}
+
 	private function selecionarPreset()
 	{
 		GlobalSoundManager.play(confirmMenu);
-		switch (curSelected)
-		{
-			case 0:
-				SaveData.language = "pt-BR";
-
-			case 1:
-				SaveData.language = "en-US";
-				
-			case 2:
-				SaveData.language = "es-ES";		
-		}
-		
 		SaveData.save();
 		backend.LanguageManager.checkandset(); // ZYEEEEEEEEEUEUUNNNNNNN
 		MusicBeatState.switchState(new MainMenuState());
@@ -184,5 +181,15 @@ class LanguagesState extends MusicBeatState
 	private function changeItem(_amount:Int = 0)
 	{
 		curSelected = (curSelected + _amount + 4) % 4;
+		
+		switch (curSelected) {
+			case 0:		SaveData.language = "pt-BR";
+			case 1:		SaveData.language = "en-US";
+			case 2:		SaveData.language = "es-ES";		
+		}
+
+		updateStrings(); // Não queria repetir code aqui, e o jeito inteligente era só fazer uma função :thumbsup:
+		updateJudgement();
+		textUpdate();
 	}
 }

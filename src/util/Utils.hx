@@ -4,6 +4,7 @@ import flixel.graphics.FlxGraphic;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 import flixel.util.FlxAxes;
+import flixel.util.FlxSave;
 import openfl.display.BitmapData;
 #if android
 import haxe.crypto.Md5; // Assim o Md5 não é compilado no PC e não fica como Unused import

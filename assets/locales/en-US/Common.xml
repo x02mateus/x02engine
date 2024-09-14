@@ -3,6 +3,10 @@
     <trans id='yes' string='Yes'/>
     <trans id='no' string='No'/>
     <trans id='back' string='Back'/>
-    <trans id='press' string='´Press'/>
+    <trans id='press' string='Press'/>
     <trans id='touch' string='Touch the screen'/>
+    <trans id='opt_on' string='ativado'/>
+    <trans id='opt_off' string='desativado'/>
+    <trans id='opt_visible' string='visível'/>
+    <trans id='opt_invisible' string='invisível'/>
 </translations>

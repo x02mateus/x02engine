@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id='keybinds' string='Keybinds'/>
+    <trans id='downscroll' string='Downscroll'/>
+    <trans id='flashing' string='Luzes Piscantes'/>
+    <trans id='presets' string='Presets de Otimização'/>
+    <trans id='counters' string='Display de FPS/MEM'/>
+    <trans id='scroll_speed' string='Velocidade do Scroll'/>
+</translations>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<translations>
+    <trans id='cat_gameplay' string='Gameplay'/>
+    <trans id='cat_visuals' string='Visuales'/>
+    <trans id='cat_sounds' string='Sonidos'/>
+    <trans id='cat_performance' string='Performance'/>
+    <trans id='cat_mobile' string='Mobile'/>
+</translations>

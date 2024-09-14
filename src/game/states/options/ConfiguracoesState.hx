@@ -27,7 +27,7 @@ class ConfiguracoesState extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var options:Array<OptionCategory> = [
-		new OptionCategory('Gameplay', [
+		new OptionCategory('gameplay', [
 			new KeyBindingsOption('Altere suas keybinds de teclado.'),
 			new DownscrollOption('Faz as notas ficarem pra baixo, simplesmente.'),
 			new GhostTapOption('Determina se você irá tomar dano caso clique em uma nota vazia.'),
@@ -37,22 +37,22 @@ class ConfiguracoesState extends MusicBeatState
 			new TesteHitsounds('Teste o Hitsound'),
 			new MissSounds('Ative ou desative os sons de erros durante a gameplay.')
 		]),
-		new OptionCategory('Visuais', [
+		new OptionCategory('visuals', [
 			new FPSOption('Mostra o quanto de FPS o jogo está, e quanta memoria está usando.'),
 			new FlashingLightsOption('Determina se vai haver luzes piscantes por causa de epilepsia.'),
 			new Daltonismo('Altere entre filtros específicos de daltonismo.')
 		]),
-		new OptionCategory('Sons', [
+		new OptionCategory('sounds', [
 			new VolumeEfeitos('Altere o volume dos efeitos do jogo'),
 			new VolumeMusica('Altere o volume das músicas dos menus'),
 		]),
-		new OptionCategory('Performance', [
+		new OptionCategory('performance', [
 			new FPSCapOption('Coloque um Limite no FPS (Direita ou Esquerda).'),
 			new AntiAliasing('Faz os visuais ficarem mais suaves a custo de um pouco de performance.'),
 			new GPUTextures('Permite o carregamento das texturas na GPU, fazendo usar menos memória.'),
 		]),
 		#if mobileC
-		new OptionCategory('Mobile', [
+		new OptionCategory('mobile', [
 			new HitboxSkin('Altere a skin da Hitbox.')
 		])
 		#end

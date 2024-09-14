@@ -5,4 +5,8 @@
     <trans id='back' string='Volver'/>
     <trans id='press' string='Presiona'/>
     <trans id='touch' string='Toca la pantalla'/>
+    <trans id='opt_on' string='ativado'/>
+    <trans id='opt_off' string='desativado'/>
+    <trans id='opt_visible' string='visível'/>
+    <trans id='opt_invisible' string='invisível'/>
 </translations>

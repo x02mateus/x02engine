@@ -33,7 +33,7 @@ class OptionCategory
 
 	public function new(catName:String, options:Array<Option>)
 	{
-		_name = catName;
+		_name = LanguageManager.getString('cat_$catName', 'OptionsCategory');
 		_options = options;
 	}
 }
@@ -45,6 +45,10 @@ class Option
 		display = updateDisplay();
 	}
 
+	private var on:String = LanguageManager.getString('opt_on', 'Common');
+	private var off:String = LanguageManager.getString('opt_off', 'Common');
+	private var visible:String = LanguageManager.getString('opt_visible', 'Common');
+	private var invisible:String = LanguageManager.getString('opt_invisible', 'Common');
 	private var description:String = "";
 	private var display:String;
 	private var acceptValues:Bool = false;
@@ -107,7 +111,7 @@ class KeyBindingsOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Keybinds';
+		return LanguageManager.getString('keybinds', 'OptionsName');
 	}
 }
 
@@ -128,7 +132,7 @@ class DownscrollOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Downscroll ' + (SaveData.downscroll ? 'ativado' : 'desativado');
+		return LanguageManager.getString('downscroll', 'OptionsName') + (SaveData.downscroll ? ' $on' : ' $off');
 	}
 }
 
@@ -149,7 +153,7 @@ class GhostTapOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Ghost Tapping' + (SaveData.ghostTapping ? ' ativado' : ' desativado');
+		return 'Ghost Tapping' + (SaveData.ghostTapping ? ' $on' : ' $off');
 	}
 }
 
@@ -170,7 +174,7 @@ class FlashingLightsOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Luzes piscantes' + ' ' + (SaveData.flashing ? 'ativadas' : 'desativadas');
+		return LanguageManager.getString('flashing', 'OptionsName') + (SaveData.flashing ? ' $on' : ' $off');
 	}
 }
 
@@ -191,10 +195,13 @@ class Padroes extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Presets de otimização';
+		return LanguageManager.getString('presets', 'OptionsName');
 	}
 }
 
+// To do: separar isso em duas opções
+// - uma pra mem
+// - uma pra fps
 class FPSOption extends Option
 {
 	public function new(desc:String)
@@ -213,7 +220,7 @@ class FPSOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Display de FPS/MEM' + ' ' + (SaveData.showFPS ? 'visível' : 'invisível');
+		return LanguageManager.getString('counters', 'OptionsName') + (SaveData.showFPS ? ' $visible' : ' $invisible');
 	}
 }
 
@@ -267,7 +274,7 @@ class FPSCapOption extends Option
 
 	override function getValue():String
 	{
-		return 'FPS CAP' + ': ' + SaveData.fps;
+		return 'FPS CAP: ${SaveData.fps}';
 	}
 }
 
@@ -287,7 +294,7 @@ class ScrollSpeedOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return 'Velocidade do Scroll';
+		return LanguageManager.getString('scroll_speed', 'OptionsName');
 	}
 
 	override function right():Bool
