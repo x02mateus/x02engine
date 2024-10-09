@@ -80,14 +80,22 @@ class Utils
 	public static function readDirectory(library:String):Array<String>
 	{
 		#if mobile
-		var something:Array<String> = [];
-		var bruh = Assets.list();
-		for (folder in bruh.filter(text -> text.contains('$library')))
-		{
-			if (!folder.startsWith('.'))
-				something.push(folder);
-		}
-		return something;
+		var result = [];
+
+        for (library in Main.assetsList.filter(archives -> archives.contains(folder))) {
+            if (!library.startsWith('.')) {
+                var name = library.replace(folder + '/', '').split('/')[0];
+                // contains pero un poooco mas rapido
+                if (result.indexOf(name) == -1)
+                    result.push(name);
+            }
+        }
+
+        result.sort((a, b) -> {
+            return a.toUpperCase() < b.toUpperCase() ? -1 : (a.toUpperCase() > b.toUpperCase() ? 1 : 0);
+        });
+
+        return result;
 		#else
 		return FileSystem.readDirectory(library);
 		#end
@@ -104,15 +112,6 @@ class Utils
 		#else
 		return BitmapData.fromFile(id);
 		#end
-	}
-
-	/**
-	 * Copia o conteúdo de uma string para o seu histórico do CTRL + C (PC) ou pro teclado (Mobile)
-	 * @param id String que será copiada
-	 */
-	public static function copiarclipboard(coisa:String)
-	{
-		openfl.system.System.setClipboard(coisa.trim());
 	}
 }
 
@@ -675,22 +674,6 @@ class BSLTouchUtils
 		return 0;
 	}
 	#end
-
-	public static function teclado(acao:String)
-	{ // Converter para lua
-		#if mobile
-		if (acao == "abrir")
-		{
-			FlxG.stage.window.textInputEnabled = true;
-		}
-		else if (acao == "fechar")
-		{
-			FlxG.stage.window.textInputEnabled = false;
-		}
-		#else
-		trace("Abrir/fechar teclado e uma funcao exclusiva do mobile.");
-		#end
-	}
 }
 
 /**

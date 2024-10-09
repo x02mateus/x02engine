@@ -29,6 +29,10 @@ class Main extends Sprite
 	#if mobile
 	private static var touch_allowed:Bool = true;
 	public static var path = lime.system.System.applicationStorageDirectory;
+	// Essa commit é quase inteira baseada numa PR feita no port da FE para android
+	// https://github.com/musk-h/forever-engine-android-port/pull/1
+	// Só troquei a lógica trocando a var de dentro do HSys (no meu caso, o Utils) e movendo pro Main.
+	public static var assetsList:Array<String>;
 	#end
 
 	var game = {
@@ -123,6 +127,10 @@ class Main extends Sprite
 		{
 			FlxG.game.setFilters(shaderarray); // Resumindo: Se tu quer enxergar as cores certinhas, tu vai ter lag no jogo k
 		}
+		#if mobile
+		assetsList = Assets.list(); // Só fiz isso pra salvar na RAM e não ter que carregar a lista dos assets toda vez que o readDirectory for chamado
+		// Isso é bom pra performance, considerando que no mobile a lista de arquivos do APK não mudará.
+		#end
 		setFPSCap(SaveData.fps);
 		backend.LanguageManager.checkandset();
 		FlxG.fixedTimestep = false; // Agora eu fiquei na dúvida entre deixar isso falso, ou deixar isso como verdadeiro.
