@@ -11,7 +11,7 @@ import flixel.input.actions.FlxActionSet;
 import flixel.input.gamepad.FlxGamepadButton;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
-#if mobile
+#if MOBILE_CONTROLS
 import flixel.ui.FlxButton;
 import input.mobile.ui.FlxVirtualPad;
 import input.mobile.ui.Hitbox;
@@ -272,7 +272,7 @@ class Controls extends FlxActionSet
 	}
 	#end
 
-	#if mobile
+	#if MOBILE_CONTROLS
 	public var trackedinputs:Array<FlxActionInput> = [];
 
 	public function addbutton(action:FlxActionDigital, button:FlxButton, state:FlxInputState)

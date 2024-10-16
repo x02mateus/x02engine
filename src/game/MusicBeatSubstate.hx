@@ -3,7 +3,7 @@ package game;
 import flixel.FlxSubState;
 import input.Controls;
 import input.PlayerSettings;
-#if mobileC
+#if MOBILE_CONTROLS
 import flixel.input.actions.FlxActionInput;
 import input.mobile.ui.FlxVirtualPad;
 #end
@@ -26,7 +26,7 @@ class MusicBeatSubstate extends FlxSubState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	#if mobileC
+	#if MOBILE_CONTROLS
 	public static var _virtualpad:FlxVirtualPad;
 
 	var trackedinputs:Array<FlxActionInput> = [];

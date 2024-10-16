@@ -4,7 +4,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import game.states.Init;
 import input.Controls;
 import input.PlayerSettings;
-#if mobileC
+#if MOBILE_CONTROLS
 import flixel.input.actions.FlxActionInput;
 import input.mobile.ui.FlxVirtualPad;
 #end
@@ -24,7 +24,7 @@ class MusicBeatState extends flixel.addons.ui.FlxUIState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	#if mobileC
+	#if MOBILE_CONTROLS
 	public static var _virtualpad:FlxVirtualPad;
 
 	var trackedinputs:Array<FlxActionInput> = [];

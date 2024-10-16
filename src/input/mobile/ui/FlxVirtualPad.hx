@@ -1,6 +1,6 @@
 package input.mobile.ui;
 
-#if mobileC
+#if MOBILE_CONTROLS
 import flash.display.BitmapData;
 import flixel.FlxG;
 import flixel.graphics.FlxGraphic;

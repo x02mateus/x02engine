@@ -2,7 +2,7 @@ package game.states.options;
 
 class AjustesState extends MusicBeatState {
     private var bg:FlxSprite;
-    private var options:Array<String> = ['Configuracoes', 'Linguagem'];
+    private var options:Array<String> = ['Configuracoes', 'Linguagem' #if MOBILE_CONTROLS, 'Controles Mobile' #end];
     private var option_buttons:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
     public static var selectedSomethin:Bool = false;
@@ -10,10 +10,6 @@ class AjustesState extends MusicBeatState {
     override function create() {
         Main.mouse_allowed = true;
         persistentUpdate = persistentDraw = true;
-
-        #if mobileC
-        options.push('Controles Mobile');
-        #end
 
         bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/${FlxG.random.int(1, 2)}', 'preload'));
         bg.moves = false;
@@ -124,7 +120,7 @@ class AjustesState extends MusicBeatState {
                 MusicBeatState.switchState(new game.states.options.ConfiguracoesState()); //graficos, gameplay e etc.
             case 'Linguagem': 
                 MusicBeatState.switchState(new game.states.options.LanguagesState());
-            #if mobileC
+            #if MOBILE_CONTROLS
             case 'Controles Mobile': 
                 MusicBeatState.switchState(new game.states.options.MobileKeyBinds());
             #end

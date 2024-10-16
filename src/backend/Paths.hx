@@ -380,4 +380,9 @@ class Paths
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
 	}
+
+	#if MOBILE_CONTROLS
+	inline static function loadHitboxSkin(skin:String, frame:String):FlxGraphic
+		return FlxGraphic.fromFrame(getSparrowAtlas('hitbox/hitbox_$skin', 'mobile').getByName(frame));
+	#end
 }
