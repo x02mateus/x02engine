@@ -69,6 +69,9 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="flixel-ui" />
 
+	<!-- Extensão responsável pelo carregamento e conversão de diversas charts de diversos jogos -->
+	<haxelib name="moonchart" />
+
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
 

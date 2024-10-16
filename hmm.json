@@ -28,6 +28,13 @@
       {
         "name": "flixel-ui",
         "type": "haxelib"
+      },
+      {
+        "name": "moonchart",
+        "type": "git",
+        "dir": null,
+        "ref": "main",
+        "url": "https://github.com/MaybeMaru/moonchart"
       }
     ]
   }
