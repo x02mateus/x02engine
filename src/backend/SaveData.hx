@@ -25,7 +25,7 @@ class SaveData
 	#if MOBILE_CONTROLS
 	public static var buttonsMode:Array<Dynamic> = [];
 	public static var buttons:Array<Dynamic> = [];
-	public static var hitboxSkin:Null<String> = 'normal';
+	public static var hitboxSkin:Null<String> = 'default';
 	#end
 
 	// Gráficos
