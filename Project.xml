@@ -129,9 +129,9 @@
 	</section>
 
 	<!--Compilar exclusivamente para X64 ou X86 do Android-->
-	<architecture include="armv7" if="android_X86" />
-	<architecture exclude="arm64" if="android_X86"/>
-	<architecture exclude="armv7" unless="android_X86" />
+	<architecture include="armv7" if="android_X86 || both" unless="android_x64"/>
+	<architecture exclude="arm64" if="android_X86" unless="both || android_x64"/>
+	<architecture exclude="armv7" if="android_x64" unless="android_X86 || both"  />
 
 	<haxedef name="no-deprecation-warnings" />
 
