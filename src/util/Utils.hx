@@ -77,14 +77,14 @@ class Utils
 	 * Retorna o nome de todos os arquivos dentro do diretório especificado
 	 * @param id Diretório que será lido
 	 */
-	public static function readDirectory(library:String):Array<String>
+	public static function readDirectory(id:String):Array<String>
 	{
 		#if mobile
 		var result = [];
 
-        for (library in Main.assetsList.filter(archives -> archives.contains(folder))) {
+        for (library in AssetsManager.list().filter(archives -> archives.contains(id))) {
             if (!library.startsWith('.')) {
-                var name = library.replace(folder + '/', '').split('/')[0];
+                var name = library.replace(id + '/', '').split('/')[0];
                 // contains pero un poooco mas rapido
                 if (result.indexOf(name) == -1)
                     result.push(name);
