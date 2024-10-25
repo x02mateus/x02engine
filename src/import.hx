@@ -2,6 +2,9 @@
 import backend.Paths;
 import backend.SaveData;
 import backend.LanguageManager;
+#if mobile
+import backend.AssetsManager;
+#end
 import util.Utils.CoolUtil;
 
 // Haxe
