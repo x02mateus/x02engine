@@ -1,6 +1,6 @@
 package input.mobile;
 
-#if mobileC
+#if MOBILE_CONTROLS
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxSave;

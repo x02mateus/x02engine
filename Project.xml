@@ -21,9 +21,13 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
+
+	<!-- Desktop Setup -->
 	<window if="desktop" orientation="landscape" fullscreen="false" width="1280" height="720" resizable="true" />
+
+	<!-- Mobile Setup-->
 	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" allow-shaders="true" require-shaders="true" allow-high-dpi="true" />
-	<define name="mobileC" if="mobile" />
+	<define name="MOBILE_CONTROLS" if="mobile" />
 	
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -37,19 +41,19 @@
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
 
 	<section if="PRELOAD_ALL">
-		<library name="mobile" 	preload="true" 		if="mobileC"/>
+		<library name="mobile" 	preload="true" 		if="MOBILE_CONTROLS"/>
 		<library name="songs"  	preload="true" />
 		<library name="shared" 	preload="true" />
 	</section>
 
 	<section if="NO_PRELOAD_ALL">
-		<library name="mobile" 	preload="false" 	if="mobileC"/>
+		<library name="mobile" 	preload="false" 	if="MOBILE_CONTROLS"/>
 		<library name="songs"  	preload="false" />
 		<library name="shared" 	preload="false" />
 	</section>
 
 	<!-- Fazendo uma library para os controles mobile vai facilitar a organização e diminuir o espaço usado quando a target não é o Android. -->
-	<assets path="assets/mobile" 	library="mobile" 	if="mobileC"/>
+	<assets path="assets/mobile" 	library="mobile" 	if="MOBILE_CONTROLS"/>
 	<!-- Game libraries -->
 	<assets path="assets/preload" 	rename="assets" 	exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" 	rename="assets" 	exclude="*.mp3" unless="web"/>
@@ -129,9 +133,11 @@
 	</section>
 
 	<!--Compilar exclusivamente para X64 ou X86 do Android-->
-	<architecture include="armv7" if="android_X86" />
-	<architecture exclude="arm64" if="android_X86"/>
-	<architecture exclude="armv7" unless="android_X86" />
+	<section if="android">
+		<architecture include="armv7" if="android_X86" />
+		<architecture exclude="arm64" if="android_X86"/>
+		<architecture exclude="armv7" unless="android_X86" />
+	</section>
 
 	<haxedef name="no-deprecation-warnings" />
 

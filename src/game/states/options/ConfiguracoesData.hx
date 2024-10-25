@@ -332,11 +332,11 @@ class ScrollSpeedOption extends Option
 	}
 }
 
-#if android
+#if MOBILE_CONTROLS
 class HitboxSkin extends Option
 {
     var count:Int = 0;
-    var skins:Array<String> = ['normal', 'invisivel'];
+    var skins:Array<String> = ['default', 'invisivel'];
 
 	public function new(desc:String)
 	{

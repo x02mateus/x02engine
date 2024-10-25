@@ -1,6 +1,6 @@
 package game.states.options;
 
-#if mobileC
+#if MOBILE_CONTROLS
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.ui.FlxUIButton;
@@ -93,7 +93,7 @@ class MobileKeyBinds extends MusicBeatState // Code desenvolvido dois anos atrá
 
 		// hitboxes
 
-		_hb = new Hitbox();
+		_hb = new Hitbox(SaveData.hitboxSkin);
 		_hb.visible = false;
 
 		// buttons

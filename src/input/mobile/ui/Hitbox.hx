@@ -1,81 +1,73 @@
 package input.mobile.ui;
 
-/*
- * Eu decidi reescrever isso pq eu gosto de sempre fazer umas coisas diferenciadas e achei que esse code tava precisando :D
- * @author MateusX02
-*/
+#if MOBILE_CONTROLS
 import flixel.ui.FlxButton;
 
-class Hitbox extends FlxSpriteGroup
-{
-	private var hitboxGroup:FlxSpriteGroup;
-    private var hitbox_hint:FlxSprite;
-    private var sizex:Int = 320;
-    private var buttonsCoords:Array<Int>;
-    public var buttonLeft:FlxButton = new FlxButton(0, 0);
-	public var buttonDown:FlxButton = new FlxButton(0, 0);
-	public var buttonUp:FlxButton = new FlxButton(0, 0);
-	public var buttonRight:FlxButton = new FlxButton(0, 0);
-    public var buttonsArray:Array<FlxButton>;
+/**
+ *  Reescrevi esse code, tentando deixar tudo mais limpo e melhor de ler
+ */
 
-	public function new(?screenWidth:Int)
-	{
-		super();
-        
-        hitboxGroup.scrollFactor.set();
-        sizex = screenWidth != null ? Std.int(screenWidth / 4) : 320;
-        buttonsCoords = [0, sizex, sizex * 2, sizex * 3];
-        buttonsArray = [buttonLeft, buttonDown, buttonUp, buttonRight];
+class Hitbox extends FlxSpriteGroup {
+    public var buttonLeft:FlxButton;
+	public var buttonDown:FlxButton;
+	public var buttonUp:FlxButton;
+	public var buttonRight:FlxButton;
 
-        hitbox_hint = new FlxSprite(0, 0).loadGraphic(Paths.image('hitbox/hitbox_hint', 'mobile'));
-        hitbox_hint.y = FlxG.height - hitbox_hint.height;
-		hitbox_hint.alpha = 0.2;
-		add(hitbox_hint);
-        
-		for (i in 1...4)
-			hitboxGroup.add(add(buttonsArray[i - 1] = createButton(buttonsCoords[i - 1], i))); // iiiiiiiiiii....
-	}
+    private var buttonsCoords:Array<Int> = [0, 320, 320 * 2, 320 * 3];
+    private var skin:String = "default";
 
-	private function createButton(x:Int, anim:Int) {
-		var button:FlxButton = new FlxButton(x, 0);
-        var frames = Paths.getSparrowAtlas('hitbox/hitbox_${SaveData.hitboxSkin}', 'mobile');
-		button.loadGraphic(flixel.graphics.FlxGraphic.fromFrame(frames.getByName(Std.string(anim))));
-		button.alpha = 0;
-		button.visible = false;
+    public function new(skin:String = "default") {
+        super();
 
-		button.onDown.callback = function() { 
-            onDown(button);
-        }
-		button.onUp.callback = function() { 
-            onUp(button);
-        }
-		button.onOut.callback = function() { 
-            onOut(button);
-        }
+        this.skin = skin;
+
+        var hint:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('hitbox/hitbox_hint_$skin'));
+        hint.setGraphicSize(FlxG.width, FlxG.height);
+        hint.screenCenter();        
+        hint.moves = false;
+        hint.antialiasing = SaveData.antialiasing;
+        add(hint);
+
+        add(buttonLeft = createHitbox(buttonsCoords[0], "1"));
+		add(buttonDown = createHitbox(buttonsCoords[1], "2"));
+		add(buttonUp = createHitbox(buttonsCoords[2], "3"));
+		add(buttonRight = createHitbox(buttonsCoords[3], "4"));
+    }
+
+    private function createHitbox(x:Float, anim:String):FlxButton {
+        var button:FlxButton = new FlxButton(x, 0);
+        button.loadGraphic(Paths.loadHitboxSkin(skin, anim));
+        button.setGraphicSize(Std.int(320), FlxG.height);
+		button.updateHitbox();
+        button.alpha = 0;
+
+        var tween:FlxTween = null; // Silenciando aquele aviso chato da compilação.
+
+		button.onDown.callback = function (){
+			if (tween != null)
+				tween.cancel();
+            tween = FlxTween.tween(button, {alpha: 0.75}, 0.075, {ease: FlxEase.circInOut});
+		};
+
+		button.onUp.callback = function (){
+			if (tween != null)
+				tween.cancel();
+            tween = FlxTween.tween(button, {alpha: 0}, 0.15, {ease: FlxEase.circInOut});
+		}
+		
+		button.onOut.callback = function (){
+			if (tween != null)
+				tween.cancel();
+            tween = FlxTween.tween(button, {alpha: 0}, 0.15, {ease: FlxEase.circInOut});
+		}
 
 		return button;
+    }
+
+    override public function destroy():Void
+	{
+		super.destroy();
+		buttonLeft = buttonDown = buttonUp = buttonRight = null;
 	}
-
-    private function onDown(button:FlxButton):Void {
-        button.visible = true;
-        FlxTween.tween(button, { alpha : 0.75 }, .075, { ease: FlxEase.circInOut });
-    }
-
-    private function onUp(button:FlxButton):Void {  
-        FlxTween.tween(button, { alpha : 0 }, .1, { ease: FlxEase.circInOut, onComplete: function(twn:FlxTween) {
-            button.visible = false;
-        }});
-    }
-
-    private function onOut(button:FlxButton):Void {
-        FlxTween.tween(button, { alpha : 0 }, .2, { ease: FlxEase.circInOut, onComplete: function(twn:FlxTween) {
-            button.visible = false;
-        }});
-    }
-
-    override public function destroy():Void {
-        super.destroy();
-    
-        buttonLeft = buttonDown = buttonUp = buttonRight = null;
-    }
 }
+#end

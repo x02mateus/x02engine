@@ -122,7 +122,7 @@ class FreeplayState extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 		#if PRELOAD_ALL
-		var coiso:String = #if mobile 'X' #else 'ESPAÇO' #end;
+		var coiso:String = #if MOBILE_CONTROLS 'X' #else 'ESPAÇO' #end;
 		var leText:String = 'Aperte $coiso para ouvir uma prévia da música';
 		#else
 		var leText:String = "Press RESET to Reset your Score and Accuracy.";
@@ -150,7 +150,7 @@ class FreeplayState extends MusicBeatState
 		leftArrow.x = sprDifficulty.x - 60;
 		rightArrow.x = sprDifficulty.x + sprDifficulty.width + 60;
 
-		#if mobileC
+		#if MOBILE_CONTROLS
 		addVirtualPad(FULL, A_B_X);
 		#end
 		
@@ -215,7 +215,7 @@ class FreeplayState extends MusicBeatState
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
-		var space = FlxG.keys.justPressed.SPACE #if mobileC || _virtualpad.buttonX.justPressed #end;
+		var space = FlxG.keys.justPressed.SPACE #if MOBILE_CONTROLS || _virtualpad.buttonX.justPressed #end;
 
 		var shiftMult:Int = 1;
 		if(FlxG.keys.pressed.SHIFT) shiftMult = 3;
