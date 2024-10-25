@@ -1,6 +1,6 @@
 package input.mobile.ui;
 
-#if mobileC
+#if MOBILE_CONTROLS
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import input.mobile.Config;
