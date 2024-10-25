@@ -51,7 +51,7 @@ class PresetsState extends MusicBeatState
 		
 		textUpdate();
 
-		#if mobileC
+		#if MOBILE_CONTROLS
 		addVirtualPad(UP_DOWN, A);
 		#end
 

@@ -51,7 +51,7 @@ class ConfiguracoesState extends MusicBeatState
 			new AntiAliasing('Faz os visuais ficarem mais suaves a custo de um pouco de performance.'),
 			new GPUTextures('Permite o carregamento das texturas na GPU, fazendo usar menos memória.'),
 		]),
-		#if mobileC
+		#if MOBILE_CONTROLS
 		new OptionCategory('mobile', [
 			new HitboxSkin('Altere a skin da Hitbox.')
 		])
@@ -108,7 +108,7 @@ class ConfiguracoesState extends MusicBeatState
 
 		changeSelection();
 
-		#if mobileC
+		#if MOBILE_CONTROLS
 			addVirtualPad(FULL, A_B);
 		#end
 

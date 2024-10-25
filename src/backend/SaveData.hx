@@ -22,9 +22,11 @@ class SaveData
 	public static var language:Null<String> = null; // isso é feio mas funciona :D
 
 	// Mobile Controls data
+	#if MOBILE_CONTROLS
 	public static var buttonsMode:Array<Dynamic> = [];
 	public static var buttons:Array<Dynamic> = [];
-	public static var hitboxSkin:Null<String> = 'normal';
+	public static var hitboxSkin:Null<String> = 'default';
+	#end
 
 	// Gráficos
 	public static var fps:Null<Int> = 60;
