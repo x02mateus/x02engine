@@ -6,6 +6,13 @@ import openfl.utils.Assets; // O do Lime tem algumas coisas que faltam.
 
 class AssetsManager {
     public static var assets_list:Array<String> = list(); 
+    public static final lua_files:Array<String> = list_by_extension('.lua');
+    public static final json_files:Array<String> = list_by_extension('.json', null, 'data/'); // Esse ignora os arquivos de "data/"
+    public static final hscript_files:Array<String> = list_by_extension('.hscript');
+    public static final sm_chartingfiles:Array<String> = list_by_extension('.sm', 'data/', null);
+    public static final osu_chartingfiles:Array<String> = list_by_extension('.osu', 'data/', null);
+    public static final json_chartingfiles:Array<String> = list_by_extension('.json', 'data/', null); // Esse só lê os da pasta "data/"
+    
 
     inline public static function list():Array<String> {
         if(assets_list == null)
@@ -14,20 +21,22 @@ class AssetsManager {
         return assets_list;
     }
 
-    inline public static function list_by_type(ext:String):Array<String> {
+    inline public static function list_by_extension(ext:String, ?include:String, ?exclude:String):Array<String> {
         var specific_list:Array<String> = [];
 
         if(assets_list != null) {
             for (file in assets_list)
-                if(file.endsWith(ext)) 
+                if (exclude != null && file.contains(exclude))
+                    continue;
+                else if (include != null && file.contains(include) || (include == null && exclude == null && file.contains(ext)))
                     specific_list.push(file);
         } else {
-            specific_list = Assets.list(convert_ext_to_type(ext));
-            for (file in specific_list)
-                if(!file.endsWith(ext)) 
-                    specific_list.remove(file);
+            #if (!mobile && debug)
+            trace('erro: assets_list é nulo.');
+            #else
+            FlxG.log.error("Assets_list é nulo.");
+            #end
         }
-
         return specific_list;
     }
 
