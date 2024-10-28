@@ -1,4 +1,4 @@
-package input.mobile.ui;
+package input.mobile;
 
 #if MOBILE_CONTROLS
 import flixel.FlxG;
@@ -7,7 +7,7 @@ import input.mobile.Config;
 import input.mobile.ui.FlxVirtualPad;
 import input.mobile.ui.Hitbox;
 
-class Mobilecontrols extends FlxSpriteGroup
+class MobileControls extends FlxSpriteGroup
 {
 	public var mode:ControlsGroup = HITBOX;
 	public var _hitbox:Hitbox;

@@ -4,8 +4,8 @@ package input.mobile;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxSave;
+import input.mobile.MobileControls.ControlsGroup;
 import input.mobile.ui.FlxVirtualPad;
-import input.mobile.ui.Mobilecontrols.ControlsGroup;
 
 class Config
 {
