@@ -97,7 +97,7 @@ class Utils
 
         return result;
 		#else
-		return FileSystem.readDirectory(library);
+		return FileSystem.readDirectory(id);
 		#end
 	}
 

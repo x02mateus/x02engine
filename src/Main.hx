@@ -129,7 +129,7 @@ class Main extends Sprite
 		setFPSCap(SaveData.fps);
 		backend.LanguageManager.checkandset();
 		#if mobile
-		AssetsManager.list(); // colocando o .list() aqui pra já deixar a lista forçada.
+		AssetsManager.list(); // colocando o .list() aqui pra já deixar a lista configurada.
 		#end
 		FlxG.fixedTimestep = false; // Agora eu fiquei na dúvida entre deixar isso falso, ou deixar isso como verdadeiro.
 		// Eu mandei lá no Discord, uma gravação onde o FPS Cap é 240 e ele fica SUPER lagado. Só consegui resolver isso deixando o timestep como falso.
