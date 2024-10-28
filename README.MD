@@ -1,8 +1,11 @@
 # <img src="art/icon64.png" align="center"> X02Engine</img>
-Essa engine almeja trazer a experiência do Friday Night Funkin' original ao mesmo tempo que é customizável e user-friendly. Originalmente feita em 2021, baseada na [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine), a engine foi basicamente reescrita do zero, porém, continua sendo feita em Haxe/HaxeFlixel.
+## ESSA ENGINE AINDA ESTÁ EM DESENVOLVIMENTO! Isso significa que vários dos codes deste repositório serão reescritos, trocados ou até mesmo apagados. (O code foi aberto só para caso alguém quiser acompanhar e também pra atualizar o meu arquivo de README)
+## Antes de tudo, gostaria de avisar que alguns dos codes aqui estão FEIOS e foram feitos como "placeholders" e são provisórios.
+
+Essa engine almeja trazer a experiência do Friday Night Funkin' original ao mesmo tempo que é customizável e user-friendly. Originalmente feita em 2021, baseada na [Psych Engine](https://github.com/ShadowMario/FNF-PsychEngine), esta engine foi basicamente "reescrita do zero", porém, continua sendo feita em Haxe/HaxeFlixel.
 
 Esta engine foi feita pensando principalmente em pessoas com um celular/PC fraco, então, a otimização foi uma preocupação a mais aqui.
-Além de suportar mods e suportar charts de FNF, juntamente de modcharts em Lua, a X02Engine também suporta charts de Osu! (em progresso) e Clone Hero (em progresso).
+Além de suportar mods e suportar charts de FNF, juntamente de modcharts em Lua, a X02Engine também suporta charts de Osu! e Clone Hero. (em progresso)
 
 ## Tutorial de Build simplificado:
 Siga esses seguintes passos FUNDAMENTAIS para a compilação:
@@ -47,18 +50,17 @@ Caso você não tenha um computador e quiser compilar esta engine para Android, 
 * MaybeMaru - Programou a library [Moonchart](https://github.com/MaybeMaru/moonchart) que permite o carregamento e conversão de diversas charts
 
 ## TODO/PLANEJAMENTOS:
-** ESSA ENGINE AINDA ESTÁ EM DESENVOLVIMENTO **
-Bom, a ideia pra essa "engine" é, trazer as coisas do FNF e ao mesmo tempo modificá-las de forma que me agradem.
-A principal ideia é fazer ser um jogo confortável, leve e sem lag ao mesmo tempo.
-Andei pensando em coisas como:
-	- Suporte a charts de CH, Osu!, FNF (junto de conversores de charts de outros jogos)
-	- Suporte a backgrounds com vídeo, tanto customizados, como backgrounds padrões das charts
-	- Suporte a charts/skins customizadas sem ter que recompilar o jogo
-	- Suporte a customização dos menus de forma softcoded (utilizando JSONs para determinar visibilidade, posição de sprites, etc)
-	- Suporte nativo a gamepad (Mobile/Desktop)
-	- Suporte nativo a teclado (Mobile/Desktop)
-	- Suporte nativo a controles Mobile (Mobile)
-	- Charts em BIN para melhor otimização
-	- Code compacto e limpo
-	- Poder jogar a música que quiser
-	- Ter uma gameplay confortável e agradável para o usuário, com bastantes opções de customização
+# Bom, a ideia pra essa "engine" é, trazer as coisas do FNF e ao mesmo tempo modificá-las de forma que me agradem.
+# A principal ideia é fazer ser um jogo confortável, leve e sem lag ao mesmo tempo.
+# Andei pensando em coisas como:
+* Suporte a charts de CH, Osu!, FNF (junto de conversores de charts de outros jogos)
+* Suporte a backgrounds com vídeo, tanto customizados, como backgrounds padrões das charts
+* Suporte a charts/skins customizadas sem ter que recompilar o jogo
+* Suporte a customização dos menus de forma softcoded (utilizando JSONs para determinar visibilidade, posição de sprites, etc)
+* Suporte nativo a gamepad (Mobile/Desktop)
+* Suporte nativo a teclado (Mobile/Desktop)
+* Suporte nativo a controles Mobile (Mobile)
+* Charts em BIN para melhor otimização
+* Code compacto e limpo
+* Poder jogar a música que quiser
+* Ter uma gameplay confortável e agradável para o usuário, com bastantes opções de customização
